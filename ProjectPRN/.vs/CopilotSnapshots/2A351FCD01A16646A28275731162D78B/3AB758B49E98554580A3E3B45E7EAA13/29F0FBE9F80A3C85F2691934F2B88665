@@ -1,0 +1,60 @@
+﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DataAccessObjects;
+
+public interface ICertificateDAO : IGenericDAO<Certificate>
+{
+    IEnumerable<Certificate> GetByStudentId(int studentId);
+    IEnumerable<Certificate> GetByCourseId(int courseId);
+}
+
+public class CertificateDAO : ICertificateDAO
+{
+    private readonly Prn212skillsHoannn6Context _context;
+
+    public CertificateDAO()
+    {
+        _context = new Prn212skillsHoannn6Context();
+    }
+
+    public IEnumerable<Certificate> GetAll()
+    {
+        return _context.Certificates.Include(c => c.Student).Include(c => c.Course).ToList();
+    }
+
+    public Certificate? GetById(int id)
+    {
+        return _context.Certificates.Include(c => c.Student).Include(c => c.Course).FirstOrDefault(c => c.CertificateId == id);
+    }
+
+    public IEnumerable<Certificate> GetByStudentId(int studentId)
+    {
+        return _context.Certificates.Where(c => c.StudentId == studentId).ToList();
+    }
+
+    public IEnumerable<Certificate> GetByCourseId(int courseId)
+    {
+        return _context.Certificates.Where(c => c.CourseId == courseId).ToList();
+    }
+
+    public void Add(Certificate entity)
+    {
+        _context.Certificates.Add(entity);
+    }
+
+    public void Update(Certificate entity)
+    {
+        _context.Certificates.Update(entity);
+    }
+
+    public void Delete(Certificate entity)
+    {
+        _context.Certificates.Remove(entity);
+    }
+
+    public void SaveChanges()
+    {
+        _context.SaveChanges();
+    }
+}

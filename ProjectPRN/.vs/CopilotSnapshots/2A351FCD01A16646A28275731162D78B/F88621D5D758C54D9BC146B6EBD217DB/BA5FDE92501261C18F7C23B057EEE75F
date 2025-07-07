@@ -1,0 +1,54 @@
+﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DataAccessObjects;
+
+public interface IAssessmentDAO : IGenericDAO<Assessment>
+{
+    IEnumerable<Assessment> GetByCourseId(int courseId);
+}
+
+public class AssessmentDAO : IAssessmentDAO
+{
+    private readonly Prn212skillsHoannn6Context _context;
+
+    public AssessmentDAO()
+    {
+        _context = new Prn212skillsHoannn6Context();
+    }
+
+    public IEnumerable<Assessment> GetAll()
+    {
+        return _context.Assessments.Include(a => a.Course).ToList();
+    }
+
+    public Assessment? GetById(int id)
+    {
+        return _context.Assessments.Include(a => a.Course).FirstOrDefault(a => a.AssessmentId == id);
+    }
+
+    public IEnumerable<Assessment> GetByCourseId(int courseId)
+    {
+        return _context.Assessments.Where(a => a.CourseId == courseId).ToList();
+    }
+
+    public void Add(Assessment entity)
+    {
+        _context.Assessments.Add(entity);
+    }
+
+    public void Update(Assessment entity)
+    {
+        _context.Assessments.Update(entity);
+    }
+
+    public void Delete(Assessment entity)
+    {
+        _context.Assessments.Remove(entity);
+    }
+
+    public void SaveChanges()
+    {
+        _context.SaveChanges();
+    }
+}

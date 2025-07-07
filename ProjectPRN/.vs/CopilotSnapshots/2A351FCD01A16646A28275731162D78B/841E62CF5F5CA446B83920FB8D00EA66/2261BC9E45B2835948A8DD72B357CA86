@@ -1,0 +1,64 @@
+﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DataAccessObjects;
+
+public interface IStudentDAO : IGenericDAO<Student>
+{
+    Student? GetByEmail(string email);
+    IEnumerable<Student> GetByStatus(string status);
+}
+
+public class StudentDAO : IStudentDAO
+{
+    private readonly Prn212skillsHoannn6Context _context;
+
+    public StudentDAO()
+    {
+        _context = new Prn212skillsHoannn6Context();
+    }
+
+    public IEnumerable<Student> GetAll()
+    {
+        return _context.Students.Include(s => s.Enrollments)
+                              .Include(s => s.Certificates)
+                              .ToList();
+    }
+
+    public Student? GetById(int id)
+    {
+        return _context.Students.Include(s => s.Enrollments)
+                              .Include(s => s.Certificates)
+                              .FirstOrDefault(s => s.StudentId == id);
+    }
+
+    public Student? GetByEmail(string email)
+    {
+        return _context.Students.FirstOrDefault(s => s.Email == email);
+    }
+
+    public IEnumerable<Student> GetByStatus(string status)
+    {
+        return _context.Students.Where(s => s.Status == status).ToList();
+    }
+
+    public void Add(Student entity)
+    {
+        _context.Students.Add(entity);
+    }
+
+    public void Update(Student entity)
+    {
+        _context.Students.Update(entity);
+    }
+
+    public void Delete(Student entity)
+    {
+        _context.Students.Remove(entity);
+    }
+
+    public void SaveChanges()
+    {
+        _context.SaveChanges();
+    }
+}

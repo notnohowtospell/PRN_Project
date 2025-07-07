@@ -1,0 +1,83 @@
+﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DataAccessObjects;
+
+public interface ILifeSkillCourseDAO : IGenericDAO<LifeSkillCourse>
+{
+    Task<IEnumerable<LifeSkillCourse>> GetByInstructorAsync(int instructorId);
+    Task<IEnumerable<LifeSkillCourse>> GetByStatusAsync(string status);
+}
+
+public class LifeSkillCourseDAO : ILifeSkillCourseDAO
+{
+    private readonly Prn212skillsHoannn6Context _context;
+
+    public LifeSkillCourseDAO()
+    {
+        _context = new Prn212skillsHoannn6Context();
+    }
+
+    public async Task<IEnumerable<LifeSkillCourse>> GetAllAsync()
+    {
+        return await _context.LifeSkillCourses.Include(c => c.Instructor)
+                                              .Include(c => c.Enrollments)
+                                              .Include(c => c.CourseMaterials)
+                                              .ToListAsync();
+    }
+
+    public async Task<LifeSkillCourse?> GetByIdAsync(int id)
+    {
+        return await _context.LifeSkillCourses.Include(c => c.Instructor)
+                                              .Include(c => c.Enrollments)
+                                              .Include(c => c.CourseMaterials)
+                                              .FirstOrDefaultAsync(c => c.CourseId == id);
+    }
+
+    public async Task<IEnumerable<LifeSkillCourse>> GetByInstructorAsync(int instructorId)
+    {
+        return await _context.LifeSkillCourses.Where(c => c.InstructorId == instructorId)
+                                              .Include(c => c.Instructor)
+                                              .ToListAsync();
+    }
+
+    public async Task<IEnumerable<LifeSkillCourse>> GetByStatusAsync(string status)
+    {
+        return await _context.LifeSkillCourses.Where(c => c.Status == status)
+                                              .Include(c => c.Instructor)
+                                              .ToListAsync();
+    }
+
+    public async Task AddAsync(LifeSkillCourse entity)
+    {
+        await _context.LifeSkillCourses.AddAsync(entity);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(LifeSkillCourse entity)
+    {
+        var existing = await _context.LifeSkillCourses.FindAsync(entity.CourseId);
+        if (existing != null)
+        {
+            existing.CourseName = entity.CourseName;
+            existing.InstructorId = entity.InstructorId;
+            existing.StartDate = entity.StartDate;
+            existing.EndDate = entity.EndDate;
+            existing.Description = entity.Description;
+            existing.MaxStudents = entity.MaxStudents;
+            existing.Price = entity.Price;
+            existing.Status = entity.Status;
+            await _context.SaveChangesAsync();
+        }
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var entity = await _context.LifeSkillCourses.FindAsync(id);
+        if (entity != null)
+        {
+            _context.LifeSkillCourses.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+    }
+}

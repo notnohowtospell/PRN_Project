@@ -1,0 +1,8 @@
+﻿using BusinessObjects.Models;
+
+namespace Repositories.Interfaces;
+
+public interface INotificationRepository : IRepository<Notification>
+{
+    IEnumerable<Notification> GetByStudentId(int studentId);
+}

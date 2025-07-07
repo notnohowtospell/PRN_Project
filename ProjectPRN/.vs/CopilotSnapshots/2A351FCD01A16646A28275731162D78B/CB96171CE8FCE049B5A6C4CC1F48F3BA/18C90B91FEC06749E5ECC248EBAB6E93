@@ -1,0 +1,9 @@
+﻿using BusinessObjects.Models;
+
+namespace Repositories.Interfaces;
+
+public interface IPaymentRepository : IRepository<Payment>
+{
+    IEnumerable<Payment> GetByStudentId(int studentId);
+    IEnumerable<Payment> GetByCourseId(int courseId);
+}

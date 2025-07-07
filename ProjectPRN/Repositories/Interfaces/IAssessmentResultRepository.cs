@@ -1,0 +1,10 @@
+using BusinessObjects.Models;
+using System.Threading.Tasks;
+
+namespace Repositories.Interfaces;
+
+public interface IAssessmentResultRepository : IRepository<AssessmentResult>
+{
+    Task<IEnumerable<AssessmentResult>> GetByStudentIdAsync(int studentId);
+    Task<IEnumerable<AssessmentResult>> GetByAssessmentIdAsync(int assessmentId);
+}

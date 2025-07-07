@@ -1,0 +1,70 @@
+﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DataAccessObjects;
+
+public interface ILifeSkillCourseDAO : IGenericDAO<LifeSkillCourse>
+{
+    IEnumerable<LifeSkillCourse> GetByInstructor(int instructorId);
+    IEnumerable<LifeSkillCourse> GetByStatus(string status);
+}
+
+public class LifeSkillCourseDAO : ILifeSkillCourseDAO
+{
+    private readonly Prn212skillsHoannn6Context _context;
+
+    public LifeSkillCourseDAO()
+    {
+        _context = new Prn212skillsHoannn6Context();
+    }
+
+    public IEnumerable<LifeSkillCourse> GetAll()
+    {
+        return _context.LifeSkillCourses.Include(c => c.Instructor)
+                                      .Include(c => c.Enrollments)
+                                      .Include(c => c.CourseMaterials)
+                                      .ToList();
+    }
+
+    public LifeSkillCourse? GetById(int id)
+    {
+        return _context.LifeSkillCourses.Include(c => c.Instructor)
+                                      .Include(c => c.Enrollments)
+                                      .Include(c => c.CourseMaterials)
+                                      .FirstOrDefault(c => c.CourseId == id);
+    }
+
+    public IEnumerable<LifeSkillCourse> GetByInstructor(int instructorId)
+    {
+        return _context.LifeSkillCourses.Where(c => c.InstructorId == instructorId)
+                                      .Include(c => c.Instructor)
+                                      .ToList();
+    }
+
+    public IEnumerable<LifeSkillCourse> GetByStatus(string status)
+    {
+        return _context.LifeSkillCourses.Where(c => c.Status == status)
+                                      .Include(c => c.Instructor)
+                                      .ToList();
+    }
+
+    public void Add(LifeSkillCourse entity)
+    {
+        _context.LifeSkillCourses.Add(entity);
+    }
+
+    public void Update(LifeSkillCourse entity)
+    {
+        _context.LifeSkillCourses.Update(entity);
+    }
+
+    public void Delete(LifeSkillCourse entity)
+    {
+        _context.LifeSkillCourses.Remove(entity);
+    }
+
+    public void SaveChanges()
+    {
+        _context.SaveChanges();
+    }
+}

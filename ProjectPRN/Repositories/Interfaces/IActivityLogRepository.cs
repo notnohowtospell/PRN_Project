@@ -1,0 +1,9 @@
+using BusinessObjects.Models;
+using System.Threading.Tasks;
+
+namespace Repositories.Interfaces;
+
+public interface IActivityLogRepository : IRepository<ActivityLog>
+{
+    Task<IEnumerable<ActivityLog>> GetByUserIdAsync(int userId);
+}

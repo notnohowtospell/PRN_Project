@@ -1,0 +1,761 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Project\\ProjectPRN\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\certificaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\certificaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\enrollmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\enrollmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\assessmentresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\assessmentresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\assessmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\assessmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\activitylogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\activitylogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\igenericdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\igenericdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\ifeedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\ifeedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\iinstructorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\iinstructorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\ilifeskillcourserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\ilifeskillcourserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\inotificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\inotificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\icertificaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\icertificaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\icoursematerialrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\icoursematerialrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\icourseschedulerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\icourseschedulerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\ienrollmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\ienrollmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\iassessmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\iassessmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\iactivitylogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\iactivitylogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\interfaces\\iassessmentresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\interfaces\\iassessmentresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\studentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\studentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\paymentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\paymentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\notificationdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\notificationdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\lifeskillcoursedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\lifeskillcoursedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\instructordao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\instructordao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\feedbackdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\feedbackdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\enrollmentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\enrollmentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\coursescheduledao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\coursescheduledao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\coursematerialdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\coursematerialdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\certificatedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\certificatedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\assessmentresultdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\assessmentresultdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\assessmentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\assessmentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB666E85-48A4-41D0-85E6-50F65EE98B79}|BusinessObjects\\BusinessObjects.csproj|d:\\project\\projectprn\\businessobjects\\models\\assessment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB666E85-48A4-41D0-85E6-50F65EE98B79}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\models\\assessment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\activitylogdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\activitylogdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB666E85-48A4-41D0-85E6-50F65EE98B79}|BusinessObjects\\BusinessObjects.csproj|d:\\project\\projectprn\\businessobjects\\models\\activitylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AB666E85-48A4-41D0-85E6-50F65EE98B79}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\models\\activitylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|d:\\project\\projectprn\\dataaccessobjects\\dataaccessobjects.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1D6899FC-5090-4AE2-A2ED-701FA8F0417F}|DataAccessObjects\\DataAccessObjects.csproj|solutionrelative:dataaccessobjects\\dataaccessobjects.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\lifeskillcourserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\lifeskillcourserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\feedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\feedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\instructorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\instructorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\courseschedulerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\courseschedulerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|d:\\project\\projectprn\\repositories\\coursematerialrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|solutionrelative:repositories\\coursematerialrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 203,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IStudentRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IStudentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IStudentRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IStudentRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IStudentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:59:11.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ActivityLogRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\ActivityLogRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\ActivityLogRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\ActivityLogRepository.cs",
+              "RelativeToolTip": "Repositories\\ActivityLogRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:17:22.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AssessmentRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\AssessmentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\AssessmentRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\AssessmentRepository.cs",
+              "RelativeToolTip": "Repositories\\AssessmentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:17:01.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AssessmentResultRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\AssessmentResultRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\AssessmentResultRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\AssessmentResultRepository.cs",
+              "RelativeToolTip": "Repositories\\AssessmentResultRepository.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA5wDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:17:09.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EnrollmentRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\EnrollmentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\EnrollmentRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\EnrollmentRepository.cs",
+              "RelativeToolTip": "Repositories\\EnrollmentRepository.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAADUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:16:26.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CertificateRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\CertificateRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\CertificateRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\CertificateRepository.cs",
+              "RelativeToolTip": "Repositories\\CertificateRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwCAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:15:51.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "PaymentRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\PaymentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\PaymentRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\PaymentRepository.cs",
+              "RelativeToolTip": "Repositories\\PaymentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:15:51.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "StudentRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\StudentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\StudentRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\StudentRepository.cs",
+              "RelativeToolTip": "Repositories\\StudentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:15:51.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "NotificationRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\NotificationRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\NotificationRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\NotificationRepository.cs",
+              "RelativeToolTip": "Repositories\\NotificationRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:15:51.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "LifeSkillCourseRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\LifeSkillCourseRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\LifeSkillCourseRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\LifeSkillCourseRepository.cs",
+              "RelativeToolTip": "Repositories\\LifeSkillCourseRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:16:19.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "CourseMaterialRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\CourseMaterialRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\CourseMaterialRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\CourseMaterialRepository.cs",
+              "RelativeToolTip": "Repositories\\CourseMaterialRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:16:49.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "CourseScheduleRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\CourseScheduleRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\CourseScheduleRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\CourseScheduleRepository.cs",
+              "RelativeToolTip": "Repositories\\CourseScheduleRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:16:37.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "InstructorRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\InstructorRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\InstructorRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\InstructorRepository.cs",
+              "RelativeToolTip": "Repositories\\InstructorRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:16:19.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "FeedbackRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\FeedbackRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\FeedbackRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\FeedbackRepository.cs",
+              "RelativeToolTip": "Repositories\\FeedbackRepository.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAIBYwDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:16:19.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ILifeSkillCourseRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\ILifeSkillCourseRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\ILifeSkillCourseRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\ILifeSkillCourseRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\ILifeSkillCourseRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:31:41.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IInstructorRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IInstructorRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IInstructorRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IInstructorRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IInstructorRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:56:46.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IFeedbackRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IFeedbackRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IFeedbackRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IFeedbackRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IFeedbackRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:31:41.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IGenericDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\IGenericDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\IGenericDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\IGenericDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\IGenericDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:32:04.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "INotificationRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\INotificationRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\INotificationRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\INotificationRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\INotificationRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:31:42.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:55:17.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ICertificateRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\ICertificateRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\ICertificateRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\ICertificateRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\ICertificateRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:25:01.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ICourseMaterialRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\ICourseMaterialRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\ICourseMaterialRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\ICourseMaterialRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\ICourseMaterialRepository.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:31:42.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ICourseScheduleRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\ICourseScheduleRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\ICourseScheduleRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\ICourseScheduleRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\ICourseScheduleRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:31:41.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IEnrollmentRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IEnrollmentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IEnrollmentRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IEnrollmentRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IEnrollmentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:31:41.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IPaymentRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IPaymentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IPaymentRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IPaymentRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IPaymentRepository.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:31:42.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IAssessmentRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IAssessmentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IAssessmentRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IAssessmentRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IAssessmentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:25:00.683Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IActivityLogRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IActivityLogRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IActivityLogRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IActivityLogRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IActivityLogRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:24:59.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IAssessmentResultRepository.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IAssessmentResultRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IAssessmentResultRepository.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\Repositories\\Interfaces\\IAssessmentResultRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IAssessmentResultRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:54:09.531Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "StudentDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\StudentDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\StudentDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\StudentDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\StudentDAO.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:38:57.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "PaymentDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\PaymentDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\PaymentDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\PaymentDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\PaymentDAO.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:38:56.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "NotificationDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\NotificationDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\NotificationDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\NotificationDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\NotificationDAO.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwD4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:38:55.348Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "LifeSkillCourseDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\LifeSkillCourseDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\LifeSkillCourseDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\LifeSkillCourseDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\LifeSkillCourseDAO.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:38:54.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "InstructorDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\InstructorDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\InstructorDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\InstructorDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\InstructorDAO.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAADwvzAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:38:53.044Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "FeedbackDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\FeedbackDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\FeedbackDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\FeedbackDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\FeedbackDAO.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAhwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:36:30.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "EnrollmentDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\EnrollmentDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\EnrollmentDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\EnrollmentDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\EnrollmentDAO.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAApwDoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:38:49.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CourseScheduleDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\CourseScheduleDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\CourseScheduleDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\CourseScheduleDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\CourseScheduleDAO.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAcwDEAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:24:15.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "CourseMaterialDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\CourseMaterialDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\CourseMaterialDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\CourseMaterialDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\CourseMaterialDAO.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAmwDAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:24:44.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "CertificateDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\CertificateDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\CertificateDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\CertificateDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\CertificateDAO.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAmwEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:25:04.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "AssessmentResultDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\AssessmentResultDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\AssessmentResultDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\AssessmentResultDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\AssessmentResultDAO.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAIA9wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:32:25.077Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "AssessmentDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\AssessmentDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\AssessmentDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\AssessmentDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\AssessmentDAO.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAkwDIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:32:01.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Assessment.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\BusinessObjects\\Models\\Assessment.cs",
+              "RelativeDocumentMoniker": "BusinessObjects\\Models\\Assessment.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\BusinessObjects\\Models\\Assessment.cs",
+              "RelativeToolTip": "BusinessObjects\\Models\\Assessment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:47:37.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ActivityLogDAO.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\ActivityLogDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObjects\\ActivityLogDAO.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\ActivityLogDAO.cs",
+              "RelativeToolTip": "DataAccessObjects\\ActivityLogDAO.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAcwDAAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:25:16.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "ActivityLog.cs",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\BusinessObjects\\Models\\ActivityLog.cs",
+              "RelativeDocumentMoniker": "BusinessObjects\\Models\\ActivityLog.cs",
+              "ToolTip": "D:\\Project\\ProjectPRN\\BusinessObjects\\Models\\ActivityLog.cs",
+              "RelativeToolTip": "BusinessObjects\\Models\\ActivityLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T06:47:12.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "DataAccessObjects.csproj",
+              "DocumentMoniker": "D:\\Project\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj",
+              "RelativeDocumentMoniker": "DataAccessObjects\\DataAccessObjects.csproj",
+              "ToolTip": "D:\\Project\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj",
+              "RelativeToolTip": "DataAccessObjects\\DataAccessObjects.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-07-07T06:25:13.213Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

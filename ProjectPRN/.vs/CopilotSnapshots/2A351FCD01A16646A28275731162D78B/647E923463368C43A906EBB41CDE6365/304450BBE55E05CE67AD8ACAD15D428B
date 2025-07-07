@@ -1,0 +1,8 @@
+﻿using BusinessObjects.Models;
+
+namespace Repositories.Interfaces;
+
+public interface IActivityLogRepository : IRepository<ActivityLog>
+{
+    IEnumerable<ActivityLog> GetByUserId(int userId);
+}

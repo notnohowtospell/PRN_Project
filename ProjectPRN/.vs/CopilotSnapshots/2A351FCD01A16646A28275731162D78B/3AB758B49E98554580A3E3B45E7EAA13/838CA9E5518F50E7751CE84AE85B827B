@@ -1,0 +1,54 @@
+﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DataAccessObjects;
+
+public interface INotificationDAO : IGenericDAO<Notification>
+{
+    IEnumerable<Notification> GetByStudentId(int studentId);
+}
+
+public class NotificationDAO : INotificationDAO
+{
+    private readonly Prn212skillsHoannn6Context _context;
+
+    public NotificationDAO()
+    {
+        _context = new Prn212skillsHoannn6Context();
+    }
+
+    public IEnumerable<Notification> GetAll()
+    {
+        return _context.Notifications.Include(n => n.Student).ToList();
+    }
+
+    public Notification? GetById(int id)
+    {
+        return _context.Notifications.Include(n => n.Student).FirstOrDefault(n => n.NotificationId == id);
+    }
+
+    public IEnumerable<Notification> GetByStudentId(int studentId)
+    {
+        return _context.Notifications.Where(n => n.StudentId == studentId).ToList();
+    }
+
+    public void Add(Notification entity)
+    {
+        _context.Notifications.Add(entity);
+    }
+
+    public void Update(Notification entity)
+    {
+        _context.Notifications.Update(entity);
+    }
+
+    public void Delete(Notification entity)
+    {
+        _context.Notifications.Remove(entity);
+    }
+
+    public void SaveChanges()
+    {
+        _context.SaveChanges();
+    }
+}

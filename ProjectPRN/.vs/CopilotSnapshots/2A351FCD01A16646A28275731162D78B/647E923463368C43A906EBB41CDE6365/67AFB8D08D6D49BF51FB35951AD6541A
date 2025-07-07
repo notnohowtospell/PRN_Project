@@ -1,0 +1,61 @@
+﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DataAccessObjects;
+
+public interface ICourseScheduleDAO : IGenericDAO<CourseSchedule>
+{
+    Task<IEnumerable<CourseSchedule>> GetByCourseIdAsync(int courseId);
+}
+
+public class CourseScheduleDAO : ICourseScheduleDAO
+{
+    private readonly Prn212skillsHoannn6Context _context;
+
+    public CourseScheduleDAO()
+    {
+        _context = new Prn212skillsHoannn6Context();
+    }
+
+    public async Task<IEnumerable<CourseSchedule>> GetAllAsync()
+    {
+        return await _context.CourseSchedules.ToListAsync();
+    }
+
+    public async Task<CourseSchedule?> GetByIdAsync(int id)
+    {
+        return await _context.CourseSchedules.FirstOrDefaultAsync(s => s.ScheduleId == id);
+    }
+
+    public async Task<IEnumerable<CourseSchedule>> GetByCourseIdAsync(int courseId)
+    {
+        return await _context.CourseSchedules.Where(s => s.CourseId == courseId).ToListAsync();
+    }
+
+    public async Task AddAsync(CourseSchedule entity)
+    {
+        await _context.CourseSchedules.AddAsync(entity);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(CourseSchedule entity)
+    {
+        var existing = await _context.CourseSchedules.FindAsync(entity.ScheduleId);
+        if (existing != null)
+        {
+            existing.CourseId = entity.CourseId;
+            // Thêm các thuộc tính khác nếu có
+            await _context.SaveChangesAsync();
+        }
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var entity = await _context.CourseSchedules.FindAsync(id);
+        if (entity != null)
+        {
+            _context.CourseSchedules.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+    }
+}

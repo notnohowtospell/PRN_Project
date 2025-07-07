@@ -1,0 +1,8 @@
+﻿using BusinessObjects.Models;
+
+namespace Repositories.Interfaces;
+
+public interface ICourseMaterialRepository : IRepository<CourseMaterial>
+{
+    IEnumerable<CourseMaterial> GetByCourseId(int courseId);
+}

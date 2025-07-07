@@ -1,0 +1,9 @@
+﻿using BusinessObjects.Models;
+
+namespace Repositories.Interfaces;
+
+public interface ILifeSkillCourseRepository : IRepository<LifeSkillCourse>
+{
+    IEnumerable<LifeSkillCourse> GetByInstructor(int instructorId);
+    IEnumerable<LifeSkillCourse> GetByStatus(string status);
+}

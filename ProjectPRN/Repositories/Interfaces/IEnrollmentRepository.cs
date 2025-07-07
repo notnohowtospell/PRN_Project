@@ -1,0 +1,10 @@
+using BusinessObjects.Models;
+using System.Threading.Tasks;
+
+namespace Repositories.Interfaces;
+
+public interface IEnrollmentRepository : IRepository<Enrollment>
+{
+    Task<IEnumerable<Enrollment>> GetByStudentAsync(int studentId);
+    Task<IEnumerable<Enrollment>> GetByCourseAsync(int courseId);
+}

@@ -1,0 +1,68 @@
+using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DataAccessObjects;
+
+public interface IAssessmentResultDAO : IGenericDAO<AssessmentResult>
+{
+    Task<IEnumerable<AssessmentResult>> GetByStudentIdAsync(int studentId);
+    Task<IEnumerable<AssessmentResult>> GetByAssessmentIdAsync(int assessmentId);
+}
+
+public class AssessmentResultDAO : IAssessmentResultDAO
+{
+    private readonly Prn212skillsHoannn6Context _context;
+
+    public AssessmentResultDAO()
+    {
+        _context = new Prn212skillsHoannn6Context();
+    }
+
+    public async Task<IEnumerable<AssessmentResult>> GetAllAsync()
+    {
+        return await _context.AssessmentResults.Include(r => r.Student).Include(r => r.Assessment).ToListAsync();
+    }
+
+    public async Task<AssessmentResult?> GetByIdAsync(int id)
+    {
+        return await _context.AssessmentResults.Include(r => r.Student).Include(r => r.Assessment).FirstOrDefaultAsync(r => r.ResultId == id);
+    }
+
+    public async Task<IEnumerable<AssessmentResult>> GetByStudentIdAsync(int studentId)
+    {
+        return await _context.AssessmentResults.Where(r => r.StudentId == studentId).ToListAsync();
+    }
+
+    public async Task<IEnumerable<AssessmentResult>> GetByAssessmentIdAsync(int assessmentId)
+    {
+        return await _context.AssessmentResults.Where(r => r.AssessmentId == assessmentId).ToListAsync();
+    }
+
+    public async Task AddAsync(AssessmentResult entity)
+    {
+        await _context.AssessmentResults.AddAsync(entity);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(AssessmentResult entity)
+    {
+        var existing = await _context.AssessmentResults.FindAsync(entity.ResultId);
+        if (existing != null)
+        {
+            existing.AssessmentId = entity.AssessmentId;
+            existing.StudentId = entity.StudentId;
+            existing.Score = entity.Score;
+            await _context.SaveChangesAsync();
+        }
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var entity = await _context.AssessmentResults.FindAsync(id);
+        if (entity != null)
+        {
+            _context.AssessmentResults.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+    }
+}
