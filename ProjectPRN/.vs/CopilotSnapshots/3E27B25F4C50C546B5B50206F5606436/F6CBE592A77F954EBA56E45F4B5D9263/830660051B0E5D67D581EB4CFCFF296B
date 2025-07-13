@@ -1,0 +1,145 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using DataAccessObjects;
+using ProjectPRN.Utils;
+
+namespace ProjectPRN
+{
+    /// <summary>
+    /// Interaction logic for Login.xaml
+    /// </summary>
+    public partial class Login : Window
+    {
+        private readonly IStudentDAO _studentDAO;
+
+        public Login()
+        {
+            InitializeComponent();
+            _studentDAO = new StudentDAO();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Disable login button during processing
+                LoginButton.IsEnabled = false;
+                LoginButton.Content = "SIGNING IN...";
+
+                // Get input values
+                string email = EmailTextBox.Text.Trim();
+                string password = PasswordBox.Password;
+
+                // Basic validation
+                if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+                {
+                    MessageBox.Show("Please enter both email and password.", "Validation Error", 
+                                  MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Try to find user by email
+                var student = await _studentDAO.GetByEmailAsync(email);
+                
+                if (student == null)
+                {
+                    MessageBox.Show("No account found with this email address. Please check your email or sign up for a new account.", 
+                                  "Account Not Found", 
+                                  MessageBoxButton.OK, 
+                                  MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Verify password
+                bool isPasswordValid = PasswordHasher.VerifyPassword(password, student.Password);
+                
+                if (!isPasswordValid)
+                {
+                    MessageBox.Show("Invalid password. Please try again.", "Login Failed", 
+                                  MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // Check if account is active
+                if (student.Status != "Active")
+                {
+                    MessageBox.Show("Your account is not active. Please contact support.", "Account Inactive", 
+                                  MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Update last login time
+                student.LastLogin = DateTime.Now;
+                await _studentDAO.UpdateAsync(student);
+
+                // Show success message
+                MessageBox.Show($"Welcome back, {student.StudentName}!", "Login Successful", 
+                              MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Open main window
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred during login: {ex.Message}", "Error", 
+                              MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                // Re-enable login button
+                LoginButton.IsEnabled = true;
+                LoginButton.Content = "SIGN IN";
+            }
+        }
+
+        private void ForgotPassword_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Forgot password functionality will be implemented soon.", "Coming Soon", 
+                          MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigate to registration form
+            Registration registrationWindow = new Registration();
+            registrationWindow.Show();
+            this.Close();
+        }
+
+        // Handle Enter key press for login
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                LoginButton_Click(sender, e);
+            }
+        }
+
+        // Add smooth window dragging functionality
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+    }
+}

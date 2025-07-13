@@ -6,6 +6,7 @@ namespace DataAccessObjects;
 public interface IInstructorDAO : IGenericDAO<Instructor>
 {
     Task<Instructor?> GetByPhoneNumberAsync(string phoneNumber);
+    Task<Instructor?> GetByEmailAsync(string email);
 }
 
 public class InstructorDAO : IInstructorDAO
@@ -32,6 +33,11 @@ public class InstructorDAO : IInstructorDAO
         return await _context.Instructors.FirstOrDefaultAsync(i => i.PhoneNumber == phoneNumber);
     }
 
+    public async Task<Instructor?> GetByEmailAsync(string email)
+    {
+        return await _context.Instructors.FirstOrDefaultAsync(i => i.Email == email);
+    }
+
     public async Task AddAsync(Instructor entity)
     {
         await _context.Instructors.AddAsync(entity);
@@ -47,8 +53,9 @@ public class InstructorDAO : IInstructorDAO
             existing.PhoneNumber = entity.PhoneNumber;
             existing.Email = entity.Email;
             existing.Experience = entity.Experience;
+            existing.Password = entity.Password;
+            existing.LastLogin = entity.LastLogin;
             await _context.SaveChangesAsync();
-
         }
     }
 
