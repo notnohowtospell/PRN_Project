@@ -13,3 +13,4 @@ D:\Project\ProjectPRN\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.dll
 D:\Project\ProjectPRN\DataAccessObjects\obj\Debug\net8.0\refint\DataAccessObjects.dll
 D:\Project\ProjectPRN\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.pdb
 D:\Project\ProjectPRN\DataAccessObjects\obj\Debug\net8.0\ref\DataAccessObjects.dll
+D:\Project\ProjectPRN\DataAccessObjects\obj\Debug\net8.0\DataAccessObjects.sourcelink.json

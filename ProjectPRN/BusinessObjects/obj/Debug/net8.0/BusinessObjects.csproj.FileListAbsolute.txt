@@ -12,3 +12,4 @@ D:\Project\ProjectPRN\BusinessObjects\obj\Debug\net8.0\refint\BusinessObjects.dl
 D:\Project\ProjectPRN\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
 D:\Project\ProjectPRN\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
 D:\Project\ProjectPRN\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll
+D:\Project\ProjectPRN\BusinessObjects\obj\Debug\net8.0\BusinessObjects.sourcelink.json
