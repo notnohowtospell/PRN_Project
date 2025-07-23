@@ -11,11 +11,11 @@ public interface ILifeSkillCourseDAO : IGenericDAO<LifeSkillCourse>
 
 public class LifeSkillCourseDAO : ILifeSkillCourseDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public LifeSkillCourseDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<LifeSkillCourse>> GetAllAsync()
@@ -24,6 +24,14 @@ public class LifeSkillCourseDAO : ILifeSkillCourseDAO
                                               .Include(c => c.Enrollments)
                                               .Include(c => c.CourseMaterials)
                                               .ToListAsync();
+    }
+
+    public IEnumerable<LifeSkillCourse> GetAll()
+    {
+        return _context.LifeSkillCourses.Include(c => c.Instructor)
+                                              .Include(c => c.Enrollments)
+                                              .Include(c => c.CourseMaterials)
+                                              .ToList();
     }
 
     public async Task<LifeSkillCourse?> GetByIdAsync(int id)

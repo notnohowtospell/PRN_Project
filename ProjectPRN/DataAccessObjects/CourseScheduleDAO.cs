@@ -10,11 +10,11 @@ public interface ICourseScheduleDAO : IGenericDAO<CourseSchedule>
 
 public class CourseScheduleDAO : ICourseScheduleDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public CourseScheduleDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<CourseSchedule>> GetAllAsync()
@@ -60,5 +60,10 @@ public class CourseScheduleDAO : ICourseScheduleDAO
             _context.CourseSchedules.Remove(entity);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public IEnumerable<CourseSchedule> GetAll()
+    {
+        throw new NotImplementedException();
     }
 }

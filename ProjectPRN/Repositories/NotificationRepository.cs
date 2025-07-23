@@ -47,4 +47,9 @@ public class NotificationRepository : INotificationRepository
     {
         return await _notificationDAO.GetByStudentIdAsync(studentId);
     }
+
+    public IEnumerable<Notification> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

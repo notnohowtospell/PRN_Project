@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Text.RegularExpressions;
 using BusinessObjects.Models;
 using DataAccessObjects;
 using ProjectPRN.Utils;
@@ -101,7 +91,7 @@ namespace ProjectPRN
             string studentCode = GenerateStudentCode();
 
             // Create new student object
-            var newStudent = new Student
+            var newStudent = new BusinessObjects.Models.Student
             {
                 StudentCode = studentCode,
                 StudentName = fullName,

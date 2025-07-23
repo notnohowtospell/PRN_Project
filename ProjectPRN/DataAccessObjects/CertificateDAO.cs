@@ -11,11 +11,11 @@ public interface ICertificateDAO : IGenericDAO<Certificate>
 
 public class CertificateDAO : ICertificateDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public CertificateDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<Certificate>> GetAllAsync()
@@ -67,5 +67,8 @@ public class CertificateDAO : ICertificateDAO
         }
     }
 
-
+    public IEnumerable<Certificate> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

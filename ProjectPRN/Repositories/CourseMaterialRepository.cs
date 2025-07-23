@@ -47,4 +47,9 @@ public class CourseMaterialRepository : ICourseMaterialRepository
     {
         return await _dao.GetByCourseIdAsync(courseId);
     }
+
+    public IEnumerable<CourseMaterial> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

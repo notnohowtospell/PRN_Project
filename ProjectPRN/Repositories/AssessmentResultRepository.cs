@@ -52,4 +52,9 @@ public class AssessmentResultRepository : IAssessmentResultRepository
     {
         return await _dao.GetByStudentIdAsync(studentId);
     }
+
+    public IEnumerable<AssessmentResult> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

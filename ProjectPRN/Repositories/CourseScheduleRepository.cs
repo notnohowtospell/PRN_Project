@@ -47,4 +47,9 @@ public class CourseScheduleRepository : ICourseScheduleRepository
     {
         return await _dao.GetByCourseIdAsync(courseId);
     }
+
+    public IEnumerable<CourseSchedule> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

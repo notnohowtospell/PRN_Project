@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace BusinessObjects.Models;
 
-public partial class Prn212skillsHoannn6Context : DbContext
+public partial class ApplicationDbContext : DbContext
 {
-    public Prn212skillsHoannn6Context()
+    public ApplicationDbContext()
     {
     }
 
-    public Prn212skillsHoannn6Context(DbContextOptions<Prn212skillsHoannn6Context> options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
     }

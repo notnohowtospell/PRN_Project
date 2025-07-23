@@ -1,0 +1,268 @@
+﻿<UserControl x:Class="ProjectPRN.Student.Courses.CourseDetailsDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <materialDesign:Card Width="600" MaxHeight="700">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="24">
+                <!-- Dialog Header -->
+                <Grid Margin="0,0,0,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Chi tiết khóa học"
+                                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="Thông tin đầy đủ về khóa học"
+                                   Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                   Opacity="0.7"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="1"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            Click="BtnClose_Click"
+                            ToolTip="Đóng">
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </Grid>
+
+                <!-- Course Title -->
+                <TextBlock Name="txtCourseName"
+                           Text="Tên khóa học"
+                           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                           Margin="0,0,0,16"
+                           TextWrapping="Wrap"
+                           Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+
+                <!-- Course Information Cards -->
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Basic Info Card -->
+                    <materialDesign:Card Grid.Column="0" Padding="16">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <materialDesign:PackIcon Kind="Information" 
+                                                         VerticalAlignment="Center"
+                                                         Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                         Margin="0,0,8,0"/>
+                                <TextBlock Text="THÔNG TIN CƠ BẢN"
+                                           Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                                           Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                            </StackPanel>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="Account" 
+                                                         Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Row="0" Grid.Column="1">
+                                    <TextBlock Text="Giảng viên" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                    <TextBlock Name="txtInstructor" FontWeight="SemiBold"/>
+                                </StackPanel>
+
+                                <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="CalendarRange" 
+                                                         Margin="0,8,8,0" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,8,0,0">
+                                    <TextBlock Text="Thời gian" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                    <TextBlock Name="txtDuration" FontWeight="SemiBold"/>
+                                </StackPanel>
+
+                                <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="CurrencyUsd" 
+                                                         Margin="0,8,8,0" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
+                                    <TextBlock Text="Học phí" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                    <TextBlock Name="txtPrice" FontWeight="SemiBold" 
+                                               Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                </StackPanel>
+
+                                <materialDesign:PackIcon Grid.Row="3" Grid.Column="0" Kind="AccountGroup" 
+                                                         Margin="0,8,8,0" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,8,0,0">
+                                    <TextBlock Text="Sĩ số" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                    <TextBlock Name="txtCapacity" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </materialDesign:Card>
+
+                    <!-- Status Card -->
+                    <materialDesign:Card Grid.Column="2" Padding="16">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <materialDesign:PackIcon Kind="CheckCircle" 
+                                                         VerticalAlignment="Center"
+                                                         Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                         Margin="0,0,8,0"/>
+                                <TextBlock Text="TRẠNG THÁI"
+                                           Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                                           Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                            </StackPanel>
+
+                            <StackPanel HorizontalAlignment="Center">
+                                <materialDesign:Card Name="cardStatus" 
+                                                     Padding="12,8" 
+                                                     Margin="0,0,0,16"
+                                                     Background="{DynamicResource PrimaryHueMidBrush}">
+                                    <TextBlock Name="txtStatus" 
+                                               Text="Mở đăng ký"
+                                               Foreground="White"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"/>
+                                </materialDesign:Card>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="AccountMultiple" 
+                                                             VerticalAlignment="Center"
+                                                             Margin="0,0,8,0"/>
+                                    <TextBlock Name="txtAvailableSlots" 
+                                               Text="20/30 chỗ"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                </Grid>
+
+                <!-- Course Description -->
+                <materialDesign:Card Margin="0,0,0,16" Padding="16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <materialDesign:PackIcon Kind="FileDocument" 
+                                                     VerticalAlignment="Center"
+                                                     Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                     Margin="0,0,8,0"/>
+                            <TextBlock Text="MÔ TẢ KHÓA HỌC"
+                                       Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                                       Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                        </StackPanel>
+
+                        <TextBlock Name="txtDescription"
+                                   Text="Mô tả chi tiết về khóa học..."
+                                   TextWrapping="Wrap"
+                                   LineHeight="24"
+                                   Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <!-- Instructor Information -->
+                <materialDesign:Card Margin="0,0,0,16" Padding="16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <materialDesign:PackIcon Kind="AccountTie" 
+                                                     VerticalAlignment="Center"
+                                                     Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                     Margin="0,0,8,0"/>
+                            <TextBlock Text="THÔNG TIN GIẢNG VIÊN"
+                                       Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                                       Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="Account" 
+                                                     Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Row="0" Grid.Column="1">
+                                <TextBlock Text="Họ tên" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                <TextBlock Name="txtInstructorName" FontWeight="SemiBold"/>
+                            </StackPanel>
+
+                            <materialDesign:PackIcon Grid.Row="1" Grid.Column="0" Kind="Email" 
+                                                     Margin="0,8,8,0" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,8,0,0">
+                                <TextBlock Text="Email" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                <TextBlock Name="txtInstructorEmail" FontWeight="SemiBold"/>
+                            </StackPanel>
+
+                            <materialDesign:PackIcon Grid.Row="2" Grid.Column="0" Kind="Star" 
+                                                     Margin="0,8,8,0" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
+                                <TextBlock Text="Kinh nghiệm" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                                <TextBlock Name="txtInstructorExperience" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <!-- Warning Card for Full Courses -->
+                <materialDesign:Card Name="cardWarning" 
+                                     Margin="0,0,0,16" 
+                                     Padding="16"
+                                     Background="{DynamicResource MaterialDesignValidationErrorBrush}"
+                                     Visibility="Collapsed">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <materialDesign:PackIcon Kind="AlertCircle" 
+                                                     VerticalAlignment="Center"
+                                                     Foreground="White"
+                                                     Margin="0,0,8,0"/>
+                            <TextBlock Text="KHÓA HỌC ĐÃ HẾT CHỖ"
+                                       Foreground="White"
+                                       FontWeight="Bold"/>
+                        </StackPanel>
+                        <TextBlock Text="Khóa học này đã đạt số lượng học viên tối đa. Vui lòng chọn khóa học khác hoặc liên hệ để được thông báo khi có chỗ trống."
+                                   Foreground="White"
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <!-- Action Buttons -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1"
+                            Name="btnClose"
+                            Content="ĐÓNG"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Margin="0,0,8,0"
+                            Width="100"
+                            Click="BtnClose_Click"/>
+
+                    <Button Grid.Column="2"
+                            Name="btnEnrollNow"
+                            Content="ĐĂNG KÝ NGAY"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Width="130"
+                            Click="BtnEnrollNow_Click"/>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </materialDesign:Card>
+</UserControl>

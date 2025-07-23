@@ -52,4 +52,9 @@ public class PaymentRepository : IPaymentRepository
     {
         return await _paymentDAO.GetByCourseIdAsync(courseId);
     }
+
+    public IEnumerable<Payment> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

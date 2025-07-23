@@ -47,4 +47,9 @@ public class ActivityLogRepository : IActivityLogRepository
     {
         return await _dao.GetByUserIdAsync(userId);
     }
+
+    public IEnumerable<ActivityLog> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

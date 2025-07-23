@@ -47,4 +47,9 @@ public class InstructorRepository : IInstructorRepository
     {
         return await _dao.GetByPhoneNumberAsync(phoneNumber);
     }
+
+    public IEnumerable<Instructor> GetAll()
+    {
+        return _dao.GetAll();
+    }
 }

@@ -1,5 +1,4 @@
 using BusinessObjects.Models;
-using ProjectPRN.Utils;
 
 namespace ProjectPRN.Utils
 {
@@ -12,11 +11,11 @@ namespace ProjectPRN.Utils
     public static class SessionManager
     {
         public static UserType? CurrentUserType { get; private set; }
-        public static Student? CurrentStudent { get; private set; }
+        public static BusinessObjects.Models.Student? CurrentStudent { get; private set; }
         public static Instructor? CurrentInstructor { get; private set; }
         public static bool IsLoggedIn => CurrentUserType.HasValue;
 
-        public static void SetCurrentUser(Student student)
+        public static void SetCurrentUser(BusinessObjects.Models.Student student)
         {
             CurrentUserType = UserType.Student;
             CurrentStudent = student;
@@ -35,7 +34,7 @@ namespace ProjectPRN.Utils
             CurrentUserType = null;
             CurrentStudent = null;
             CurrentInstructor = null;
-            
+
             // Also clear saved session file
             await StateManager.ClearUserSessionAsync();
         }
@@ -82,7 +81,7 @@ namespace ProjectPRN.Utils
             return CurrentUserType switch
             {
                 UserType.Student => "Student",
-                UserType.Instructor => "Instructor", 
+                UserType.Instructor => "Instructor",
                 _ => "Guest"
             };
         }

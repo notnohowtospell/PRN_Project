@@ -52,4 +52,9 @@ public class FeedbackRepository : IFeedbackRepository
     {
         return await _dao.GetByCourseIdAsync(courseId);
     }
+
+    public IEnumerable<Feedback> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }
