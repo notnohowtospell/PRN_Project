@@ -98,7 +98,7 @@ namespace ProjectPRN
                 Email = email,
                 PhoneNumber = phone,
                 Password = hashedPassword,
-                Status = "Active", // Set default status
+                Status = "Hoạt động", // Set default status
                 DateOfBirth = null, // Can be set later in profile
                 AvatarPath = null, // Can be set later in profile
                 LastLogin = null // Will be set on first login
@@ -149,12 +149,10 @@ namespace ProjectPRN
 
         private string GenerateStudentCode()
         {
-            // Generate a unique student code
-            // Format: STU + current year + random 4 digits
             var random = new Random();
-            var year = DateTime.Now.Year.ToString();
+            var year = DateTime.Now.Year.ToString().Substring(2);
             var randomNumber = random.Next(1000, 9999).ToString();
-            return $"STU{year}{randomNumber}";
+            return $"SE{year}{randomNumber}";
         }
 
         private bool ValidateInput(string fullName, string email, string phone, string password, string confirmPassword, bool termsAccepted)

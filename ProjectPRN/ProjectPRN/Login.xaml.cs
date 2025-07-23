@@ -57,7 +57,7 @@ namespace ProjectPRN
                     if (isPasswordValid)
                     {
                         // Check if student account is active
-                        if (student.Status != "Active")
+                        if (!(student.Status == "Hoạt động" || student.Status == "Active"))
                         {
                             MessageBox.Show("Your student account is not active. Please contact support.", "Account Inactive",
                                           MessageBoxButton.OK, MessageBoxImage.Warning);
