@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectPRN.Admin.CourseManagement;
+using ProjectPRN.Student.Courses;
 using ProjectPRN.Utils;
 using Repositories;
 using Repositories.Interfaces;
@@ -31,12 +32,19 @@ namespace ProjectPRN
             // Register DAOs
             services.AddScoped<ILifeSkillCourseDAO, LifeSkillCourseDAO>();
             services.AddScoped<IInstructorDAO, InstructorDAO>();
+            services.AddScoped<IStudentDAO, StudentDAO>();
+            services.AddScoped<IEnrollmentDAO, EnrollmentDAO>();
+            services.AddScoped<IPaymentDAO, PaymentDAO>();
 
             // Register Repositories
             services.AddScoped<ILifeSkillCourseRepository, LifeSkillCourseRepository>();
             services.AddScoped<IInstructorRepository, InstructorRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
 
             services.AddTransient<CourseManagementView>();
+            services.AddTransient<StudentCourseView>();
 
 
             ServiceProvider = services.BuildServiceProvider();
@@ -44,15 +52,16 @@ namespace ProjectPRN
             base.OnStartup(e);
 
             // Try to restore user session
-            //var sessionRestored = await TryRestoreUserSession();
+            var sessionRestored = await TryRestoreUserSession();
 
-            //if (!sessionRestored)
-            //{
-            //    // No valid session found, show login window
-            //    var loginWindow = new Login();
-            //    loginWindow.Show();
-            //}
-            var mainWindow = ServiceProvider.GetRequiredService<CourseManagementView>();
+            if (!sessionRestored)
+            {
+                // No valid session found, show login window
+                var loginWindow = new Login();
+                loginWindow.Show();
+            }
+            //var mainWindow = ServiceProvider.GetRequiredService<Registration>();
+            var mainWindow = new Registration();
             mainWindow.Show();
         }
 

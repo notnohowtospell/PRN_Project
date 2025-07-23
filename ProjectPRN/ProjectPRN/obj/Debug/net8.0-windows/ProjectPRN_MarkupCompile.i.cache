@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\App.xaml
-8-433051767
+9517554392
 
-18-1026410900
+19-2105644769
 2401978473675
-Admin\CourseManagement\ConfirmDialog.xaml;Admin\CourseManagement\CourseEditDialog.xaml;Admin\CourseManagement\CourseManagementView.xaml;Login.xaml;MainWindow.xaml;Registration.xaml;Student\Courses\CourseEnrollmentDialog.xaml;Student\Courses\StudentCourseView.xaml;
+Admin\CourseManagement\ConfirmDialog.xaml;Admin\CourseManagement\CourseEditDialog.xaml;Admin\CourseManagement\CourseManagementView.xaml;Login.xaml;MainWindow.xaml;Registration.xaml;Student\Courses\CourseDetailDialog.xaml;Student\Courses\CourseEnrollmentDialog.xaml;Student\Courses\StudentCourseView.xaml;
 
 False
 

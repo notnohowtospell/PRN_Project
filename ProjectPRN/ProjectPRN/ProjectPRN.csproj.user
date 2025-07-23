@@ -14,6 +14,9 @@
     <Compile Update="Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Student\Courses\CourseDetailDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Student\Courses\CourseEnrollmentDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

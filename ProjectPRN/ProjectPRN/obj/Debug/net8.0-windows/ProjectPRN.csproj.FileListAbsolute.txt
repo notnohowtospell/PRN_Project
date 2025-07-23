@@ -294,3 +294,9 @@ C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8
 C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\Admin\CourseManagement\ConfirmDialog.g.cs
 C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\Admin\CourseManagement\CourseEditDialog.g.cs
 C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\Admin\CourseManagement\CourseManagementView.g.cs
+C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\Student\Courses\CourseEnrollmentDialog.baml
+C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\Student\Courses\StudentCourseView.baml
+C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\Student\Courses\CourseEnrollmentDialog.g.cs
+C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\Student\Courses\StudentCourseView.g.cs
+C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\Student\Courses\CourseDetailDialog.baml
+C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\Student\Courses\CourseDetailDialog.g.cs

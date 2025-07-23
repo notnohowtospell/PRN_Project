@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using BusinessObjects.Models;
 using MaterialDesignThemes.Wpf;
+using ProjectPRN.Utils;
 using Repositories.Interfaces;
 
 namespace ProjectPRN.Student.Courses
@@ -50,8 +51,7 @@ namespace ProjectPRN.Student.Courses
             IInstructorRepository instructorRepository,
             IStudentRepository studentRepository,
             IEnrollmentRepository enrollmentRepository,
-            IPaymentRepository paymentRepository,
-            int currentStudentId)
+            IPaymentRepository paymentRepository)
         {
             InitializeComponent();
             DataContext = this;
@@ -61,6 +61,7 @@ namespace ProjectPRN.Student.Courses
             _studentRepository = studentRepository;
             _enrollmentRepository = enrollmentRepository;
             _paymentRepository = paymentRepository;
+            int currentStudentId = SessionManager.GetCurrentUserId() != 0 ? SessionManager.GetCurrentUserId() : 1;
 
             FilteredCourses = new ObservableCollection<CourseViewModel>();
 
@@ -346,7 +347,13 @@ namespace ProjectPRN.Student.Courses
             try
             {
                 var dialog = new CourseDetailsDialog(course);
-                await DialogHost.Show(dialog, "RootDialog");
+                var result = await DialogHost.Show(dialog, "RootDialog");
+
+                // If user clicked "ĐĂNG KÝ NGAY" in the details dialog
+                if (result is CourseDetailsResult detailsResult && detailsResult.ShouldEnroll)
+                {
+                    await ShowEnrollmentDialogAsync(detailsResult.Course);
+                }
             }
             catch (Exception ex)
             {
@@ -367,7 +374,7 @@ namespace ProjectPRN.Student.Courses
                 {
                     StudentId = CurrentStudent.StudentId,
                     CourseId = course.CourseId,
-                    CompletionStatus = "Pending", // Waiting for payment confirmation
+                    CompletionStatus = false, // Waiting for payment confirmation
                     CompletionDate = null
                 };
 

@@ -7,24 +7,32 @@
       "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\student\\courses\\courseenrollmentdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\student\\courses\\courseenrollmentdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\student\\courses\\studentcourseview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\student\\courses\\studentcourseview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\student\\courses\\courseenrollmentdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\student\\courses\\courseenrollmentdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\utils\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\utils\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\student\\courses\\studentcourseview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\student\\courses\\studentcourseview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\utils\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\utils\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\student\\courses\\coursedetaildialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\student\\courses\\coursedetaildialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\student\\courses\\coursedetaildialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\student\\courses\\coursedetaildialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\student\\courses\\courseenrollmentdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\student\\courses\\courseenrollmentdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\projectprn\\student\\courses\\courseenrollmentdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{FA58B841-31BA-44E8-9A13-3766D012FB87}|ProjectPRN\\ProjectPRN.csproj|solutionrelative:projectprn\\student\\courses\\courseenrollmentdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CCE8EE39-03FE-43DA-A5D7-1A60A3173029}|Repositories\\Repositories.csproj|c:\\users\\admin\\documents\\github\\project-prn\\projectprn\\repositories\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -56,7 +64,7 @@
               "RelativeDocumentMoniker": "ProjectPRN\\App.xaml.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\App.xaml.cs",
               "RelativeToolTip": "ProjectPRN\\App.xaml.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAvwDIAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwEAAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-23T04:22:31.212Z",
               "IsPinned": true,
@@ -64,13 +72,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "StudentCourseView.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Student\\Courses\\StudentCourseView.xaml.cs",
               "RelativeDocumentMoniker": "ProjectPRN\\Student\\Courses\\StudentCourseView.xaml.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Student\\Courses\\StudentCourseView.xaml.cs",
               "RelativeToolTip": "ProjectPRN\\Student\\Courses\\StudentCourseView.xaml.cs",
-              "ViewState": "AgIAADABAAAAAAAAAAAAACUBAABlAAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAA3wD4AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-23T16:41:15.164Z",
               "IsPinned": true,
@@ -78,7 +86,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "StudentCourseView.xaml",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Student\\Courses\\StudentCourseView.xaml",
               "RelativeDocumentMoniker": "ProjectPRN\\Student\\Courses\\StudentCourseView.xaml",
@@ -91,7 +99,34 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "CourseDetailDialog.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Student\\Courses\\CourseDetailDialog.xaml.cs",
+              "RelativeDocumentMoniker": "ProjectPRN\\Student\\Courses\\CourseDetailDialog.xaml.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Student\\Courses\\CourseDetailDialog.xaml.cs",
+              "RelativeToolTip": "ProjectPRN\\Student\\Courses\\CourseDetailDialog.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T17:04:21.972Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CourseDetailDialog.xaml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Student\\Courses\\CourseDetailDialog.xaml",
+              "RelativeDocumentMoniker": "ProjectPRN\\Student\\Courses\\CourseDetailDialog.xaml",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Student\\Courses\\CourseDetailDialog.xaml",
+              "RelativeToolTip": "ProjectPRN\\Student\\Courses\\CourseDetailDialog.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-23T17:04:01.506Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "CourseEnrollmentDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Student\\Courses\\CourseEnrollmentDialog.xaml.cs",
               "RelativeDocumentMoniker": "ProjectPRN\\Student\\Courses\\CourseEnrollmentDialog.xaml.cs",
@@ -100,11 +135,12 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-23T16:44:00.841Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "CourseEnrollmentDialog.xaml",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Student\\Courses\\CourseEnrollmentDialog.xaml",
               "RelativeDocumentMoniker": "ProjectPRN\\Student\\Courses\\CourseEnrollmentDialog.xaml",
@@ -112,58 +148,7 @@
               "RelativeToolTip": "ProjectPRN\\Student\\Courses\\CourseEnrollmentDialog.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-07-23T16:43:32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SessionManager.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Utils\\SessionManager.cs",
-              "RelativeDocumentMoniker": "ProjectPRN\\Utils\\SessionManager.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Utils\\SessionManager.cs",
-              "RelativeToolTip": "ProjectPRN\\Utils\\SessionManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-23T16:37:55.557Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "StudentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\StudentRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\StudentRepository.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\StudentRepository.cs",
-              "RelativeToolTip": "Repositories\\StudentRepository.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAswCkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-23T16:16:24.629Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IStudentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Interfaces\\IStudentRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IStudentRepository.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Interfaces\\IStudentRepository.cs",
-              "RelativeToolTip": "Repositories\\Interfaces\\IStudentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-23T16:16:19.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IRepository.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Interfaces\\IRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IRepository.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Interfaces\\IRepository.cs",
-              "RelativeToolTip": "Repositories\\Interfaces\\IRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-23T16:16:15.038Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
@@ -177,6 +162,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SessionManager.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Utils\\SessionManager.cs",
+              "RelativeDocumentMoniker": "ProjectPRN\\Utils\\SessionManager.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\Utils\\SessionManager.cs",
+              "RelativeToolTip": "ProjectPRN\\Utils\\SessionManager.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAEwEQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T16:37:55.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "StudentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\StudentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\StudentRepository.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\StudentRepository.cs",
+              "RelativeToolTip": "Repositories\\StudentRepository.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAswCkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T16:16:24.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IStudentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Interfaces\\IStudentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IStudentRepository.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Interfaces\\IStudentRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IStudentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T16:16:19.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IRepository.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T16:16:15.038Z",
+              "EditorCaption": ""
             }
           ]
         }
