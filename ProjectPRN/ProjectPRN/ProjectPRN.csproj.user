@@ -11,13 +11,34 @@
     <Compile Update="Admin\CourseManagement\CourseManagementView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Admin\InstructorManagement\InstructorDetailsDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Admin\InstructorManagement\InstructorEditDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Admin\InstructorManagement\InstructorManagementView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Search\CourseSearchWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Search\StudentDetailsDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Search\StudentSearchView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Student\Courses\CourseDetailDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Student\Courses\CourseEnrollmentDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Student\Courses\EnrolledCourseWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Student\Courses\StudentCourseView.xaml.cs">

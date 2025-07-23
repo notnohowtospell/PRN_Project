@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using DataAccessObjects;
-using ProjectPRN.Student.Courses;
 using ProjectPRN.Utils;
 
 namespace ProjectPRN
@@ -140,12 +139,9 @@ namespace ProjectPRN
 
         private void OpenMainWindow()
         {
-            this.Close();
-            var mainWindow = new StudentCourseView();
+            MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            //MainWindow mainWindow = new MainWindow();
-            //mainWindow.Show();
-            //this.Close();
+            this.Close();
         }
 
         private void ForgotPassword_Click(object sender, RoutedEventArgs e)

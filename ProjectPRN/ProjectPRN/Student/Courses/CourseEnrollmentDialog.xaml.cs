@@ -58,10 +58,6 @@ namespace ProjectPRN.Student.Courses
             var amount = _course.Price?.ToString("N0", CultureInfo.GetCultureInfo("vi-VN")) ?? "0";
             var content = $"HOCPHI {_student.StudentName} {_course.CourseName}";
 
-            // Update QR payment info
-            txtTransferAmount.Text = $"Số tiền: {amount} VNĐ";
-            txtTransferContent.Text = $"Nội dung: {content}";
-
             // Update bank transfer info
             txtBankAmount.Text = $"{amount} VNĐ";
             txtBankContent.Text = content;
@@ -69,21 +65,6 @@ namespace ProjectPRN.Student.Courses
         #endregion
 
         #region Event Handlers
-        private void PaymentMethod_Changed(object sender, RoutedEventArgs e)
-        {
-            if (cardQRPayment == null || cardBankTransfer == null)
-                return;
-            if (rbQRCode?.IsChecked == true)
-            {
-                cardQRPayment.Visibility = Visibility.Visible;
-                cardBankTransfer.Visibility = Visibility.Collapsed;
-            }
-            else if (rbBankTransfer?.IsChecked == true)
-            {
-                cardQRPayment.Visibility = Visibility.Collapsed;
-                cardBankTransfer.Visibility = Visibility.Visible;
-            }
-        }
 
         private void ChkConfirm_Checked(object sender, RoutedEventArgs e)
         {
@@ -95,7 +76,7 @@ namespace ProjectPRN.Student.Courses
             btnConfirm.IsEnabled = false;
         }
 
-        private async void BtnConfirm_Click(object sender, RoutedEventArgs e)
+        private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
             if (!chkConfirm.IsChecked == true)
             {
@@ -115,7 +96,7 @@ namespace ProjectPRN.Student.Courses
             var result = MessageBox.Show(
                 $"Bạn có chắc chắn muốn đăng ký khóa học '{_course.CourseName}'?\n\n" +
                 $"Học phí: {_course.Price?.ToString("C0", CultureInfo.GetCultureInfo("vi-VN")) ?? "Miễn phí"}\n" +
-                $"Phương thức thanh toán: {GetSelectedPaymentMethod()}\n\n" +
+                $"Phương thức thanh toán: Bank Transfer\n\n" +
                 "Sau khi xác nhận, bạn cần thực hiện thanh toán và chờ quản trị viên xác nhận.",
                 "Xác nhận đăng ký",
                 MessageBoxButton.YesNo,
@@ -126,7 +107,7 @@ namespace ProjectPRN.Student.Courses
                 var enrollmentResult = new EnrollmentResult
                 {
                     Success = true,
-                    PaymentMethod = GetSelectedPaymentMethod()
+                    PaymentMethod = "Bank Transfer",
                 };
 
                 DialogHost.CloseDialogCommand.Execute(enrollmentResult, this);
@@ -145,15 +126,6 @@ namespace ProjectPRN.Student.Courses
         #endregion
 
         #region Helper Methods
-        private string GetSelectedPaymentMethod()
-        {
-            if (rbQRCode?.IsChecked == true)
-                return "QR Code";
-            else if (rbBankTransfer?.IsChecked == true)
-                return "Chuyển khoản ngân hàng";
-            else
-                return "QR Code"; // Default
-        }
         #endregion
     }
 }

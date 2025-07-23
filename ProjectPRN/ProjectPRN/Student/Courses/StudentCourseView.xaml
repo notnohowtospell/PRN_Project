@@ -16,7 +16,9 @@
         MinWidth="1000"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
-
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
     <materialDesign:DialogHost Identifier="RootDialog">
         <Grid Margin="16">
             <Grid.RowDefinitions>
@@ -206,7 +208,7 @@
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTemplateColumn Header="Thao tác" Width="150">
+                        <DataGridTemplateColumn Header="Thao tác" Width="170">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -228,6 +230,14 @@
                                                 Foreground="{DynamicResource PrimaryHueMidBrush}">
                                             <materialDesign:PackIcon Kind="AccountPlus" Width="16" Height="16"/>
                                         </Button>
+                                        <TextBlock Text="Đã đăng ký"
+                                           Foreground="DarkOrange"
+                                           FontStyle="Italic"
+                                           FontSize="12"
+                                           Margin="6,4,0,0"
+                                           VerticalAlignment="Center"
+                                           Visibility="{Binding SentRequest, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

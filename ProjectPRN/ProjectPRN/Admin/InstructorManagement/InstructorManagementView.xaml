@@ -1,0 +1,225 @@
+﻿<Window x:Class="ProjectPRN.Admin.InstructorManagement.InstructorManagementView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Quản lý giảng viên - Life Skill Course Management System"
+        Height="800"
+        Width="1400"
+        MinHeight="600"
+        MinWidth="1000"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <materialDesign:Card Grid.Row="0" Margin="0,0,0,16" Padding="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Quản lý giảng viên" 
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="Tạo, chỉnh sửa và quản lý thông tin giảng viên"
+                                   Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                   Opacity="0.7"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="1"
+                            Name="btnAddInstructor"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            materialDesign:ButtonAssist.CornerRadius="20"
+                            Height="40"
+                            Padding="20,0"
+                            Click="BtnAddInstructor_Click">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <TextBlock Text="THÊM GIẢNG VIÊN" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </materialDesign:Card>
+
+            <!-- Search and Filter -->
+            <materialDesign:Card Grid.Row="1" Margin="0,0,0,16" Padding="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0"
+                             Name="txtSearch"
+                             materialDesign:HintAssist.Hint="Tìm kiếm giảng viên..."
+                             materialDesign:HintAssist.IsFloating="True"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,16,0"
+                             TextChanged="TxtSearch_TextChanged">
+                    </TextBox>
+
+                    <ComboBox Grid.Column="1"
+                              Name="cmbExperienceFilter"
+                              materialDesign:HintAssist.Hint="Kinh nghiệm"
+                              materialDesign:HintAssist.IsFloating="True"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              Margin="0,0,16,0"
+                              SelectionChanged="CmbExperienceFilter_SelectionChanged">
+                        <ComboBoxItem Content="Tất cả"/>
+                        <ComboBoxItem Content="Dưới 2 năm"/>
+                        <ComboBoxItem Content="2-5 năm"/>
+                        <ComboBoxItem Content="5-10 năm"/>
+                        <ComboBoxItem Content="Trên 10 năm"/>
+                    </ComboBox>
+
+                    <Button Grid.Column="2"
+                            Name="btnClearFilters"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            ToolTip="Xóa tất cả bộ lọc"
+                            Click="BtnClearFilters_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FilterRemove" 
+                                                     Width="20" Height="20"
+                                                     VerticalAlignment="Center" 
+                                                     Margin="0,0,8,0"/>
+                            <TextBlock Text="XÓA BỘ LỌC" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </materialDesign:Card>
+
+            <!-- Instructor List -->
+            <materialDesign:Card Grid.Row="2" Padding="0">
+                <DataGrid Name="dgInstructors"
+                          Style="{StaticResource MaterialDesignDataGrid}"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow"
+                          IsReadOnly="True"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal"
+                          HorizontalGridLinesBrush="{DynamicResource MaterialDesignDivider}"
+                          SelectionChanged="DgInstructors_SelectionChanged">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" 
+                                            Binding="{Binding InstructorId}" 
+                                            Width="60"
+                                            IsReadOnly="True"/>
+
+                        <DataGridTextColumn Header="Họ tên" 
+                                            Binding="{Binding InstructorName}" 
+                                            Width="*"
+                                            MinWidth="150"/>
+
+                        <DataGridTextColumn Header="Email" 
+                                            Binding="{Binding Email}" 
+                                            Width="*"/>
+
+                        <DataGridTextColumn Header="Số điện thoại" 
+                                            Binding="{Binding PhoneNumber}" 
+                                            Width="130"/>
+
+                        <DataGridTextColumn Header="Kinh nghiệm" 
+                                            Width="130">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Experience" StringFormat="{}{0} năm"/>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Số khóa học" 
+                                            Binding="{Binding CourseCount}" 
+                                            Width="130"/>
+
+                        <DataGridTextColumn Header="Đăng nhập cuối" 
+                                            Binding="{Binding LastLogin, StringFormat=dd/MM/yyyy HH:mm}" 
+                                            Width="140"/>
+
+                        <DataGridTemplateColumn Header="Thao tác" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Style="{StaticResource MaterialDesignIconButton}"
+                                                Height="30" Width="30"
+                                                Margin="2"
+                                                ToolTip="Xem chi tiết"
+                                                Click="BtnViewDetails_Click"
+                                                Tag="{Binding InstructorId}">
+                                            <materialDesign:PackIcon Kind="Eye" Width="16" Height="16"/>
+                                        </Button>
+                                        <Button Style="{StaticResource MaterialDesignIconButton}"
+                                                Height="30" Width="30"
+                                                Margin="2"
+                                                ToolTip="Chỉnh sửa"
+                                                Click="BtnEdit_Click"
+                                                Tag="{Binding InstructorId}">
+                                            <materialDesign:PackIcon Kind="Edit" Width="16" Height="16"/>
+                                        </Button>
+                                        <Button Style="{StaticResource MaterialDesignIconButton}"
+                                                Height="30" Width="30"
+                                                Margin="2"
+                                                ToolTip="Xóa"
+                                                Click="BtnDelete_Click"
+                                                Tag="{Binding InstructorId}"
+                                                Foreground="{DynamicResource MaterialDesignValidationErrorBrush}">
+                                            <materialDesign:PackIcon Kind="Delete" Width="16" Height="16"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </materialDesign:Card>
+
+            <!-- Status Bar -->
+            <materialDesign:Card Grid.Row="3" Margin="0,16,0,0" Padding="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                               Name="txtStatus"
+                               Text="Sẵn sàng"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="Tổng số giảng viên: "
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                        <TextBlock Name="txtTotalInstructors"
+                                   Text="0"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </materialDesign:DialogHost>
+</Window>

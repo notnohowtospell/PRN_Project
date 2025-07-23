@@ -93,7 +93,7 @@ namespace ProjectPRN.Student.Courses
 
         private void UpdateEnrollmentAvailability()
         {
-            if (_course.IsFullyBooked || _course.Status != "Mở đăng ký" || _course.IsAlreadyEnrolled)
+            if (_course.IsFullyBooked || _course.Status != "Mở đăng ký" || _course.SentRequest)
             {
                 btnEnrollNow.IsEnabled = false;
 
@@ -102,7 +102,7 @@ namespace ProjectPRN.Student.Courses
                     cardWarning.Visibility = Visibility.Visible;
                     btnEnrollNow.Content = "ĐÃ HẾT CHỖ";
                 }
-                else if (_course.IsAlreadyEnrolled)
+                else if (_course.SentRequest)
                 {
                     btnEnrollNow.Content = "ĐÃ ĐĂNG KÝ";
                     btnEnrollNow.Background = new SolidColorBrush(Colors.Gray);

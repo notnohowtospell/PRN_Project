@@ -1,0 +1,29 @@
+﻿<Window x:Class="ProjectPRN.Student.Courses.EnrolledCoursesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Khóa học đã đăng ký" Height="400" Width="800">
+    <Grid Margin="10">
+        <TextBlock x:Name="txtNoCourses"
+               Text="Chưa có khóa học nào đã đăng ký."
+               FontStyle="Italic"
+               Foreground="Gray"
+               FontSize="14"
+               Visibility="Collapsed"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               TextAlignment="Center" />
+        <DataGrid x:Name="dgEnrolledCourses"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tên khóa học" Binding="{Binding CourseName}" Width="*" />
+                <DataGridTextColumn Header="Giảng viên" Binding="{Binding InstructorName}" Width="150" />
+                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding StartDate, StringFormat=\{0:dd/MM/yyyy\}}" Width="120" />
+                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding EndDate, StringFormat=\{0:dd/MM/yyyy\}}" Width="120" />
+                <DataGridTextColumn Header="Giá" Binding="{Binding Price}" Width="100" />
+                <DataGridTextColumn Header="Trạng thái khóa học" Binding="{Binding Status}" Width="150" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,7 +1,14 @@
 ﻿using System.Windows;
+using BusinessObjects.Models;
 using DataAccessObjects;
-using ProjectPRN.Student.Courses;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using ProjectPRN.Admin.CourseManagement;
+using ProjectPRN.Search;
 using ProjectPRN.Utils;
+using Repositories;
+using Repositories.Interfaces;
 
 namespace ProjectPRN
 {
@@ -14,45 +21,46 @@ namespace ProjectPRN
 
         protected override async void OnStartup(StartupEventArgs e)
         {
-            //var services = new ServiceCollection();
-            //var connectionString = new ConfigurationBuilder()
-            //.AddJsonFile("appsettings.json")
-            //.Build()
-            //.GetConnectionString("DefaultConnection");
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(connectionString), ServiceLifetime.Transient);
+            var services = new ServiceCollection();
+            var connectionString = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build()
+            .GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString), ServiceLifetime.Transient);
 
             //// Register DAOs
-            //services.AddScoped<ILifeSkillCourseDAO, LifeSkillCourseDAO>();
-            //services.AddScoped<IInstructorDAO, InstructorDAO>();
+            services.AddScoped<ILifeSkillCourseDAO, LifeSkillCourseDAO>();
+            services.AddScoped<IInstructorDAO, InstructorDAO>();
             //services.AddScoped<IStudentDAO, StudentDAO>();
             //services.AddScoped<IEnrollmentDAO, EnrollmentDAO>();
             //services.AddScoped<IPaymentDAO, PaymentDAO>();
 
             //// Register Repositories
-            //services.AddScoped<ILifeSkillCourseRepository, LifeSkillCourseRepository>();
-            //services.AddScoped<IInstructorRepository, InstructorRepository>();
+            services.AddScoped<ILifeSkillCourseRepository, LifeSkillCourseRepository>();
+            services.AddScoped<IInstructorRepository, InstructorRepository>();
             //services.AddScoped<IStudentRepository, StudentRepository>();
             //services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
             //services.AddScoped<IPaymentRepository, PaymentRepository>();
 
-            //services.AddTransient<CourseManagementView>();
+            services.AddTransient<CourseManagementView>();
+            services.AddTransient<CourseSearchWindow>();
             //services.AddTransient<StudentCourseView>();
 
 
-            //ServiceProvider = services.BuildServiceProvider();
+            ServiceProvider = services.BuildServiceProvider();
 
             base.OnStartup(e);
 
             // Try to restore user session
             var sessionRestored = await TryRestoreUserSession();
 
-            //if (!sessionRestored)
-            //{
-            //    // No valid session found, show login window
-            //    var loginWindow = new Login();
-            //    loginWindow.ShowDialog();
-            //}
+            if (!sessionRestored)
+            {
+                // No valid session found, show login window
+                var loginWindow = new Login();
+                loginWindow.ShowDialog();
+            }
             //var mainWindow = ServiceProvider.GetRequiredService<CourseManagementView>();
             //mainWindow.Show();
         }
@@ -83,15 +91,12 @@ namespace ProjectPRN
                     if (sessionValid)
                     {
                         // Session is valid, open main window directly
-                        //var mainWindow = new MainWindow();
-                        //mainWindow.Show();
+                        var mainWindow = new MainWindow();
+                        mainWindow.Show();
 
                         // Show welcome back message
                         MessageBox.Show($"Welcome back, {savedSession.UserName}!", "Auto Login",
                                       MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        var mainWindow = new StudentCourseView();
-                        mainWindow.Show();
 
                         return true;
                     }

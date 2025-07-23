@@ -123,15 +123,15 @@ namespace ProjectPRN.Student.Courses
                 .Where(c => c.Status == "Mở đăng ký")
                 .ToList();
 
-            var enrollments = _context.Enrollments
-                .Where(e => e.StudentId == CurrentStudent.StudentId)
-                .ToList();
-
-            var enrolledCourseIds = enrollments.Select(e => e.CourseId).ToHashSet();
+            var sentRequests = _context.Payments
+               .Where(p => p.StudentId == CurrentStudent.StudentId && p.Status != "Đã thanh toán")
+               .Select(p => p.CourseId)
+               .ToHashSet();
             FilteredCourses.Clear();
 
             foreach (var course in courses)
             {
+
                 var courseEnrollments = _context.Enrollments
                     .Where(e => e.CourseId == course.CourseId && e.CompletionStatus != false)
                     .ToList();
@@ -147,8 +147,8 @@ namespace ProjectPRN.Student.Courses
                     Description = course.Description,
                     MaxStudents = course.MaxStudents ?? 0,
                     CurrentEnrollments = courseEnrollments.Count,
+                    SentRequest = sentRequests.Contains(course.CourseId),
                     Status = course.Status,
-                    IsAlreadyEnrolled = enrolledCourseIds.Contains(course.CourseId),
                     Instructor = course.Instructor
                 });
             }
@@ -210,7 +210,7 @@ namespace ProjectPRN.Student.Courses
                     MaxStudents = course.MaxStudents ?? 0,
                     CurrentEnrollments = courseEnrollments.Count,
                     Status = course.Status,
-                    IsAlreadyEnrolled = enrolledCourseIds.Contains(course.CourseId),
+                    SentRequest = enrolledCourseIds.Contains(course.CourseId),
                     Instructor = course.Instructor
                 });
             }
@@ -297,16 +297,13 @@ namespace ProjectPRN.Student.Courses
 
         private void BtnMyEnrollments_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Open My Enrollments window
-            MessageBox.Show("Chức năng đang phát triển", "Thông báo",
-                           MessageBoxButton.OK, MessageBoxImage.Information);
+            var enrolledCoursesWindow = new EnrolledCoursesWindow(CurrentStudent);
+            enrolledCoursesWindow.ShowDialog();
         }
 
         private void BtnProfile_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Open Profile window
-            MessageBox.Show("Chức năng đang phát triển", "Thông báo",
-                           MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
 
         private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -412,12 +409,12 @@ namespace ProjectPRN.Student.Courses
         public int MaxStudents { get; set; }
         public int CurrentEnrollments { get; set; }
         public string Status { get; set; } = string.Empty;
-        public bool IsAlreadyEnrolled { get; set; }
+        public bool SentRequest { get; set; }
         public Instructor Instructor { get; set; }
 
         public bool CanEnroll => Status == "Mở đăng ký" && !IsFullyBooked;
-        public bool IsNotAlreadyEnrolled => !IsAlreadyEnrolled;
-        public bool CanEnrollAndNotEnrolled => CanEnroll && IsNotAlreadyEnrolled;
+        public bool DidNotSentRequest => !SentRequest;
+        public bool CanEnrollAndNotEnrolled => CanEnroll && DidNotSentRequest;
         public bool IsFullyBooked => CurrentEnrollments >= MaxStudents;
         public bool IsAlmostFull => MaxStudents > 0 && (double)CurrentEnrollments / MaxStudents >= 0.8;
     }
