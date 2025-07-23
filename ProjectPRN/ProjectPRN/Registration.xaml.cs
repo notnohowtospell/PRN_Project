@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -63,12 +63,12 @@ namespace ProjectPRN
                 // Check if email already exists in both tables
                 var existingStudent = await _studentDAO.GetByEmailAsync(email);
                 var existingInstructor = await _instructorDAO.GetByEmailAsync(email);
-                
+
                 if (existingStudent != null || existingInstructor != null)
                 {
-                    MessageBox.Show("An account with this email address already exists. Please use a different email or try logging in.", 
-                                  "Email Already Exists", 
-                                  MessageBoxButton.OK, 
+                    MessageBox.Show("An account with this email address already exists. Please use a different email or try logging in.",
+                                  "Email Already Exists",
+                                  MessageBoxButton.OK,
                                   MessageBoxImage.Warning);
                     return;
                 }
@@ -82,9 +82,9 @@ namespace ProjectPRN
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred during registration: {ex.Message}", 
-                              "Registration Error", 
-                              MessageBoxButton.OK, 
+                MessageBox.Show($"An error occurred during registration: {ex.Message}",
+                              "Registration Error",
+                              MessageBoxButton.OK,
                               MessageBoxImage.Error);
             }
             finally
@@ -108,7 +108,7 @@ namespace ProjectPRN
                 Email = email,
                 PhoneNumber = phone,
                 Password = hashedPassword,
-                Status = "Active", // Set default status
+                Status = "Hoạt động", // Set default status
                 DateOfBirth = null, // Can be set later in profile
                 AvatarPath = null, // Can be set later in profile
                 LastLogin = null // Will be set on first login
@@ -118,9 +118,9 @@ namespace ProjectPRN
             await _studentDAO.AddAsync(newStudent);
 
             // Show success message
-            MessageBox.Show($"Student account created successfully for {fullName}!\nStudent Code: {studentCode}\nWelcome to LifeSkill Learning Platform.", 
-                          "Registration Successful", 
-                          MessageBoxButton.OK, 
+            MessageBox.Show($"Student account created successfully for {fullName}!\nStudent Code: {studentCode}\nWelcome to LifeSkill Learning Platform.",
+                          "Registration Successful",
+                          MessageBoxButton.OK,
                           MessageBoxImage.Information);
 
             // Navigate to login
@@ -146,9 +146,9 @@ namespace ProjectPRN
             await _instructorDAO.AddAsync(newInstructor);
 
             // Show success message
-            MessageBox.Show($"Instructor account created successfully for {fullName}!\nWelcome to LifeSkill Learning Platform.", 
-                          "Registration Successful", 
-                          MessageBoxButton.OK, 
+            MessageBox.Show($"Instructor account created successfully for {fullName}!\nWelcome to LifeSkill Learning Platform.",
+                          "Registration Successful",
+                          MessageBoxButton.OK,
                           MessageBoxImage.Information);
 
             // Navigate to login
@@ -159,22 +159,20 @@ namespace ProjectPRN
 
         private string GenerateStudentCode()
         {
-            // Generate a unique student code
-            // Format: STU + current year + random 4 digits
             var random = new Random();
-            var year = DateTime.Now.Year.ToString();
+            var year = DateTime.Now.Year.ToString().Substring(2);
             var randomNumber = random.Next(1000, 9999).ToString();
-            return $"STU{year}{randomNumber}";
+            return $"SE{year}{randomNumber}";
         }
 
         private bool ValidateInput(string fullName, string email, string phone, string password, string confirmPassword, bool termsAccepted)
         {
             // Check if all fields are filled
-            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email) || 
-                string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(password) || 
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email) ||
+                string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(password) ||
                 string.IsNullOrEmpty(confirmPassword))
             {
-                MessageBox.Show("Please fill in all required fields.", "Validation Error", 
+                MessageBox.Show("Please fill in all required fields.", "Validation Error",
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
@@ -182,7 +180,7 @@ namespace ProjectPRN
             // Validate full name (at least 2 words)
             if (fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length < 2)
             {
-                MessageBox.Show("Please enter your full name (first and last name).", "Validation Error", 
+                MessageBox.Show("Please enter your full name (first and last name).", "Validation Error",
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
@@ -190,7 +188,7 @@ namespace ProjectPRN
             // Validate email format
             if (!IsValidEmail(email))
             {
-                MessageBox.Show("Please enter a valid email address.", "Validation Error", 
+                MessageBox.Show("Please enter a valid email address.", "Validation Error",
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
@@ -198,7 +196,7 @@ namespace ProjectPRN
             // Validate phone number (basic validation)
             if (!IsValidPhone(phone))
             {
-                MessageBox.Show("Please enter a valid phone number (10-11 digits).", "Validation Error", 
+                MessageBox.Show("Please enter a valid phone number (10-11 digits).", "Validation Error",
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
@@ -206,7 +204,7 @@ namespace ProjectPRN
             // Validate password strength
             if (password.Length < 6)
             {
-                MessageBox.Show("Password must be at least 6 characters long.", "Validation Error", 
+                MessageBox.Show("Password must be at least 6 characters long.", "Validation Error",
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
@@ -214,9 +212,9 @@ namespace ProjectPRN
             // Enhanced password validation
             if (!IsStrongPassword(password))
             {
-                MessageBox.Show("Password must contain at least one uppercase letter, one lowercase letter, and one number.", 
-                              "Password Too Weak", 
-                              MessageBoxButton.OK, 
+                MessageBox.Show("Password must contain at least one uppercase letter, one lowercase letter, and one number.",
+                              "Password Too Weak",
+                              MessageBoxButton.OK,
                               MessageBoxImage.Warning);
                 return false;
             }
@@ -224,7 +222,7 @@ namespace ProjectPRN
             // Check password confirmation
             if (password != confirmPassword)
             {
-                MessageBox.Show("Passwords do not match. Please try again.", "Validation Error", 
+                MessageBox.Show("Passwords do not match. Please try again.", "Validation Error",
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
@@ -232,7 +230,7 @@ namespace ProjectPRN
             // Check terms acceptance
             if (!termsAccepted)
             {
-                MessageBox.Show("Please accept the Terms and Conditions to continue.", "Validation Error", 
+                MessageBox.Show("Please accept the Terms and Conditions to continue.", "Validation Error",
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
@@ -257,7 +255,7 @@ namespace ProjectPRN
         {
             // Remove all non-digit characters
             string digits = Regex.Replace(phone, @"\D", "");
-            
+
             // Check if it's 10 or 11 digits (common phone number lengths)
             return digits.Length >= 10 && digits.Length <= 11;
         }
@@ -268,7 +266,7 @@ namespace ProjectPRN
             bool hasUpper = password.Any(char.IsUpper);
             bool hasLower = password.Any(char.IsLower);
             bool hasDigit = password.Any(char.IsDigit);
-            
+
             return hasUpper && hasLower && hasDigit;
         }
 
