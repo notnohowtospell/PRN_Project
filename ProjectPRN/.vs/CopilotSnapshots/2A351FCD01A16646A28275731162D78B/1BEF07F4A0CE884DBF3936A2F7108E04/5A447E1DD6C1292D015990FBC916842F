@@ -1,9 +1,0 @@
-﻿using BusinessObjects.Models;
-
-namespace Repositories.Interfaces;
-
-public interface IFeedbackRepository : IRepository<Feedback>
-{
-    IEnumerable<Feedback> GetByStudentId(int studentId);
-    IEnumerable<Feedback> GetByCourseId(int courseId);
-}

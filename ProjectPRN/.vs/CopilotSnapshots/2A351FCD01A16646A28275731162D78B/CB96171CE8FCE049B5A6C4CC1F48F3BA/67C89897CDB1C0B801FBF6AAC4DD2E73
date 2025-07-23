@@ -1,8 +1,0 @@
-﻿using BusinessObjects.Models;
-
-namespace Repositories.Interfaces;
-
-public interface IAssessmentRepository : IRepository<Assessment>
-{
-    IEnumerable<Assessment> GetByCourseId(int courseId);
-}

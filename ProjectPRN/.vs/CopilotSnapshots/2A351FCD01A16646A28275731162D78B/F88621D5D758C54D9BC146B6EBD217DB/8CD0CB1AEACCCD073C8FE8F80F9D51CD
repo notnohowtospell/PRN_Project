@@ -1,9 +1,0 @@
-﻿using BusinessObjects.Models;
-
-namespace Repositories.Interfaces;
-
-public interface IStudentRepository : IRepository<Student>
-{
-    Student? GetByEmail(string email);
-    IEnumerable<Student> GetByStatus(string status);
-}

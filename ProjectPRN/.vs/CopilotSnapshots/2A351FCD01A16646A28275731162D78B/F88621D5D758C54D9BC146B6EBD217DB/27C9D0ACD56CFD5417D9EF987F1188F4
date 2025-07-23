@@ -1,9 +1,0 @@
-﻿using BusinessObjects.Models;
-
-namespace Repositories.Interfaces;
-
-public interface IEnrollmentRepository : IRepository<Enrollment>
-{
-    IEnumerable<Enrollment> GetByStudent(int studentId);
-    IEnumerable<Enrollment> GetByCourse(int courseId);
-}

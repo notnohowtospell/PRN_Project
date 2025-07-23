@@ -1,9 +1,0 @@
-﻿using BusinessObjects.Models;
-
-namespace Repositories.Interfaces;
-
-public interface ICertificateRepository : IRepository<Certificate>
-{
-    IEnumerable<Certificate> GetByStudentId(int studentId);
-    IEnumerable<Certificate> GetByCourseId(int courseId);
-}
