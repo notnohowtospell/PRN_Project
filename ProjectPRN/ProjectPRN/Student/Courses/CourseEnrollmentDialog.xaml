@@ -8,10 +8,13 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{DynamicResource MaterialDesignFont}">
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Height="1150">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid Margin="20">
 
-    <materialDesign:Card Width="700" MaxHeight="800">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <materialDesign:Card Width="700">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,-327">
             <StackPanel Margin="24">
                 <!-- Dialog Header -->
                 <Grid Margin="0,0,0,24">
@@ -83,132 +86,34 @@
                 </materialDesign:Card>
 
                 <!-- Student Information -->
-                <materialDesign:Card Margin="0,0,0,16" Padding="16"
+                        <materialDesign:Card Margin="0,0,0,16" Padding="16"
                                      Background="{DynamicResource MaterialDesignChipBackground}">
-                    <StackPanel>
-                        <TextBlock Text="THÔNG TIN SINH VIÊN"
-                                   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-                                   Margin="0,0,0,12"
-                                   Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Họ tên:" FontWeight="SemiBold"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Name="txtStudentName"/>
-
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Email:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Name="txtStudentEmail" Margin="0,8,0,0"/>
-                        </Grid>
-                    </StackPanel>
-                </materialDesign:Card>
-
-                <!-- Payment Method -->
-                <materialDesign:Card Margin="0,0,0,16" Padding="16">
-                    <StackPanel>
-                        <TextBlock Text="PHƯƠNG THỨC THANH TOÁN"
-                                   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-                                   Margin="0,0,0,12"
-                                   Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-
-                        <RadioButton Name="rbQRCode" 
-                                     Content="Chuyển khoản qua QR Code" 
-                                     IsChecked="True"
-                                     Margin="0,0,0,8"
-                                     GroupName="PaymentMethod"
-                                     Checked="PaymentMethod_Changed"/>
-
-                        <RadioButton Name="rbBankTransfer" 
-                                     Content="Chuyển khoản ngân hàng" 
-                                     Margin="0,0,0,8"
-                                     GroupName="PaymentMethod"
-                                     Checked="PaymentMethod_Changed"/>
-                    </StackPanel>
-                </materialDesign:Card>
-
-                <!-- QR Code Payment -->
-                <materialDesign:Card Name="cardQRPayment" Margin="0,0,0,16" Padding="16">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="QUÉT MÃ QR ĐỂ THANH TOÁN"
-                                   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,0,0,16"
-                                   Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-
-                        <!-- QR Code Image Placeholder -->
-                        <Border Background="{DynamicResource MaterialDesignDivider}"
-                                Width="200" Height="200"
-                                CornerRadius="8"
-                                Margin="0,0,0,16">
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <materialDesign:PackIcon Kind="Qrcode" 
-                                                         Width="80" Height="80"
-                                                         Foreground="{DynamicResource MaterialDesignBodyLight}"/>
-                                <TextBlock Text="QR CODE"
-                                           HorizontalAlignment="Center"
-                                           Margin="0,8,0,0"
-                                           Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
-                            </StackPanel>
-                        </Border>
-
-                        <TextBlock Text="Ngân hàng: TECHCOMBANK"
-                                   HorizontalAlignment="Center"
-                                   FontWeight="SemiBold"/>
-                        <TextBlock Text="Số tài khoản: 1234567890"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,4,0,0"/>
-                        <TextBlock Text="Chủ tài khoản: TRUONG DAI HOC FPT"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,4,0,0"/>
-                        <TextBlock Name="txtTransferAmount"
-                                   Text="Số tiền: 1,500,000 VNĐ"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,4,0,0"
-                                   FontWeight="Bold"
-                                   Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-                        <TextBlock Name="txtTransferContent"
-                                   Text="Nội dung: HOCPHI [Tên sinh viên] [Tên khóa học]"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,4,0,16"
-                                   TextWrapping="Wrap"
-                                   FontStyle="Italic"/>
-
-                        <materialDesign:Card Background="{DynamicResource MaterialDesignWarning}" 
-                                             Padding="12" Margin="0,0,0,16">
                             <StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                    <materialDesign:PackIcon Kind="Information" 
-                                                             VerticalAlignment="Center"
-                                                             Foreground="White"
-                                                             Margin="0,0,8,0"/>
-                                    <TextBlock Text="LƯU Ý QUAN TRỌNG"
-                                               Foreground="White"
-                                               FontWeight="Bold"/>
-                                </StackPanel>
-                                <TextBlock Text="• Vui lòng chuyển khoản đúng số tiền và nội dung"
-                                           Foreground="White"
-                                           Margin="0,2"/>
-                                <TextBlock Text="• Sau khi chuyển khoản, thanh toán sẽ được xác nhận trong 24h"
-                                           Foreground="White"
-                                           Margin="0,2"/>
-                                <TextBlock Text="• Liên hệ 0123.456.789 nếu cần hỗ trợ"
-                                           Foreground="White"
-                                           Margin="0,2"/>
+                                <TextBlock Text="THÔNG TIN SINH VIÊN"
+                                   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                                   Margin="0,0,0,12"
+                                   Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Họ tên:" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Name="txtStudentName"/>
+
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Email:" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Name="txtStudentEmail" Margin="0,8,0,0"/>
+                                </Grid>
                             </StackPanel>
                         </materialDesign:Card>
-                    </StackPanel>
-                </materialDesign:Card>
-
-                <!-- Bank Transfer Info -->
-                <materialDesign:Card Name="cardBankTransfer" Margin="0,0,0,16" Padding="16" Visibility="Collapsed">
+                        <!-- Bank Transfer Info -->
+                <materialDesign:Card Name="cardBankTransfer" Margin="0,0,0,16" Padding="16">
                     <StackPanel>
                         <TextBlock Text="THÔNG TIN CHUYỂN KHOẢN"
                                    Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
@@ -270,7 +175,7 @@
 
                     <Button Grid.Column="2"
                             Name="btnConfirm"
-                            Content="XÁC NHẬN ĐĂNG KÝ"
+                            Content="ĐĂNG KÝ"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Width="150"
                             IsEnabled="False"
@@ -279,4 +184,6 @@
             </StackPanel>
         </ScrollViewer>
     </materialDesign:Card>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

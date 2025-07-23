@@ -5,18 +5,14 @@ using System.Windows;
 using System.Windows.Controls;
 using BusinessObjects.Models;
 using MaterialDesignThemes.Wpf;
+using Microsoft.EntityFrameworkCore;
 using ProjectPRN.Utils;
-using Repositories.Interfaces;
 
 namespace ProjectPRN.Student.Courses
 {
     public partial class StudentCourseView : Window, INotifyPropertyChanged
     {
-        private readonly ILifeSkillCourseRepository _courseRepository;
-        private readonly IInstructorRepository _instructorRepository;
-        private readonly IStudentRepository _studentRepository;
-        private readonly IEnrollmentRepository _enrollmentRepository;
-        private readonly IPaymentRepository _paymentRepository;
+        private readonly ApplicationDbContext _context;
 
         public ObservableCollection<CourseViewModel> FilteredCourses { get; set; }
 
@@ -46,47 +42,37 @@ namespace ProjectPRN.Student.Courses
             }
         }
 
-        public StudentCourseView(
-            ILifeSkillCourseRepository courseRepository,
-            IInstructorRepository instructorRepository,
-            IStudentRepository studentRepository,
-            IEnrollmentRepository enrollmentRepository,
-            IPaymentRepository paymentRepository)
+        public StudentCourseView()
         {
             InitializeComponent();
             DataContext = this;
+            _context = new ApplicationDbContext();
 
-            _courseRepository = courseRepository;
-            _instructorRepository = instructorRepository;
-            _studentRepository = studentRepository;
-            _enrollmentRepository = enrollmentRepository;
-            _paymentRepository = paymentRepository;
             int currentStudentId = SessionManager.GetCurrentUserId() != 0 ? SessionManager.GetCurrentUserId() : 1;
 
             FilteredCourses = new ObservableCollection<CourseViewModel>();
 
-            _ = InitializeDataAsync(currentStudentId);
+            InitializeData(currentStudentId);
         }
 
-        #region Data Loading
-        private async Task InitializeDataAsync(int studentId)
+        private void InitializeData(int studentId)
         {
             try
             {
                 IsLoading = true;
                 txtStatus.Text = "Đang tải dữ liệu...";
 
-                await LoadCurrentStudentAsync(studentId);
-                await LoadInstructorsAsync();
-                await LoadCoursesAsync();
+                LoadCurrentStudent(studentId);
+                LoadInstructors();
+                LoadCourses();
 
+                UpdateUI();
                 txtStatus.Text = "Sẵn sàng";
             }
             catch (Exception ex)
             {
                 txtStatus.Text = $"Lỗi khi tải dữ liệu: {ex.Message}";
-                MessageBox.Show($"Không thể tải dữ liệu: {ex.Message}", "Lỗi",
-                               MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Không thể tải dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -94,9 +80,9 @@ namespace ProjectPRN.Student.Courses
             }
         }
 
-        private async Task LoadCurrentStudentAsync(int studentId)
+        private void LoadCurrentStudent(int studentId)
         {
-            var student = await _studentRepository.GetByIdAsync(studentId);
+            var student = _context.Students.FirstOrDefault(s => s.StudentId == studentId);
             if (student != null)
             {
                 CurrentStudent = new StudentViewModel
@@ -109,75 +95,176 @@ namespace ProjectPRN.Student.Courses
             }
         }
 
-        private async Task LoadInstructorsAsync()
+
+        private void LoadInstructors()
+        {
+            var instructors = _context.Instructors.ToList();
+
+            cmbInstructorFilter.Items.Clear();
+            cmbInstructorFilter.Items.Add(new ComboBoxItem { Content = "Tất cả giảng viên", Tag = -1 });
+
+            foreach (var instructor in instructors)
+            {
+                cmbInstructorFilter.Items.Add(new ComboBoxItem
+                {
+                    Content = instructor.InstructorName,
+                    Tag = instructor.InstructorId
+                });
+            }
+
+            cmbInstructorFilter.SelectedIndex = 0;
+        }
+
+
+        private void LoadCourses()
+        {
+            var courses = _context.LifeSkillCourses
+                .Include(c => c.Instructor)
+                .Where(c => c.Status == "Mở đăng ký")
+                .ToList();
+
+            var enrollments = _context.Enrollments
+                .Where(e => e.StudentId == CurrentStudent.StudentId)
+                .ToList();
+
+            var enrolledCourseIds = enrollments.Select(e => e.CourseId).ToHashSet();
+            FilteredCourses.Clear();
+
+            foreach (var course in courses)
+            {
+                var courseEnrollments = _context.Enrollments
+                    .Where(e => e.CourseId == course.CourseId && e.CompletionStatus != false)
+                    .ToList();
+
+                FilteredCourses.Add(new CourseViewModel
+                {
+                    CourseId = course.CourseId,
+                    CourseName = course.CourseName,
+                    InstructorName = course.Instructor?.InstructorName ?? "N/A",
+                    StartDate = course.StartDate,
+                    EndDate = course.EndDate,
+                    Price = course.Price,
+                    Description = course.Description,
+                    MaxStudents = course.MaxStudents ?? 0,
+                    CurrentEnrollments = courseEnrollments.Count,
+                    Status = course.Status,
+                    IsAlreadyEnrolled = enrolledCourseIds.Contains(course.CourseId),
+                    Instructor = course.Instructor
+                });
+            }
+
+            dgCourses.ItemsSource = FilteredCourses;
+        }
+
+
+        private void ApplyFilter()
+        {
+            var query = _context.LifeSkillCourses
+                .Include(c => c.Instructor)
+                .Where(c => c.Status == "Mở đăng ký");
+
+            if (!string.IsNullOrWhiteSpace(txtSearch?.Text))
+            {
+                var search = txtSearch.Text.Trim().ToLower();
+                query = query.Where(c =>
+                    c.CourseName.ToLower().Contains(search) ||
+                    c.Description.ToLower().Contains(search) ||
+                    c.Instructor.InstructorName.ToLower().Contains(search));
+            }
+
+            if (cmbInstructorFilter?.SelectedItem is ComboBoxItem item &&
+                item.Tag is int instructorId && instructorId != -1)
+            {
+                query = query.Where(c => c.InstructorId == instructorId);
+            }
+
+            var filteredCourses = query.ToList();
+            RefreshFilteredCourses(filteredCourses);
+        }
+
+        private void RefreshFilteredCourses(IEnumerable<LifeSkillCourse> courses)
+        {
+            var enrollments = _context.Enrollments
+                .Where(e => e.StudentId == CurrentStudent.StudentId)
+                .ToList();
+
+            var enrolledCourseIds = enrollments.Select(e => e.CourseId).ToHashSet();
+
+            FilteredCourses.Clear();
+
+            foreach (var course in courses)
+            {
+                var courseEnrollments = _context.Enrollments
+                    .Where(e => e.CourseId == course.CourseId && e.CompletionStatus != false)
+                    .ToList();
+
+                FilteredCourses.Add(new CourseViewModel
+                {
+                    CourseId = course.CourseId,
+                    CourseName = course.CourseName,
+                    InstructorName = course.Instructor?.InstructorName ?? "N/A",
+                    StartDate = course.StartDate,
+                    EndDate = course.EndDate,
+                    Price = course.Price,
+                    Description = course.Description,
+                    MaxStudents = course.MaxStudents ?? 0,
+                    CurrentEnrollments = courseEnrollments.Count,
+                    Status = course.Status,
+                    IsAlreadyEnrolled = enrolledCourseIds.Contains(course.CourseId),
+                    Instructor = course.Instructor
+                });
+            }
+
+            UpdateUI();
+        }
+
+
+        private async Task ProcessEnrollmentAsync(CourseViewModel course, EnrollmentResult result)
         {
             try
             {
-                var instructors = await _instructorRepository.GetAllAsync();
+                IsLoading = true;
+                txtStatus.Text = "Đang xử lý đăng ký...";
 
-                cmbInstructorFilter.Items.Clear();
-                cmbInstructorFilter.Items.Add(new ComboBoxItem { Content = "Tất cả giảng viên", Tag = -1 });
-
-                foreach (var instructor in instructors)
+                var enrollment = new Enrollment
                 {
-                    cmbInstructorFilter.Items.Add(new ComboBoxItem
-                    {
-                        Content = instructor.InstructorName,
-                        Tag = instructor.InstructorId
-                    });
-                }
+                    StudentId = CurrentStudent.StudentId,
+                    CourseId = course.CourseId,
+                    CompletionStatus = false,
+                    CompletionDate = null
+                };
 
-                cmbInstructorFilter.SelectedIndex = 0;
+                await _context.Enrollments.AddAsync(enrollment);
+
+                var payment = new Payment
+                {
+                    StudentId = CurrentStudent.StudentId,
+                    CourseId = course.CourseId,
+                    Amount = course.Price ?? 0,
+                    PaymentDate = DateTime.Now,
+                    Status = "Pending"
+                };
+
+                await _context.Payments.AddAsync(payment);
+
+                await _context.SaveChangesAsync();
+
+                txtStatus.Text = $"Đăng ký thành công: {course.CourseName}";
+                MessageBox.Show("Đăng ký thành công!\nVui lòng chờ xác nhận.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                LoadCourses();
             }
             catch (Exception ex)
             {
-                throw new Exception($"Lỗi khi tải danh sách giảng viên: {ex.Message}", ex);
+                txtStatus.Text = $"Lỗi khi đăng ký khóa học: {ex.Message}";
+                MessageBox.Show($"Không thể đăng ký: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 
-        private async Task LoadCoursesAsync()
-        {
-            try
-            {
-                var courses = await _courseRepository.GetAllAsync();
-                var enrollments = await _enrollmentRepository.GetByStudentAsync(CurrentStudent.StudentId);
-                var enrolledCourseIds = enrollments.Select(e => e.CourseId).ToHashSet();
-
-                FilteredCourses.Clear();
-
-                foreach (var course in courses.Where(c => c.Status == "Mở đăng ký"))
-                {
-                    var courseEnrollments = await _enrollmentRepository.GetByCourseAsync(course.CourseId);
-                    var currentEnrollments = courseEnrollments.Count(e => e.CompletionStatus != false);
-
-                    var courseViewModel = new CourseViewModel
-                    {
-                        CourseId = course.CourseId,
-                        CourseName = course.CourseName,
-                        InstructorName = course.Instructor?.InstructorName ?? "N/A",
-                        StartDate = course.StartDate,
-                        EndDate = course.EndDate,
-                        Price = course.Price,
-                        Description = course.Description,
-                        MaxStudents = course.MaxStudents ?? 0,
-                        CurrentEnrollments = currentEnrollments,
-                        Status = course.Status,
-                        IsAlreadyEnrolled = enrolledCourseIds.Contains(course.CourseId),
-                        Instructor = course.Instructor
-                    };
-
-                    FilteredCourses.Add(courseViewModel);
-                }
-
-                dgCourses.ItemsSource = FilteredCourses;
-                UpdateUI();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Lỗi khi tải danh sách khóa học: {ex.Message}", ex);
-            }
-        }
-        #endregion
 
         #region Event Handlers
         private async void BtnEnroll_Click(object sender, RoutedEventArgs e)
@@ -251,77 +338,6 @@ namespace ProjectPRN.Student.Courses
         }
         #endregion
 
-        #region Filtering
-        private void ApplyFilter()
-        {
-            if (FilteredCourses == null) return;
-
-            var allCourses = _courseRepository.GetAll().Where(c => c.Status == "Mở đăng ký");
-            var filtered = allCourses.AsEnumerable();
-
-            // Search filter
-            if (!string.IsNullOrWhiteSpace(txtSearch?.Text))
-            {
-                var searchTerm = txtSearch.Text.Trim().ToLower();
-                filtered = filtered.Where(c =>
-                    c.CourseName?.ToLower().Contains(searchTerm) == true ||
-                    c.Description?.ToLower().Contains(searchTerm) == true ||
-                    c.Instructor?.InstructorName?.ToLower().Contains(searchTerm) == true);
-            }
-
-            // Instructor filter
-            if (cmbInstructorFilter?.SelectedItem is ComboBoxItem instructorItem &&
-                instructorItem.Tag is int instructorId && instructorId != -1)
-            {
-                filtered = filtered.Where(c => c.InstructorId == instructorId);
-            }
-
-            // Refresh the filtered courses display
-            _ = RefreshFilteredCoursesAsync(filtered);
-        }
-
-        private async Task RefreshFilteredCoursesAsync(IEnumerable<LifeSkillCourse> courses)
-        {
-            try
-            {
-                var enrollments = await _enrollmentRepository.GetByStudentAsync(CurrentStudent.StudentId);
-                var enrolledCourseIds = enrollments.Select(e => e.CourseId).ToHashSet();
-
-                FilteredCourses.Clear();
-
-                foreach (var course in courses)
-                {
-                    var courseEnrollments = await _enrollmentRepository.GetByCourseAsync(course.CourseId);
-                    var currentEnrollments = courseEnrollments.Count(e => e.CompletionStatus != false);
-
-                    var courseViewModel = new CourseViewModel
-                    {
-                        CourseId = course.CourseId,
-                        CourseName = course.CourseName,
-                        InstructorName = course.Instructor?.InstructorName ?? "N/A",
-                        StartDate = course.StartDate,
-                        EndDate = course.EndDate,
-                        Price = course.Price,
-                        Description = course.Description,
-                        MaxStudents = course.MaxStudents ?? 0,
-                        CurrentEnrollments = currentEnrollments,
-                        Status = course.Status,
-                        IsAlreadyEnrolled = enrolledCourseIds.Contains(course.CourseId),
-                        Instructor = course.Instructor
-                    };
-
-                    FilteredCourses.Add(courseViewModel);
-                }
-
-                UpdateUI();
-            }
-            catch (Exception ex)
-            {
-                txtStatus.Text = $"Lỗi khi lọc khóa học: {ex.Message}";
-            }
-        }
-        #endregion
-
         #region Dialog Methods
         private async Task ShowEnrollmentDialogAsync(CourseViewModel course)
         {
@@ -359,58 +375,6 @@ namespace ProjectPRN.Student.Courses
             {
                 MessageBox.Show($"Lỗi khi hiển thị chi tiết khóa học: {ex.Message}", "Lỗi",
                                MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private async Task ProcessEnrollmentAsync(CourseViewModel course, EnrollmentResult result)
-        {
-            try
-            {
-                IsLoading = true;
-                txtStatus.Text = "Đang xử lý đăng ký...";
-
-                // Create enrollment
-                var enrollment = new Enrollment
-                {
-                    StudentId = CurrentStudent.StudentId,
-                    CourseId = course.CourseId,
-                    CompletionStatus = false, // Waiting for payment confirmation
-                    CompletionDate = null
-                };
-
-                await _enrollmentRepository.AddAsync(enrollment);
-
-                // Create payment record
-                var payment = new Payment
-                {
-                    StudentId = CurrentStudent.StudentId,
-                    CourseId = course.CourseId,
-                    Amount = course.Price ?? 0,
-                    PaymentDate = DateTime.Now,
-                    Status = "Pending" // Will be confirmed by admin
-                };
-
-                await _paymentRepository.AddAsync(payment);
-
-                await _enrollmentRepository.SaveChangesAsync();
-                await _paymentRepository.SaveChangesAsync();
-
-                // Refresh the courses list
-                await LoadCoursesAsync();
-
-                txtStatus.Text = $"Đã đăng ký khóa học '{course.CourseName}' thành công. Chờ xác nhận thanh toán.";
-                MessageBox.Show("Đăng ký thành công!\nVui lòng chờ quản trị viên xác nhận thanh toán.", "Thành công",
-                               MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                txtStatus.Text = $"Lỗi khi đăng ký khóa học: {ex.Message}";
-                MessageBox.Show($"Không thể đăng ký khóa học: {ex.Message}", "Lỗi",
-                               MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                IsLoading = false;
             }
         }
         #endregion

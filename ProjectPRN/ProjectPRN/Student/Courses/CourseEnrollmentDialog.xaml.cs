@@ -71,6 +71,8 @@ namespace ProjectPRN.Student.Courses
         #region Event Handlers
         private void PaymentMethod_Changed(object sender, RoutedEventArgs e)
         {
+            if (cardQRPayment == null || cardBankTransfer == null)
+                return;
             if (rbQRCode?.IsChecked == true)
             {
                 cardQRPayment.Visibility = Visibility.Visible;

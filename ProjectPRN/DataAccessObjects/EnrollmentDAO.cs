@@ -69,6 +69,6 @@ public class EnrollmentDAO : IEnrollmentDAO
 
     public IEnumerable<Enrollment> GetAll()
     {
-        throw new NotImplementedException();
+        return _context.Enrollments.Include(e => e.Student).Include(e => e.Course).ToList();
     }
 }

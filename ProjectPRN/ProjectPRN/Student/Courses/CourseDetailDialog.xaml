@@ -156,7 +156,7 @@
                                                      VerticalAlignment="Center"
                                                      Foreground="{DynamicResource PrimaryHueMidBrush}"
                                                      Margin="0,0,8,0"/>
-                            <TextBlock Text="MÔ TÃ KHÓA HỌC"
+                            <TextBlock Text="MÔ TẢ KHÓA HỌC"
                                        Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
                                        Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                         </StackPanel>

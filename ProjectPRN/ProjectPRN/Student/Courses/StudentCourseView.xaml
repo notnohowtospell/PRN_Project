@@ -144,12 +144,12 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Tên khóa học" 
                                             Binding="{Binding CourseName}" 
-                                            Width="*"
+                                            Width="200"
                                             MinWidth="200"/>
 
                         <DataGridTextColumn Header="Giảng viên" 
                                             Binding="{Binding Instructor.InstructorName}" 
-                                            Width="150"/>
+                                            Width="*"/>
 
                         <DataGridTextColumn Header="Ngày bắt đầu" 
                                             Binding="{Binding StartDate, StringFormat=dd/MM/yyyy}" 
@@ -160,7 +160,7 @@
                                             Width="120"/>
 
                         <DataGridTextColumn Header="Học phí" 
-                                            Binding="{Binding Price, StringFormat=C0}" 
+                                            Binding="{Binding Price, StringFormat=N0}" 
                                             Width="120"/>
 
                         <DataGridTextColumn Header="Số chỗ còn lại" 
@@ -189,7 +189,7 @@
 
                         <DataGridTextColumn Header="Trạng thái" 
                                             Binding="{Binding Status}" 
-                                            Width="100">
+                                            Width="150">
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
                                     <Style.Triggers>
@@ -209,9 +209,9 @@
                         <DataGridTemplateColumn Header="Thao tác" Width="150">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Button Style="{StaticResource MaterialDesignIconButton}"
-                                                Height="30" Width="30"
+                                                Height="25" Width="25"
                                                 Margin="2"
                                                 ToolTip="Xem chi tiết"
                                                 Click="BtnViewDetails_Click"
@@ -219,7 +219,7 @@
                                             <materialDesign:PackIcon Kind="Eye" Width="16" Height="16"/>
                                         </Button>
                                         <Button Style="{StaticResource MaterialDesignIconButton}"
-                                                Height="30" Width="30"
+                                                Height="25" Width="25"
                                                 Margin="2"
                                                 ToolTip="Đăng ký"
                                                 Click="BtnEnroll_Click"

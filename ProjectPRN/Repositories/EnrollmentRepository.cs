@@ -55,6 +55,6 @@ public class EnrollmentRepository : IEnrollmentRepository
 
     public IEnumerable<Enrollment> GetAll()
     {
-        throw new NotImplementedException();
+        return _dao.GetAll();
     }
 }
