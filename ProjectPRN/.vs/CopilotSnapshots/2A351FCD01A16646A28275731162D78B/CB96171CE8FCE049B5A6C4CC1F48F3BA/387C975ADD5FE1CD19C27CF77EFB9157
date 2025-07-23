@@ -1,8 +1,0 @@
-﻿using BusinessObjects.Models;
-
-namespace Repositories.Interfaces;
-
-public interface IInstructorRepository : IRepository<Instructor>
-{
-    Instructor? GetByPhoneNumber(string phoneNumber);
-}
