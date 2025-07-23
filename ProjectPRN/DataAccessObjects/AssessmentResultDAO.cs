@@ -11,11 +11,11 @@ public interface IAssessmentResultDAO : IGenericDAO<AssessmentResult>
 
 public class AssessmentResultDAO : IAssessmentResultDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public AssessmentResultDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<AssessmentResult>> GetAllAsync()
@@ -64,5 +64,10 @@ public class AssessmentResultDAO : IAssessmentResultDAO
             _context.AssessmentResults.Remove(entity);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public IEnumerable<AssessmentResult> GetAll()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -53,4 +53,9 @@ public class StudentRepository : IStudentRepository
     {
         return await _studentDAO.GetByStatusAsync(status);
     }
+
+    public IEnumerable<Student> GetAll()
+    {
+        return _studentDAO.GetAll();
+    }
 }

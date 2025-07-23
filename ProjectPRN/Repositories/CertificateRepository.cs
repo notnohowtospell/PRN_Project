@@ -52,4 +52,9 @@ public class CertificateRepository : ICertificateRepository
     {
         return await _certificateDAO.GetByCourseIdAsync(courseId);
     }
+
+    public IEnumerable<Certificate> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

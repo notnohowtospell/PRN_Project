@@ -10,11 +10,11 @@ public interface IActivityLogDAO : IGenericDAO<ActivityLog>
 
 public class ActivityLogDAO : IActivityLogDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public ActivityLogDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<ActivityLog>> GetAllAsync()
@@ -60,5 +60,8 @@ public class ActivityLogDAO : IActivityLogDAO
         }
     }
 
-
+    public IEnumerable<ActivityLog> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,0 +1,203 @@
+﻿<UserControl x:Class="ProjectPRN.Admin.CourseManagement.CourseEditDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <materialDesign:Card Width="600" MaxHeight="700">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="24">
+                <!-- Dialog Header -->
+                <Grid Margin="0,0,0,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Name="txtDialogTitle"
+                                   Text="Thêm khóa học mới"
+                                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="Điền thông tin chi tiết cho khóa học"
+                                   Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                   Opacity="0.7"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="1"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            Click="BtnClose_Click"
+                            ToolTip="Đóng">
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </Grid>
+
+                <!-- Course Information Form -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Course Name -->
+                    <TextBox Grid.Row="0"
+                             Name="txtCourseName"
+                             materialDesign:HintAssist.Hint="Tên khóa học *"
+                             materialDesign:HintAssist.IsFloating="True"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"
+                             MaxLength="200"
+                             TextChanged="ValidateForm"/>
+
+                    <!-- Instructor -->
+                    <ComboBox Grid.Row="1"
+                              Name="cmbInstructor"
+                              materialDesign:HintAssist.Hint="Giảng viên *"
+                              materialDesign:HintAssist.IsFloating="True"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              Margin="0,0,0,16"
+                              SelectionChanged="ValidateForm"
+                              DisplayMemberPath="InstructorName"
+                              SelectedValuePath="InstructorId"/>
+
+                    <!-- Date Range -->
+                    <Grid Grid.Row="2" Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <DatePicker Grid.Column="0"
+                                    Name="dpStartDate"
+                                    materialDesign:HintAssist.Hint="Ngày bắt đầu *"
+                                    materialDesign:HintAssist.IsFloating="True"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                    SelectedDateChanged="ValidateForm"/>
+
+                        <DatePicker Grid.Column="2"
+                                    Name="dpEndDate"
+                                    materialDesign:HintAssist.Hint="Ngày kết thúc *"
+                                    materialDesign:HintAssist.IsFloating="True"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                    SelectedDateChanged="ValidateForm"/>
+                    </Grid>
+
+                    <!-- Price and Max Students -->
+                    <Grid Grid.Row="3" Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0"
+                                 Name="txtPrice"
+                                 materialDesign:HintAssist.Hint="Học phí (VNĐ)"
+                                 materialDesign:HintAssist.IsFloating="True"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 PreviewTextInput="NumberValidationTextInput"
+                                 TextChanged="ValidateForm"/>
+
+                        <TextBox Grid.Column="2"
+                                 Name="txtMaxStudents"
+                                 materialDesign:HintAssist.Hint="Số lượng tối đa học viên"
+                                 materialDesign:HintAssist.IsFloating="True"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                 PreviewTextInput="IntegerValidationTextInput"
+                                 TextChanged="ValidateForm"/>
+                    </Grid>
+
+                    <!-- Status -->
+                    <ComboBox Grid.Row="4"
+                              Name="cmbStatus"
+                              materialDesign:HintAssist.Hint="Trạng thái *"
+                              materialDesign:HintAssist.IsFloating="True"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              Margin="0,0,0,16"
+                              SelectionChanged="ValidateForm">
+                        <ComboBoxItem Content="Mở đăng ký"/>
+                        <ComboBoxItem Content="Đã đóng"/>
+                        <ComboBoxItem Content="Tạm dừng"/>
+                    </ComboBox>
+
+                    <!-- Description -->
+                    <TextBox Grid.Row="5"
+                             Name="txtDescription"
+                             materialDesign:HintAssist.Hint="Mô tả khóa học"
+                             materialDesign:HintAssist.IsFloating="True"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"
+                             MinHeight="80"
+                             MaxHeight="120"
+                             Margin="0,0,0,24"/>
+
+                    <!-- Validation Messages -->
+                    <Border Grid.Row="6"
+                            Name="borderValidation"
+                            Background="{DynamicResource MaterialDesignValidationErrorBrush}"
+                            CornerRadius="4"
+                            Padding="12"
+                            Margin="0,0,0,16"
+                            Visibility="Collapsed">
+                        <StackPanel>
+                            <TextBlock Text="Vui lòng kiểm tra các lỗi sau:"
+                                       Foreground="White"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,8"/>
+                            <ItemsControl Name="icValidationErrors"
+                                          Foreground="White">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Margin="0,2"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Action Buttons -->
+                    <Grid Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="1"
+                                Name="btnCancel"
+                                Content="HỦY"
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                Margin="0,0,8,0"
+                                Width="100"
+                                Click="BtnCancel_Click"/>
+
+                        <Button Grid.Column="2"
+                                Name="btnSave"
+                                Content="LƯU"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Width="100"
+                                IsEnabled="False"
+                                Click="BtnSave_Click"/>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </materialDesign:Card>
+</UserControl>

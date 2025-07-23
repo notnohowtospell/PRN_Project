@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Project\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\
+C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\obj\Debug\net8.0-windows\
 ProjectPRN
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-D:\Project\ProjectPRN\ProjectPRN\App.xaml
-31795779639
+C:\Users\ADMIN\Documents\GitHub\project-prn\ProjectPRN\ProjectPRN\App.xaml
+663156639
 
-11505504217
-233-2063593642
-Login.xaml;MainWindow.xaml;Registration.xaml;
+14-1203263955
+2401978473675
+Admin\CourseManagement\ConfirmDialog.xaml;Admin\CourseManagement\CourseEditDialog.xaml;Admin\CourseManagement\CourseManagementView.xaml;Login.xaml;MainWindow.xaml;Registration.xaml;
 
 False
 

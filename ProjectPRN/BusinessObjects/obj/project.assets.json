@@ -4017,23 +4017,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\minhh\\.nuget\\packages\\": {},
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj",
+      "projectUniqueName": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj",
       "projectName": "BusinessObjects",
-      "projectPath": "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj",
-      "packagesPath": "C:\\Users\\minhh\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\ProjectPRN\\BusinessObjects\\obj\\",
+      "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\minhh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

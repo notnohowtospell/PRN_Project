@@ -18,6 +18,11 @@ public class LifeSkillCourseRepository : ILifeSkillCourseRepository
         return await _dao.GetAllAsync();
     }
 
+    public IEnumerable<LifeSkillCourse> GetAll()
+    {
+        return _dao.GetAll();
+    }
+
     public async Task<LifeSkillCourse?> GetByIdAsync(int id)
     {
         return await _dao.GetByIdAsync(id);

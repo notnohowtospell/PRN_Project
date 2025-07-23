@@ -11,11 +11,11 @@ public interface IInstructorDAO : IGenericDAO<Instructor>
 
 public class InstructorDAO : IInstructorDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public InstructorDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<Instructor>> GetAllAsync()
@@ -67,5 +67,10 @@ public class InstructorDAO : IInstructorDAO
             _context.Instructors.Remove(entity);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public IEnumerable<Instructor> GetAll()
+    {
+        return _context.Instructors.Include(i => i.LifeSkillCourses).ToList();
     }
 }

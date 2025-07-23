@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using DataAccessObjects;
 using ProjectPRN.Utils;
-using BusinessObjects.Models;
 
 namespace ProjectPRN
 {
@@ -53,7 +42,7 @@ namespace ProjectPRN
                 // Basic validation
                 if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 {
-                    MessageBox.Show("Please enter both email and password.", "Validation Error", 
+                    MessageBox.Show("Please enter both email and password.", "Validation Error",
                                   MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
@@ -64,13 +53,13 @@ namespace ProjectPRN
                 {
                     // Verify password for student
                     bool isPasswordValid = PasswordHasher.VerifyPassword(password, student.Password);
-                    
+
                     if (isPasswordValid)
                     {
                         // Check if student account is active
                         if (student.Status != "Active")
                         {
-                            MessageBox.Show("Your student account is not active. Please contact support.", "Account Inactive", 
+                            MessageBox.Show("Your student account is not active. Please contact support.", "Account Inactive",
                                           MessageBoxButton.OK, MessageBoxImage.Warning);
                             return;
                         }
@@ -89,7 +78,7 @@ namespace ProjectPRN
                         }
 
                         // Show success message
-                        MessageBox.Show($"Welcome back, {student.StudentName}!\nLogged in as Student.", "Login Successful", 
+                        MessageBox.Show($"Welcome back, {student.StudentName}!\nLogged in as Student.", "Login Successful",
                                       MessageBoxButton.OK, MessageBoxImage.Information);
 
                         // Open main window
@@ -104,7 +93,7 @@ namespace ProjectPRN
                 {
                     // Verify password for instructor
                     bool isPasswordValid = PasswordHasher.VerifyPassword(password, instructor.Password);
-                    
+
                     if (isPasswordValid)
                     {
                         // Update last login time
@@ -121,7 +110,7 @@ namespace ProjectPRN
                         }
 
                         // Show success message
-                        MessageBox.Show($"Welcome back, {instructor.InstructorName}!\nLogged in as Instructor.", "Login Successful", 
+                        MessageBox.Show($"Welcome back, {instructor.InstructorName}!\nLogged in as Instructor.", "Login Successful",
                                       MessageBoxButton.OK, MessageBoxImage.Information);
 
                         // Open main window
@@ -131,13 +120,13 @@ namespace ProjectPRN
                 }
 
                 // If no user found or password incorrect
-                MessageBox.Show("Invalid email or password. Please check your credentials and try again.", "Login Failed", 
+                MessageBox.Show("Invalid email or password. Please check your credentials and try again.", "Login Failed",
                               MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred during login: {ex.Message}", "Error", 
+                MessageBox.Show($"An error occurred during login: {ex.Message}", "Error",
                               MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
@@ -157,7 +146,7 @@ namespace ProjectPRN
 
         private void ForgotPassword_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Forgot password functionality will be implemented soon.", "Coming Soon", 
+            MessageBox.Show("Forgot password functionality will be implemented soon.", "Coming Soon",
                           MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\ProjectPRN\\ProjectPRN\\ProjectPRN.csproj": {}
+    "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\ProjectPRN.csproj": {}
   },
   "projects": {
-    "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj": {
+    "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj",
-        "packagesPath": "C:\\Users\\minhh\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\ProjectPRN\\BusinessObjects\\obj\\",
+        "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\minhh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -91,20 +91,20 @@
         }
       }
     },
-    "D:\\Project\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj": {
+    "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj",
         "projectName": "DataAccessObjects",
-        "projectPath": "D:\\Project\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj",
-        "packagesPath": "C:\\Users\\minhh\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\ProjectPRN\\DataAccessObjects\\obj\\",
+        "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\DataAccessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\minhh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -119,8 +119,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj"
+              "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj"
               }
             }
           }
@@ -160,20 +160,20 @@
         }
       }
     },
-    "D:\\Project\\ProjectPRN\\ProjectPRN\\ProjectPRN.csproj": {
+    "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\ProjectPRN.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\ProjectPRN\\ProjectPRN\\ProjectPRN.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\ProjectPRN.csproj",
         "projectName": "ProjectPRN",
-        "projectPath": "D:\\Project\\ProjectPRN\\ProjectPRN\\ProjectPRN.csproj",
-        "packagesPath": "C:\\Users\\minhh\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\ProjectPRN\\ProjectPRN\\obj\\",
+        "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\ProjectPRN.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\ProjectPRN\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\minhh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -188,14 +188,14 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj"
+              "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj"
               },
-              "D:\\Project\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj": {
-                "projectPath": "D:\\Project\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj"
+              "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj"
               },
-              "D:\\Project\\ProjectPRN\\Repositories\\Repositories.csproj": {
-                "projectPath": "D:\\Project\\ProjectPRN\\Repositories\\Repositories.csproj"
+              "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Repositories.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Repositories.csproj"
               }
             }
           }
@@ -229,6 +229,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.7, )"
             }
           },
           "imports": [
@@ -254,20 +262,20 @@
         }
       }
     },
-    "D:\\Project\\ProjectPRN\\Repositories\\Repositories.csproj": {
+    "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\ProjectPRN\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "D:\\Project\\ProjectPRN\\Repositories\\Repositories.csproj",
-        "packagesPath": "C:\\Users\\minhh\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\ProjectPRN\\Repositories\\obj\\",
+        "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\Repositories.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\minhh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -282,11 +290,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "D:\\Project\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj"
+              "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\BusinessObjects\\BusinessObjects.csproj"
               },
-              "D:\\Project\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj": {
-                "projectPath": "D:\\Project\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj"
+              "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\project-prn\\ProjectPRN\\DataAccessObjects\\DataAccessObjects.csproj"
               }
             }
           }

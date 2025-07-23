@@ -47,4 +47,9 @@ public class AssessmentRepository : IAssessmentRepository
     {
         await Task.CompletedTask;
     }
+
+    public IEnumerable<Assessment> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

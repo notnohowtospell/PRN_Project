@@ -10,11 +10,11 @@ public interface ICourseMaterialDAO : IGenericDAO<CourseMaterial>
 
 public class CourseMaterialDAO : ICourseMaterialDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public CourseMaterialDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<CourseMaterial>> GetAllAsync()
@@ -59,5 +59,10 @@ public class CourseMaterialDAO : ICourseMaterialDAO
             _context.CourseMaterials.Remove(entity);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public IEnumerable<CourseMaterial> GetAll()
+    {
+        throw new NotImplementedException();
     }
 }

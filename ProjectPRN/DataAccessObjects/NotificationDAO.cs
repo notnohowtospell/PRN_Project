@@ -10,11 +10,11 @@ public interface INotificationDAO : IGenericDAO<Notification>
 
 public class NotificationDAO : INotificationDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public NotificationDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<Notification>> GetAllAsync()
@@ -59,5 +59,10 @@ public class NotificationDAO : INotificationDAO
             _context.Notifications.Remove(entity);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public IEnumerable<Notification> GetAll()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -52,4 +52,9 @@ public class EnrollmentRepository : IEnrollmentRepository
     {
         return await _dao.GetByCourseAsync(courseId);
     }
+
+    public IEnumerable<Enrollment> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 }

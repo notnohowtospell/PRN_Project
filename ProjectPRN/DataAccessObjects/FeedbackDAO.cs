@@ -11,11 +11,11 @@ public interface IFeedbackDAO : IGenericDAO<Feedback>
 
 public class FeedbackDAO : IFeedbackDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public FeedbackDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<Feedback>> GetAllAsync()
@@ -66,5 +66,10 @@ public class FeedbackDAO : IFeedbackDAO
             _context.Feedbacks.Remove(entity);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public IEnumerable<Feedback> GetAll()
+    {
+        throw new NotImplementedException();
     }
 }

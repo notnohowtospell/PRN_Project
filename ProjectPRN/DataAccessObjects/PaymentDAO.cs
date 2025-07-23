@@ -11,11 +11,11 @@ public interface IPaymentDAO : IGenericDAO<Payment>
 
 public class PaymentDAO : IPaymentDAO
 {
-    private readonly Prn212skillsHoannn6Context _context;
+    private readonly ApplicationDbContext _context;
 
     public PaymentDAO()
     {
-        _context = new Prn212skillsHoannn6Context();
+        _context = new ApplicationDbContext();
     }
 
     public async Task<IEnumerable<Payment>> GetAllAsync()
@@ -66,5 +66,10 @@ public class PaymentDAO : IPaymentDAO
             _context.Payments.Remove(entity);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public IEnumerable<Payment> GetAll()
+    {
+        throw new NotImplementedException();
     }
 }
