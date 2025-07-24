@@ -7,6 +7,7 @@ using System.Windows.Threading;
 using BusinessObjects.Models;
 using MaterialDesignThemes.Wpf;
 using ProjectPRN.Student.Courses;
+using ProjectPRN.Utils;
 
 namespace ProjectPRN.Student
 {
@@ -71,18 +72,31 @@ namespace ProjectPRN.Student
             }
         }
 
-        private void LoadStudentStatistics()
+        private async void LoadStudentStatistics()
         {
-            // Mock data - replace with actual repository calls
-            txtEnrolledCourses.Text = _currentStudent.Enrollments?.Count.ToString() ?? "0";
-            txtCompletedAssessments.Text = _currentStudent.AssessmentResults?.Count.ToString() ?? "0";
-            txtCertificates.Text = _currentStudent.Certificates?.Count.ToString() ?? "0";
-            
-            // Calculate overall progress
-            var totalCourses = _currentStudent.Enrollments?.Count ?? 0;
-            var completedCourses = 0; // Calculate based on enrollment completion status
-            var progress = totalCourses > 0 ? (completedCourses * 100 / totalCourses) : 0;
-            txtOverallProgress.Text = $"{progress}%";
+            try
+            {
+                using var context = new ApplicationDbContext();
+                
+                // Load basic counts
+                txtEnrolledCourses.Text = _currentStudent.Enrollments?.Count.ToString() ?? "0";
+                txtCompletedAssessments.Text = _currentStudent.AssessmentResults?.Count.ToString() ?? "0";
+                txtCertificates.Text = _currentStudent.Certificates?.Count.ToString() ?? "0";
+                
+                // Calculate overall progress using the new service
+                var overallProgress = await CourseProgressService.CalculateOverallProgressAsync(context, _currentStudent.StudentId);
+                txtOverallProgress.Text = $"{overallProgress:F1}%";
+            }
+            catch (Exception ex)
+            {
+                // Fallback to mock data if calculation fails
+                txtEnrolledCourses.Text = _currentStudent.Enrollments?.Count.ToString() ?? "0";
+                txtCompletedAssessments.Text = _currentStudent.AssessmentResults?.Count.ToString() ?? "0";
+                txtCertificates.Text = _currentStudent.Certificates?.Count.ToString() ?? "0";
+                txtOverallProgress.Text = "0%";
+                
+                System.Diagnostics.Debug.WriteLine($"Error calculating progress: {ex.Message}");
+            }
         }
 
         private void LoadRecentActivities()
@@ -92,9 +106,7 @@ namespace ProjectPRN.Student
             // Mock recent activities - replace with actual data
             var activities = new[]
             {
-                "Đăng ký khóa học Kỹ năng giao tiếp",
-                "Hoàn thành bài kiểm tra Quản lý thời gian",
-                "Tải xuống tài liệu Tư duy sáng tạo"
+                "Chức năng chưa triển khai ^^"
             };
 
             foreach (var activity in activities)
@@ -214,8 +226,18 @@ namespace ProjectPRN.Student
             txtStatus.Text = "Đang mở báo cáo tiến độ...";
             HighlightSelectedButton(sender as Button);
             
-            MessageBox.Show("Chức năng tiến độ học tập sẽ được triển khai", "Thông báo", 
-                           MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                var progressWindow = new ProjectPRN.Student.Progress.StudentProgressView(
+                    _currentStudent.StudentId, 
+                    _currentStudent.StudentName);
+                progressWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở trang tiến độ: {ex.Message}", "Lỗi", 
+                              MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BtnProfile_Click(object sender, RoutedEventArgs e)
