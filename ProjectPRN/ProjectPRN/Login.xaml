@@ -97,7 +97,9 @@
                                  Content="Remember me"
                                  FontSize="14"
                                  HorizontalAlignment="Left"
-                                 VerticalAlignment="Center"/>
+                                 VerticalAlignment="Center"
+                                 Checked="RememberMeCheckBox_CheckedChanged"
+                                 Unchecked="RememberMeCheckBox_CheckedChanged"/>
                         
                         <Button Content="Forgot Password?"
                                Style="{StaticResource MaterialDesignFlatButton}"

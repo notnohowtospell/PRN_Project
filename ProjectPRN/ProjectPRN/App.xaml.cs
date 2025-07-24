@@ -4,8 +4,10 @@ using DataAccessObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectPRN.Admin.BackupRestore;
 using ProjectPRN.Admin.CourseManagement;
 using ProjectPRN.Search;
+using ProjectPRN.Student;
 using ProjectPRN.Utils;
 using Repositories;
 using Repositories.Interfaces;
@@ -21,6 +23,9 @@ namespace ProjectPRN
 
         protected override async void OnStartup(StartupEventArgs e)
         {
+            // Prevent automatic shutdown when windows are closed
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
             var services = new ServiceCollection();
             var connectionString = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -47,24 +52,16 @@ namespace ProjectPRN
             services.AddTransient<CourseSearchWindow>();
             //services.AddTransient<StudentCourseView>();
 
-
             ServiceProvider = services.BuildServiceProvider();
 
             base.OnStartup(e);
 
-            // Try to restore user session
-            var sessionRestored = await TryRestoreUserSession();
 
-            if (!sessionRestored)
-            {
-                // No valid session found, show login window
-                var loginWindow = new Login();
-                loginWindow.ShowDialog();
-            }
-            //var mainWindow = ServiceProvider.GetRequiredService<CourseManagementView>();
-            //mainWindow.Show();
         }
 
+
+
+ 
         protected override async void OnExit(ExitEventArgs e)
         {
             // Save application state when exiting
@@ -76,49 +73,6 @@ namespace ProjectPRN
             base.OnExit(e);
         }
 
-        private async Task<bool> TryRestoreUserSession()
-        {
-            try
-            {
-                var savedSession = await StateManager.LoadUserSessionAsync();
-                if (savedSession != null && savedSession.RememberLogin)
-                {
-                    System.Diagnostics.Debug.WriteLine($"Found saved session for: {savedSession.UserName}");
-
-                    // Validate session with database and restore SessionManager
-                    var sessionValid = await ValidateAndRestoreSession(savedSession);
-
-                    if (sessionValid)
-                    {
-                        // Session is valid, open main window directly
-                        var mainWindow = new MainWindow();
-                        mainWindow.Show();
-
-                        // Show welcome back message
-                        MessageBox.Show($"Welcome back, {savedSession.UserName}!", "Auto Login",
-                                      MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        return true;
-                    }
-                    else
-                    {
-                        // Session invalid, clear it
-                        await StateManager.ClearUserSessionAsync();
-                        System.Diagnostics.Debug.WriteLine("Saved session is invalid, cleared.");
-                    }
-                }
-
-                return false;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Failed to restore session: {ex.Message}");
-
-                // Clear potentially corrupted session
-                await StateManager.ClearUserSessionAsync();
-                return false;
-            }
-        }
 
         private async Task<bool> ValidateAndRestoreSession(UserSession savedSession)
         {
