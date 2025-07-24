@@ -27,8 +27,13 @@
 
   <ItemGroup>
     <None Update="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Admin\BackUp\" />
+    <Folder Include="Student\DashboardView\" />
   </ItemGroup>  
 
 </Project>

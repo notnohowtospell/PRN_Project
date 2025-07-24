@@ -174,6 +174,9 @@ namespace ProjectPRN.Utils
 
                 var json = JsonSerializer.Serialize(session, new JsonSerializerOptions { WriteIndented = true });
                 await File.WriteAllTextAsync(SessionFilePath, json);
+
+                System.Diagnostics.Debug.WriteLine($"Session saved to: {SessionFilePath}");
+                System.Diagnostics.Debug.WriteLine($"Remember login: {rememberLogin}");
             }
             catch (Exception ex)
             {
@@ -186,16 +189,28 @@ namespace ProjectPRN.Utils
             try
             {
                 if (!File.Exists(SessionFilePath))
+                {
+                    System.Diagnostics.Debug.WriteLine($"Session file not found: {SessionFilePath}");
                     return null;
+                }
 
                 var json = await File.ReadAllTextAsync(SessionFilePath);
                 var session = JsonSerializer.Deserialize<UserSession>(json);
 
-                // Check if session is still valid (e.g., not older than 30 days)
-                if (session != null && session.RememberLogin && 
-                    DateTime.Now.Subtract(session.LoginTime).TotalDays <= 30)
+                if (session != null)
                 {
-                    return session;
+                    System.Diagnostics.Debug.WriteLine($"Session loaded: {session.UserName}, RememberLogin: {session.RememberLogin}");
+
+                    // If RememberLogin is true, check if session is still valid (not older than 30 days)
+                    if (session.RememberLogin && DateTime.Now.Subtract(session.LoginTime).TotalDays <= 30)
+                    {
+                        return session;
+                    }
+                    // If RememberLogin is false, still return session but it won't be used for auto-login
+                    else if (!session.RememberLogin)
+                    {
+                        return session;
+                    }
                 }
 
                 // Clear invalid session

@@ -66,6 +66,7 @@ namespace ProjectPRN.Utils
             };
         }
 
+
         public static int GetCurrentUserId()
         {
             return CurrentUserType switch

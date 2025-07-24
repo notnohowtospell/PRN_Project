@@ -48,7 +48,27 @@ namespace ProjectPRN.Student.Courses
             DataContext = this;
             _context = new ApplicationDbContext();
 
-            int currentStudentId = SessionManager.GetCurrentUserId() != 0 ? SessionManager.GetCurrentUserId() : 1;
+            // Check if user is logged in and is a student
+            if (!SessionManager.IsLoggedIn || !SessionManager.IsStudent)
+            {
+                MessageBox.Show("Bạn cần đăng nhập bằng tài khoản sinh viên để truy cập trang này.", 
+                              "Không có quyền truy cập", 
+                              MessageBoxButton.OK, 
+                              MessageBoxImage.Warning);
+                this.Close();
+                return;
+            }
+
+            int currentStudentId = SessionManager.GetCurrentUserId();
+            if (currentStudentId == 0)
+            {
+                MessageBox.Show("Không thể xác định thông tin sinh viên hiện tại.", 
+                              "Lỗi session", 
+                              MessageBoxButton.OK, 
+                              MessageBoxImage.Error);
+                this.Close();
+                return;
+            }
 
             FilteredCourses = new ObservableCollection<CourseViewModel>();
 
@@ -82,16 +102,27 @@ namespace ProjectPRN.Student.Courses
 
         private void LoadCurrentStudent(int studentId)
         {
-            var student = _context.Students.FirstOrDefault(s => s.StudentId == studentId);
-            if (student != null)
+            try
             {
-                CurrentStudent = new StudentViewModel
+                var student = _context.Students.FirstOrDefault(s => s.StudentId == studentId);
+                if (student != null)
                 {
-                    StudentId = student.StudentId,
-                    StudentName = student.StudentName,
-                    Email = student.Email,
-                    Status = student.Status
-                };
+                    CurrentStudent = new StudentViewModel
+                    {
+                        StudentId = student.StudentId,
+                        StudentName = student.StudentName,
+                        Email = student.Email,
+                        Status = student.Status
+                    };
+                }
+                else
+                {
+                    throw new Exception($"Không tìm thấy thông tin sinh viên với ID: {studentId}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi tải thông tin sinh viên: {ex.Message}", ex);
             }
         }
 
@@ -118,104 +149,136 @@ namespace ProjectPRN.Student.Courses
 
         private void LoadCourses()
         {
-            var courses = _context.LifeSkillCourses
-                .Include(c => c.Instructor)
-                .Where(c => c.Status == "Mở đăng ký")
-                .ToList();
-
-            var sentRequests = _context.Payments
-               .Where(p => p.StudentId == CurrentStudent.StudentId && p.Status != "Đã thanh toán")
-               .Select(p => p.CourseId)
-               .ToHashSet();
-            FilteredCourses.Clear();
-
-            foreach (var course in courses)
+            try
             {
+                if (CurrentStudent == null)
+                {
+                    throw new Exception("Thông tin sinh viên chưa được tải.");
+                }
 
-                var courseEnrollments = _context.Enrollments
-                    .Where(e => e.CourseId == course.CourseId && e.CompletionStatus != false)
+                var courses = _context.LifeSkillCourses
+                    .Include(c => c.Instructor)
+                    .Where(c => c.Status == "Mở đăng ký")
                     .ToList();
 
-                FilteredCourses.Add(new CourseViewModel
-                {
-                    CourseId = course.CourseId,
-                    CourseName = course.CourseName,
-                    InstructorName = course.Instructor?.InstructorName ?? "N/A",
-                    StartDate = course.StartDate,
-                    EndDate = course.EndDate,
-                    Price = course.Price,
-                    Description = course.Description,
-                    MaxStudents = course.MaxStudents ?? 0,
-                    CurrentEnrollments = courseEnrollments.Count,
-                    SentRequest = sentRequests.Contains(course.CourseId),
-                    Status = course.Status,
-                    Instructor = course.Instructor
-                });
-            }
+                var sentRequests = _context.Payments
+                   .Where(p => p.StudentId == CurrentStudent.StudentId && p.Status != "Đã thanh toán")
+                   .Select(p => p.CourseId)
+                   .ToHashSet();
 
-            dgCourses.ItemsSource = FilteredCourses;
+                FilteredCourses.Clear();
+
+                foreach (var course in courses)
+                {
+                    var courseEnrollments = _context.Enrollments
+                        .Where(e => e.CourseId == course.CourseId && e.CompletionStatus != false)
+                        .ToList();
+
+                    FilteredCourses.Add(new CourseViewModel
+                    {
+                        CourseId = course.CourseId,
+                        CourseName = course.CourseName ?? "N/A",
+                        InstructorName = course.Instructor?.InstructorName ?? "N/A",
+                        StartDate = course.StartDate,
+                        EndDate = course.EndDate,
+                        Price = course.Price,
+                        Description = course.Description ?? "",
+                        MaxStudents = course.MaxStudents ?? 0,
+                        CurrentEnrollments = courseEnrollments.Count,
+                        SentRequest = sentRequests.Contains(course.CourseId),
+                        Status = course.Status ?? "N/A",
+                        Instructor = course.Instructor
+                    });
+                }
+
+                dgCourses.ItemsSource = FilteredCourses;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi tải danh sách khóa học: {ex.Message}", ex);
+            }
         }
 
 
         private void ApplyFilter()
         {
-            var query = _context.LifeSkillCourses
-                .Include(c => c.Instructor)
-                .Where(c => c.Status == "Mở đăng ký");
-
-            if (!string.IsNullOrWhiteSpace(txtSearch?.Text))
+            try
             {
-                var search = txtSearch.Text.Trim().ToLower();
-                query = query.Where(c =>
-                    c.CourseName.ToLower().Contains(search) ||
-                    c.Description.ToLower().Contains(search) ||
-                    c.Instructor.InstructorName.ToLower().Contains(search));
-            }
+                var query = _context.LifeSkillCourses
+                    .Include(c => c.Instructor)
+                    .Where(c => c.Status == "Mở đăng ký");
 
-            if (cmbInstructorFilter?.SelectedItem is ComboBoxItem item &&
-                item.Tag is int instructorId && instructorId != -1)
+                if (!string.IsNullOrWhiteSpace(txtSearch?.Text))
+                {
+                    var search = txtSearch.Text.Trim().ToLower();
+                    query = query.Where(c =>
+                        (c.CourseName != null && c.CourseName.ToLower().Contains(search)) ||
+                        (c.Description != null && c.Description.ToLower().Contains(search)) ||
+                        (c.Instructor != null && c.Instructor.InstructorName != null && c.Instructor.InstructorName.ToLower().Contains(search)));
+                }
+
+                if (cmbInstructorFilter?.SelectedItem is ComboBoxItem item &&
+                    item.Tag is int instructorId && instructorId != -1)
+                {
+                    query = query.Where(c => c.InstructorId == instructorId);
+                }
+
+                var filteredCourses = query.ToList();
+                RefreshFilteredCourses(filteredCourses);
+            }
+            catch (Exception ex)
             {
-                query = query.Where(c => c.InstructorId == instructorId);
+                MessageBox.Show($"Lỗi khi lọc khóa học: {ex.Message}", "Lỗi", 
+                              MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            var filteredCourses = query.ToList();
-            RefreshFilteredCourses(filteredCourses);
         }
 
         private void RefreshFilteredCourses(IEnumerable<LifeSkillCourse> courses)
         {
-            var enrollments = _context.Enrollments
-                .Where(e => e.StudentId == CurrentStudent.StudentId)
-                .ToList();
-
-            var enrolledCourseIds = enrollments.Select(e => e.CourseId).ToHashSet();
-
-            FilteredCourses.Clear();
-
-            foreach (var course in courses)
+            try
             {
-                var courseEnrollments = _context.Enrollments
-                    .Where(e => e.CourseId == course.CourseId && e.CompletionStatus != false)
+                if (CurrentStudent == null)
+                {
+                    throw new Exception("Thông tin sinh viên chưa được tải.");
+                }
+
+                var enrollments = _context.Enrollments
+                    .Where(e => e.StudentId == CurrentStudent.StudentId)
                     .ToList();
 
-                FilteredCourses.Add(new CourseViewModel
-                {
-                    CourseId = course.CourseId,
-                    CourseName = course.CourseName,
-                    InstructorName = course.Instructor?.InstructorName ?? "N/A",
-                    StartDate = course.StartDate,
-                    EndDate = course.EndDate,
-                    Price = course.Price,
-                    Description = course.Description,
-                    MaxStudents = course.MaxStudents ?? 0,
-                    CurrentEnrollments = courseEnrollments.Count,
-                    Status = course.Status,
-                    SentRequest = enrolledCourseIds.Contains(course.CourseId),
-                    Instructor = course.Instructor
-                });
-            }
+                var enrolledCourseIds = enrollments.Select(e => e.CourseId).ToHashSet();
 
-            UpdateUI();
+                FilteredCourses.Clear();
+
+                foreach (var course in courses)
+                {
+                    var courseEnrollments = _context.Enrollments
+                        .Where(e => e.CourseId == course.CourseId && e.CompletionStatus != false)
+                        .ToList();
+
+                    FilteredCourses.Add(new CourseViewModel
+                    {
+                        CourseId = course.CourseId,
+                        CourseName = course.CourseName ?? "N/A",
+                        InstructorName = course.Instructor?.InstructorName ?? "N/A",
+                        StartDate = course.StartDate,
+                        EndDate = course.EndDate,
+                        Price = course.Price,
+                        Description = course.Description ?? "",
+                        MaxStudents = course.MaxStudents ?? 0,
+                        CurrentEnrollments = courseEnrollments.Count,
+                        Status = course.Status ?? "N/A",
+                        SentRequest = enrolledCourseIds.Contains(course.CourseId),
+                        Instructor = course.Instructor
+                    });
+                }
+
+                UpdateUI();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi làm mới danh sách khóa học: {ex.Message}", ex);
+            }
         }
 
 
@@ -392,6 +455,14 @@ namespace ProjectPRN.Student.Courses
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
+        #region IDisposable
+        protected override void OnClosed(EventArgs e)
+        {
+            _context?.Dispose();
+            base.OnClosed(e);
         }
         #endregion
     }

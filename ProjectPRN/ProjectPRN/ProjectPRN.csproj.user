@@ -44,5 +44,11 @@
     <Compile Update="Student\Courses\StudentCourseView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Student\Feedback\FeedbackDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Student\StudentMainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
