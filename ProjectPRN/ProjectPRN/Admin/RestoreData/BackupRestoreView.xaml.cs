@@ -2,17 +2,16 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using ProjectPRN.Services;
-using DataAccessObjects;
 using Microsoft.Win32;
 using ProjectPRN.DTOs;
+using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjectPRN.Admin.BackupRestore
 {
     public partial class BackupRestoreView : Window
     {
         private readonly IBackupRestoreService _backupRestoreService;
-        private readonly IStudentDAO _studentDAO;
-        private readonly IInstructorDAO _instructorDAO;
 
         public BackupRestoreView()
         {
@@ -21,8 +20,6 @@ namespace ProjectPRN.Admin.BackupRestore
                 InitializeComponent();
                 
                 _backupRestoreService = new BackupRestoreService();
-                _studentDAO = new StudentDAO();
-                _instructorDAO = new InstructorDAO();
                 
                 Loaded += BackupRestoreView_Loaded;
             }
@@ -54,15 +51,19 @@ namespace ProjectPRN.Admin.BackupRestore
             {
                 UpdateStatus("Dang tai thong ke du lieu...");
 
-                // Load statistics
-                var students = await _studentDAO.GetAllAsync();
-                var instructors = await _instructorDAO.GetAllAsync();
+                using var context = new ApplicationDbContext();
+                
+                // Load statistics using DbContext directly
+                var studentCount = await context.Students.CountAsync();
+                var instructorCount = await context.Instructors.CountAsync();
+                var courseCount = await context.LifeSkillCourses.CountAsync();
+                var enrollmentCount = await context.Enrollments.CountAsync();
                 
                 // Update UI with statistics
-                txtStudentCount.Text = students.Count().ToString();
-                txtInstructorCount.Text = instructors.Count().ToString();
-                txtCourseCount.Text = "0"; // TODO: Update when course DAO is available
-                txtEnrollmentCount.Text = "0"; // TODO: Update when enrollment DAO is available
+                txtStudentCount.Text = studentCount.ToString();
+                txtInstructorCount.Text = instructorCount.ToString();
+                txtCourseCount.Text = courseCount.ToString();
+                txtEnrollmentCount.Text = enrollmentCount.ToString();
                 txtLastUpdate.Text = $"Cap nhat: {DateTime.Now:HH:mm:ss dd/MM/yyyy}";
                 
                 UpdateStatus("Da tai thong ke du lieu thanh cong");
@@ -72,6 +73,13 @@ namespace ProjectPRN.Admin.BackupRestore
                 UpdateStatus($"Loi khi tai thong ke: {ex.Message}");
                 MessageBox.Show($"Khong the tai thong ke du lieu: {ex.Message}", "Loi",
                                MessageBoxButton.OK, MessageBoxImage.Error);
+                
+                // Set default values if error occurs
+                txtStudentCount.Text = "0";
+                txtInstructorCount.Text = "0";
+                txtCourseCount.Text = "0";
+                txtEnrollmentCount.Text = "0";
+                txtLastUpdate.Text = "Loi tai du lieu";
             }
         }
 
@@ -239,7 +247,8 @@ namespace ProjectPRN.Admin.BackupRestore
                             $"- Phien ban: {backupData.Version}\n" +
                             $"- Hoc vien: {backupData.Students?.Count ?? 0}\n" +
                             $"- Giang vien: {backupData.Instructors?.Count ?? 0}\n" +
-                            $"- Khoa hoc: {backupData.Courses?.Count ?? 0}\n\n" +
+                            $"- Khoa hoc: {backupData.Courses?.Count ?? 0}\n" +
+                            $"- Dang ky: {backupData.Enrollments?.Count ?? 0}\n\n" +
                             "CANH BAO: Thao tac nay se ghi de toan bo du lieu hien tai!\n" +
                             "Ban co chac chan muon tiep tuc khong?",
                             "Xac nhan phuc hoi du lieu",
