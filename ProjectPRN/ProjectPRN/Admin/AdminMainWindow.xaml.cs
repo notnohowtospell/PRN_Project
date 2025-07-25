@@ -17,6 +17,10 @@ using ProjectPRN.Admin.InstructorManagement;
 using ProjectPRN.Search;
 using Microsoft.EntityFrameworkCore;
 using ProjectPRN.Utils;
+using ProjectPRN.AssessmentManagement;
+using ProjectPRN.CertificateManagement;
+using ProjectPRN.CourseMaterialManagement;
+using ProjectPRN.NotificationManagement;
 
 namespace ProjectPRN.Admin
 {
@@ -338,6 +342,104 @@ namespace ProjectPRN.Admin
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void AdminAssessment_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening assessment management (Admin)...";
+            HighlightSelectedButton(sender as Button);
+
+            try
+            {
+                AssessmentManagementWindow window = new AssessmentManagementWindow();
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening Admin Assessment window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SubmitStudentAssessment_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening student submission management...";
+            HighlightSelectedButton(sender as Button);
+
+            try
+            {
+                StudentSubmissionManagementWindow window = new StudentSubmissionManagementWindow();
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening submission window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void CertificateAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening certificate management (Admin)...";
+            HighlightSelectedButton(sender as Button);
+
+            try
+            {
+                CertificateManagementWindow window = new CertificateManagementWindow();
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening Certificate Admin window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void MaterialAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening course materials...";
+            HighlightSelectedButton(sender as Button);
+
+            try
+            {
+                CourseMaterialManagementWindow window = new CourseMaterialManagementWindow(false);
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening materials window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void NotificationAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening admin notifications...";
+            HighlightSelectedButton(sender as Button);
+
+            try
+            {
+                AdminNotificationWindow window = new AdminNotificationWindow();
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening Notification Admin window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ManagementNotification_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening notification management (Admin)...";
+            HighlightSelectedButton(sender as Button);
+
+            try
+            {
+                NotificationManagementWindow window = new NotificationManagementWindow();
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening Notification Management window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
         #endregion
 
         #region Helper Methods

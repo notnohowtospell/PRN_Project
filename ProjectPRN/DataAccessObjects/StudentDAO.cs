@@ -20,7 +20,11 @@ public class StudentDAO : IStudentDAO
 
     public async Task<IEnumerable<Student>> GetAllAsync()
     {
-        return await _context.Students.Include(s => s.Enrollments).Include(s => s.Certificates).ToListAsync();
+        return await _context.Students
+    .Include(s => s.Enrollments)
+        .ThenInclude(e => e.Course)
+    .Include(s => s.Certificates)
+    .ToListAsync();
     }
 
     public async Task<Student?> GetByIdAsync(int id)
@@ -75,5 +79,12 @@ public class StudentDAO : IStudentDAO
     public IEnumerable<Student> GetAll()
     {
         return _context.Students.Include(s => s.Enrollments).Include(s => s.Certificates).ToList();
+    }
+    public async Task<List<Student>> GetStudentsByCourseIdAsync(int courseId)
+    {
+        return await _context.Enrollments
+            .Where(e => e.CourseId == courseId)
+            .Select(e => e.Student)
+            .ToListAsync();
     }
 }

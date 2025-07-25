@@ -15,272 +15,330 @@
         Width="1200"
         WindowStartupLocation="CenterScreen">
 
-  <materialDesign:DialogHost Identifier="AdminDialogHost">
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="Auto"/>
-      </Grid.RowDefinitions>
-
-      <!-- Header -->
-      <materialDesign:Card Grid.Row="0" Margin="0" Padding="16,8" materialDesign:ElevationAssist.Elevation="Dp2">
+    <materialDesign:DialogHost Identifier="AdminDialogHost">
         <Grid>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-          </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-          <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-            <materialDesign:PackIcon Kind="Shield" Width="24" Height="24" Margin="0,0,8,0" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-            <TextBlock Text="Life Skills Course Management - Admin" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
-          </StackPanel>
+            <!-- Header -->
+            <materialDesign:Card Grid.Row="0" Margin="0" Padding="16,8" materialDesign:ElevationAssist.Elevation="Dp2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-          <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock x:Name="txtWelcome" Text="Welcome, Admin" FontWeight="Medium" VerticalAlignment="Center" Margin="0,0,16,0"/>
-            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="BtnLogout_Click" ToolTip="Logout">
-              <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="Logout" Width="16" Height="16" Margin="0,0,4,0"/>
-                <TextBlock Text="Logout"/>
-              </StackPanel>
-            </Button>
-          </StackPanel>
-        </Grid>
-      </materialDesign:Card>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Shield" Width="24" Height="24" Margin="0,0,8,0" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                        <TextBlock Text="Life Skills Course Management - Admin" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    </StackPanel>
 
-      <!-- Main Content -->
-      <Grid Grid.Row="1" Margin="16">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="300"/>
-          <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="txtWelcome" Text="Welcome, Admin" FontWeight="Medium" VerticalAlignment="Center" Margin="0,0,16,0"/>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Click="BtnLogout_Click" ToolTip="Logout">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Logout" Width="16" Height="16" Margin="0,0,4,0"/>
+                                <TextBlock Text="Logout"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
 
-        <!-- Navigation Menu -->
-        <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="8" materialDesign:ElevationAssist.Elevation="Dp2">
-          <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel>
-              <TextBlock Text="ADMIN MENU" FontWeight="SemiBold" Margin="16,8" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+            <!-- Main Content -->
+            <Grid Grid.Row="1" Margin="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-              <!-- Dashboard -->
-              <Button x:Name="btnDashboard" Style="{StaticResource MaterialDesignFlatButton}" 
+                <!-- Navigation Menu -->
+                <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="8" materialDesign:ElevationAssist.Elevation="Dp2">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock Text="ADMIN MENU" FontWeight="SemiBold" Margin="16,8" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+
+                            <!-- Dashboard -->
+                            <Button x:Name="btnDashboard" Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnDashboard_Click"
                                     Background="{DynamicResource PrimaryHueLightBrush}" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="ViewDashboard" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Dashboard" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="ViewDashboard" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Dashboard" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
-              <!-- User Management -->
-              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            <!-- User Management -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnUserManagement_Click" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="AccountMultiple" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Quản lý sinh viên" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AccountMultiple" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Quản lý sinh viên" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
-              <!-- Course Management -->
-              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            <!-- Course Management -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnCourseManagement_Click" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="BookOpen" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Quản lý khoá học" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="BookOpen" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Quản lý khoá học" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
-              <!-- Instructor Management -->
-              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            <!-- Instructor Management -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnInstructorManagement_Click" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="AccountTie" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Quản lý giáo viên" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AccountTie" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Quản lý giáo viên" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
-              <!-- Payment Management -->
-              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            <!-- Quản lý bài test (Admin) -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+        Padding="16,12" Margin="4,2" Click="AdminAssessment_Click" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="ClipboardText" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Quản lý bài test" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Nộp bài tập (Student) -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+        Padding="16,12" Margin="4,2" Click="SubmitStudentAssessment_Click" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Upload" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Chấm điểm học sinh" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Quản lý Certificate (Admin) -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+        Padding="16,12" Margin="4,2" Click="CertificateAdmin_Click" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Certificate" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Quản lý chứng chỉ" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Tài liệu khóa học -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+        Padding="16,12" Margin="4,2" Click="MaterialAdmin_Click" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="FileDocument" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Tài liệu khóa học" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Thông báo Admin -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+        Padding="16,12" Margin="4,2" Click="NotificationAdmin_Click" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Bell" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Gửi Thông báo" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Quản lý Thông báo Admin -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+        Padding="16,12" Margin="4,2" Click="ManagementNotification_Click" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="BellCog" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Quản lý Thông báo" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+
+
+
+
+
+                            <!-- Payment Management -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnPaymentManagement_Click" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="CreditCard" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Quản lý thanh toán" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="CreditCard" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Quản lý thanh toán" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
-              <!-- System Reports -->
-              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            <!-- System Reports -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnSystemReports_Click" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="ChartLine" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Báo cáo" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="ChartLine" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Báo cáo" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
-              <!-- Backup and Restore -->
-              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            <!-- Backup and Restore -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnBackupRestore_Click" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="Database" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Sao lưu và phục hồi" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Database" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Sao lưu và phục hồi" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
-              <!-- System Settings -->
-              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            <!-- System Settings -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnSystemSettings_Click" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="Settings" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Cài đặt" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Settings" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Cài đặt" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
-              <!-- Student Progress Management -->
-              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            <!-- Student Progress Management -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnStudentProgressManagement_Click" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="ChartBox" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Tiến độ học sinh" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="ChartBox" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Tiến độ học sinh" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
-              <!-- Course Rating Management -->
-              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                            <!-- Course Rating Management -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
                                     Padding="16,12" Margin="4,2" Click="BtnCourseRatingManagement_Click" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <materialDesign:PackIcon Kind="Star" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Xem đánh giá" FontWeight="Medium"/>
-                </StackPanel>
-              </Button>
-            </StackPanel>
-          </ScrollViewer>
-        </materialDesign:Card>
-
-        <!-- Content Area -->
-        <materialDesign:Card Grid.Column="1" Margin="8,0,0,0" Padding="24" materialDesign:ElevationAssist.Elevation="Dp2">
-          <Grid x:Name="ContentArea">
-            <!-- Dashboard Content -->
-            <StackPanel x:Name="DashboardContent">
-              <TextBlock Text="Administrator Dashboard" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,24"/>
-
-              <!-- Admin Stats -->
-              <Grid Margin="0,0,0,24">
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Total Users -->
-                <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="16" Background="{DynamicResource PrimaryHueLightBrush}">
-                  <StackPanel>
-                    <materialDesign:PackIcon Kind="AccountMultiple" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="txtTotalUsers" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock Text="Total Users" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
-                  </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Star" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Xem đánh giá" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
                 </materialDesign:Card>
 
-                <!-- Total Courses -->
-                <materialDesign:Card Grid.Column="1" Margin="4,0" Padding="16" Background="{DynamicResource SecondaryHueMidBrush}">
-                  <StackPanel>
-                    <materialDesign:PackIcon Kind="BookOpen" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="txtTotalCourses" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock Text="Total Courses" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
-                  </StackPanel>
-                </materialDesign:Card>
+                <!-- Content Area -->
+                <materialDesign:Card Grid.Column="1" Margin="8,0,0,0" Padding="24" materialDesign:ElevationAssist.Elevation="Dp2">
+                    <Grid x:Name="ContentArea">
+                        <!-- Dashboard Content -->
+                        <StackPanel x:Name="DashboardContent">
+                            <TextBlock Text="Administrator Dashboard" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,24"/>
 
-                <!-- Total Ratings -->
-                <materialDesign:Card Grid.Column="2" Margin="4,0" Padding="16" Background="#FF4CAF50">
-                  <StackPanel>
-                    <materialDesign:PackIcon Kind="Star" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="txtTotalRatings" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock Text="Total Ratings" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
-                  </StackPanel>
-                </materialDesign:Card>
+                            <!-- Admin Stats -->
+                            <Grid Margin="0,0,0,24">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                <!-- Average Rating -->
-                <materialDesign:Card Grid.Column="3" Margin="8,0,0,0" Padding="16" Background="#FFFF9800">
-                  <StackPanel>
-                    <materialDesign:PackIcon Kind="TrendingUp" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="txtAverageRating" Text="0.0/5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock Text="Average Rating" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
-                  </StackPanel>
-                </materialDesign:Card>
-              </Grid>
+                                <!-- Total Users -->
+                                <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="16" Background="{DynamicResource PrimaryHueLightBrush}">
+                                    <StackPanel>
+                                        <materialDesign:PackIcon Kind="AccountMultiple" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Name="txtTotalUsers" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock Text="Total Users" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                                    </StackPanel>
+                                </materialDesign:Card>
 
-              <!-- Recent Activities -->
+                                <!-- Total Courses -->
+                                <materialDesign:Card Grid.Column="1" Margin="4,0" Padding="16" Background="{DynamicResource SecondaryHueMidBrush}">
+                                    <StackPanel>
+                                        <materialDesign:PackIcon Kind="BookOpen" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Name="txtTotalCourses" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock Text="Total Courses" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                                    </StackPanel>
+                                </materialDesign:Card>
 
-              <!-- Quick Actions -->
-              <TextBlock Text="Thao tác nhanh" FontSize="18" FontWeight="SemiBold" Margin="0,24,0,16"/>
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                                <!-- Total Ratings -->
+                                <materialDesign:Card Grid.Column="2" Margin="4,0" Padding="16" Background="#FF4CAF50">
+                                    <StackPanel>
+                                        <materialDesign:PackIcon Kind="Star" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Name="txtTotalRatings" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock Text="Total Ratings" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                                    </StackPanel>
+                                </materialDesign:Card>
 
-                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,8,0">
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnCourseManagement_Click">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="BookOpen" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="Quản lý khóa học"/>
-                    </StackPanel>
-                  </Button>
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Click="BtnUserManagement_Click">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="AccountMultiple" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="Quản lý sinh viên"/>
-                    </StackPanel>
-                  </Button>
-                </StackPanel>
-                
-                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0">
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnCourseRatingManagement_Click"
+                                <!-- Average Rating -->
+                                <materialDesign:Card Grid.Column="3" Margin="8,0,0,0" Padding="16" Background="#FFFF9800">
+                                    <StackPanel>
+                                        <materialDesign:PackIcon Kind="TrendingUp" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Name="txtAverageRating" Text="0.0/5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock Text="Average Rating" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                            </Grid>
+
+                            <!-- Recent Activities -->
+
+                            <!-- Quick Actions -->
+                            <TextBlock Text="Thao tác nhanh" FontSize="18" FontWeight="SemiBold" Margin="0,24,0,16"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,8,0">
+                                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnCourseManagement_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="BookOpen" Width="16" Height="16" Margin="0,0,8,0"/>
+                                            <TextBlock Text="Quản lý khóa học"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Click="BtnUserManagement_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="AccountMultiple" Width="16" Height="16" Margin="0,0,8,0"/>
+                                            <TextBlock Text="Quản lý sinh viên"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0">
+                                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnCourseRatingManagement_Click"
                           Background="{DynamicResource SecondaryHueMidBrush}" BorderBrush="{DynamicResource SecondaryHueMidBrush}">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="Star" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="Xem đánh giá khóa học"/>
-                    </StackPanel>
-                  </Button>
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Click="BtnInstructorManagement_Click">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="AccountTie" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="Quản lý giảng viên"/>
-                    </StackPanel>
-                  </Button>
-                </StackPanel>
-              </Grid>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Star" Width="16" Height="16" Margin="0,0,8,0"/>
+                                            <TextBlock Text="Xem đánh giá khóa học"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Click="BtnInstructorManagement_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="AccountTie" Width="16" Height="16" Margin="0,0,8,0"/>
+                                            <TextBlock Text="Quản lý giảng viên"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
 
-              <!-- Quick Actions End -->
+                            <!-- Quick Actions End -->
 
-              <!-- Other content panels will be loaded dynamically -->
-              <ContentControl x:Name="DynamicContent" Visibility="Collapsed"/>
-            </StackPanel>
-          </Grid>
-        </materialDesign:Card>
-      </Grid>
+                            <!-- Other content panels will be loaded dynamically -->
+                            <ContentControl x:Name="DynamicContent" Visibility="Collapsed"/>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
 
-      <!-- Status Bar -->
-      <materialDesign:Card Grid.Row="2" Margin="0" Padding="16,8" materialDesign:ElevationAssist.Elevation="Dp1">
-        <Grid>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-          </Grid.ColumnDefinitions>
+            <!-- Status Bar -->
+            <materialDesign:Card Grid.Row="2" Margin="0" Padding="16,8" materialDesign:ElevationAssist.Elevation="Dp1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-          <TextBlock x:Name="txtStatus" Text="Ready" VerticalAlignment="Center"/>
-          <TextBlock Grid.Column="1" x:Name="txtDateTime" Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='dd/MM/yyyy HH:mm:ss'}" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtStatus" Text="Ready" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" x:Name="txtDateTime" Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='dd/MM/yyyy HH:mm:ss'}" VerticalAlignment="Center"/>
+                </Grid>
+            </materialDesign:Card>
         </Grid>
-      </materialDesign:Card>
-    </Grid>
-  </materialDesign:DialogHost>
+    </materialDesign:DialogHost>
 </Window>

@@ -7,6 +7,7 @@ public interface ICertificateDAO : IGenericDAO<Certificate>
 {
     Task<IEnumerable<Certificate>> GetByStudentIdAsync(int studentId);
     Task<IEnumerable<Certificate>> GetByCourseIdAsync(int courseId);
+    Task<Certificate?> GetCertificateByStudentAndCourseAsync(int studentId, int courseId);
 }
 
 public class CertificateDAO : ICertificateDAO
@@ -70,5 +71,12 @@ public class CertificateDAO : ICertificateDAO
     public IEnumerable<Certificate> GetAll()
     {
         throw new NotImplementedException();
+    }
+    public async Task<Certificate?> GetCertificateByStudentAndCourseAsync(int studentId, int courseId)
+    {
+        return await _context.Certificates
+            .Include(c => c.Student)
+            .Include(c => c.Course)
+            .FirstOrDefaultAsync(c => c.StudentId == studentId && c.CourseId == courseId);
     }
 }

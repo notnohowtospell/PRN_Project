@@ -1,5 +1,6 @@
-using BusinessObjects.Models;
+﻿using BusinessObjects.Models;
 using DataAccessObjects;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Interfaces;
 
 namespace Repositories;
@@ -56,5 +57,21 @@ public class CertificateRepository : ICertificateRepository
     public IEnumerable<Certificate> GetAll()
     {
         throw new NotImplementedException();
+    }
+    public async Task<Certificate?> GetCertificateByStudentAndCourseAsync(int studentId, int courseId)
+    {
+        return await _certificateDAO.GetCertificateByStudentAndCourseAsync(studentId, courseId);
+    }
+    public async Task CreateAsync(Certificate certificate)
+    {
+        await _certificateDAO.AddAsync(certificate); // Gọi DAO đã có sẵn
+    }
+    public async Task<IEnumerable<Certificate>> GetCertificatesByStudentAsync(int studentId)
+    {
+        using var context = new ApplicationDbContext();
+        return await context.Certificates
+            .Include(c => c.Course)
+            .Where(c => c.StudentId == studentId)
+            .ToListAsync();
     }
 }

@@ -1,0 +1,128 @@
+﻿<Window x:Class="ProjectPRN.AssessmentManagement.StudentAssessmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectPRN.AssessmentManagement"
+        mc:Ignorable="d"
+        Title="Bài kiểm tra của tôi"
+        Height="600" Width="1050"
+        Background="#FFF8F8F8">
+<Grid Margin="20">
+        <StackPanel HorizontalAlignment="Center" MaxWidth="1050">
+            <!-- Nút Quay về -->
+            <Button Content="← Quay về"
+                     Width="100" Height="30"
+                     Margin="0 0 0 10"
+                     Background="#E0E0E0"
+                     FontWeight="SemiBold"
+                     HorizontalAlignment="Left"
+                     Click="Back_Click"/>
+            <!-- Tiêu đề -->
+            <TextBlock Text="Nộp bài kiểm tra"
+                       FontSize="26" FontWeight="Bold" Foreground="#2E8B57"
+                       Margin="0 0 0 20"/>
+
+            <!-- Bộ lọc khóa học -->
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="Lọc theo khóa học:"
+                           VerticalAlignment="Center" Margin="0 0 10 0"/>
+                <ComboBox x:Name="CourseFilterComboBox"
+          Width="200" 
+          DisplayMemberPath="CourseName"
+          SelectedValuePath="CourseId"
+          SelectionChanged="CourseFilterComboBox_SelectionChanged"/>
+            </StackPanel>
+
+            <!-- Bảng bài kiểm tra -->
+            <Border Background="White" BorderBrush="#CCC" BorderThickness="1" CornerRadius="8" Padding="10">
+                <DataGrid x:Name="StudentAssessmentGrid"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal"
+                          AlternatingRowBackground="#F9F9F9"
+                          RowBackground="White"
+                          BorderThickness="0"
+                          HorizontalAlignment="Center"
+                          ColumnHeaderHeight="50"
+                          MinWidth="800"
+                          MaxWidth="950"
+                          Height="400">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Khóa học" Binding="{Binding Assessment.Course.CourseName}" Width="100" />
+                        <DataGridTextColumn Header="Tên bài" Binding="{Binding Assessment.AssessmentName}" Width="2*" />
+                        <DataGridTextColumn Header="Loại" Binding="{Binding Assessment.AssessmentType}" Width="1.5*" />
+                        <DataGridTextColumn Header="Hướng dẫn" Binding="{Binding Assessment.Instructions}" Width="2*" />
+                        
+                        <!-- Thông tin -->
+                        <DataGridTemplateColumn Header="Thông tin" Width="250">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="5,0">
+                                        <TextBlock Text="{Binding Assessment.DueDate, StringFormat='Hạn: {0:dd/MM/yyyy}'}"/>
+                                        <Button Content="📄 Tải file hướng dẫn"
+                                                Click="DownloadInstructionFile_Click"
+                                                Tag="{Binding Assessment}"
+                                                Foreground="Blue"
+                                                FontSize="12"
+                                                Margin="0,0,0,0">
+                                            <Button.Style>
+                                                <Style TargetType="Button" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Assessment.InstructionFilePath}" Value="{x:Null}">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Assessment.InstructionFilePath}" Value="">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Thao tác -->
+                        <DataGridTemplateColumn Header="Thao tác" Width="2*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel HorizontalAlignment="Center" Margin="5">
+                                        <Button Content="Nộp bài"
+                                                Click="SubmitAssessment_Click"
+                                                Loaded="SubmitButton_Loaded"
+                                                Tag="{Binding Assessment}"
+                                                Padding="5,2"
+                                                Margin="0,0,0,5"/>
+                                        <TextBlock Loaded="SubmissionDateTextBlock_Loaded"
+                                                   FontSize="11"
+                                                   Foreground="Gray"
+                                                   HorizontalAlignment="Center"
+                                                   Tag="{Binding Assessment}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Kết quả -->
+                        <DataGridTemplateColumn Header="Kết quả" Width="2*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="Score" StringFormat="{}{0:F1}" TargetNullValue="Chưa có kết quả" />
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Window>
