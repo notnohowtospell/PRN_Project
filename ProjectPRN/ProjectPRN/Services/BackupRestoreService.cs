@@ -126,7 +126,7 @@ namespace ProjectPRN.Services
                     Experience = i.Experience,
                     Email = i.Email,
                     PhoneNumber = i.PhoneNumber,
-                    LastLogin = i.LastLogin
+                    //LastLogin = i.LastLogin
                 }).ToList();
 
                 // Backup Courses
@@ -192,7 +192,7 @@ namespace ProjectPRN.Services
                     Experience = i.Experience,
                     Email = i.Email,
                     PhoneNumber = i.PhoneNumber,
-                    LastLogin = i.LastLogin
+                    //LastLogin = i.LastLogin
                 }).ToList();
 
                 await context.Instructors.AddRangeAsync(instructors);

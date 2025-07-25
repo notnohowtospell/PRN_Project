@@ -25,7 +25,6 @@ namespace ProjectPRN.Admin.CourseManagement
 
             LoadInstructors();
             LoadCourseData();
-            ValidateForm();
         }
 
         #region Initialization

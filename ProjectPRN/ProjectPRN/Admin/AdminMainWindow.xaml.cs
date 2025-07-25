@@ -30,12 +30,12 @@ namespace ProjectPRN.Admin
         public AdminMainWindow()
         {
             InitializeComponent();
-            
+
             // Initialize repositories
             _lifeSkillCourseRepository = new LifeSkillCourseRepository(new LifeSkillCourseDAO());
             _instructorRepository = new InstructorRepository(new InstructorDAO());
             _studentDAO = new StudentDAO();
-            
+
             DataContext = this;
             InitializeWindow();
             LoadDashboardData();
@@ -77,7 +77,7 @@ namespace ProjectPRN.Admin
             catch (Exception ex)
             {
                 txtStatus.Text = $"Error: {ex.Message}";
-                MessageBox.Show($"Cannot load dashboard data: {ex.Message}", "Error", 
+                MessageBox.Show($"Cannot load dashboard data: {ex.Message}", "Error",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
@@ -116,12 +116,12 @@ namespace ProjectPRN.Admin
             try
             {
                 using var context = new ApplicationDbContext();
-                
+
                 // Load all feedbacks
                 var allFeedbacks = await context.Feedbacks.ToListAsync();
-                
+
                 txtTotalRatings.Text = allFeedbacks.Count.ToString();
-                
+
                 if (allFeedbacks.Any())
                 {
                     var averageRating = allFeedbacks.Average(f => f.Rating);
@@ -143,7 +143,7 @@ namespace ProjectPRN.Admin
         private void LoadRecentActivities()
         {
             // RecentActivities.Children.Clear();
-            
+
             // Mock recent activities - replace with actual data
             var activities = new[]
             {
@@ -156,7 +156,7 @@ namespace ProjectPRN.Admin
             // {
             //     var textBlock = new TextBlock
             //     {
-            //         Text = $"• {activity} - {DateTime.Now:HH:mm}",
+            //         Text = $" {activity} - {DateTime.Now:HH:mm}",
             //         Margin = new Thickness(0, 2, 0, 2)
             //     };
             //     RecentActivities.Children.Add(textBlock);
@@ -181,23 +181,23 @@ namespace ProjectPRN.Admin
         private void BtnProfile_Click(object sender, RoutedEventArgs e)
         {
             txtStatus.Text = "Opening account information...";
-            MessageBox.Show("Account management feature will be implemented", "Notice", 
+            MessageBox.Show("Account management feature will be implemented", "Notice",
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Are you sure you want to logout?", "Confirm Logout", 
+            var result = MessageBox.Show("Are you sure you want to logout?", "Confirm Logout",
                                         MessageBoxButton.YesNo, MessageBoxImage.Question);
-            
+
             if (result == MessageBoxResult.Yes)
             {
                 txtStatus.Text = "Logging out...";
-                
+
                 // Navigate back to login
                 var loginWindow = new Login();
                 loginWindow.Show();
-                
+
                 this.Close();
             }
         }
@@ -214,7 +214,7 @@ namespace ProjectPRN.Admin
         {
             txtStatus.Text = "Opening user management...";
             HighlightSelectedButton(sender as Button);
-            
+
             try
             {
                 var studentSearchWindow = new StudentSearchView();
@@ -222,7 +222,7 @@ namespace ProjectPRN.Admin
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error opening user management: {ex.Message}", "Error", 
+                MessageBox.Show($"Error opening user management: {ex.Message}", "Error",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -231,15 +231,15 @@ namespace ProjectPRN.Admin
         {
             txtStatus.Text = "Opening course management...";
             HighlightSelectedButton(sender as Button);
-            
+
             try
             {
-                var courseManagementWindow = new CourseManagementView(_lifeSkillCourseRepository, _instructorRepository);
+                var courseManagementWindow = new CourseManagementView();
                 courseManagementWindow.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error opening course management: {ex.Message}", "Error", 
+                MessageBox.Show($"Error opening course management: {ex.Message}", "Error",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -248,7 +248,7 @@ namespace ProjectPRN.Admin
         {
             txtStatus.Text = "Opening instructor management...";
             HighlightSelectedButton(sender as Button);
-            
+
             try
             {
                 var instructorManagementWindow = new InstructorManagementView();
@@ -256,7 +256,7 @@ namespace ProjectPRN.Admin
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error opening instructor management: {ex.Message}", "Error", 
+                MessageBox.Show($"Error opening instructor management: {ex.Message}", "Error",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -265,8 +265,8 @@ namespace ProjectPRN.Admin
         {
             txtStatus.Text = "Opening payment management...";
             HighlightSelectedButton(sender as Button);
-            
-            MessageBox.Show("Payment management feature will be implemented", "Notice", 
+
+            MessageBox.Show("Payment management feature will be implemented", "Notice",
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -274,8 +274,8 @@ namespace ProjectPRN.Admin
         {
             txtStatus.Text = "Opening system reports...";
             HighlightSelectedButton(sender as Button);
-            
-            MessageBox.Show("System reports feature will be implemented", "Notice", 
+
+            MessageBox.Show("System reports feature will be implemented", "Notice",
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -283,7 +283,7 @@ namespace ProjectPRN.Admin
         {
             txtStatus.Text = "Opening backup & restore...";
             HighlightSelectedButton(sender as Button);
-            
+
             try
             {
                 var backupRestoreWindow = new BackupRestoreView();
@@ -291,7 +291,7 @@ namespace ProjectPRN.Admin
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error opening backup & restore: {ex.Message}", "Error", 
+                MessageBox.Show($"Error opening backup & restore: {ex.Message}", "Error",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -300,8 +300,8 @@ namespace ProjectPRN.Admin
         {
             txtStatus.Text = "Opening system settings...";
             HighlightSelectedButton(sender as Button);
-            
-            MessageBox.Show("System settings feature will be implemented", "Notice", 
+
+            MessageBox.Show("System settings feature will be implemented", "Notice",
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -309,7 +309,7 @@ namespace ProjectPRN.Admin
         {
             txtStatus.Text = "Opening student progress management...";
             HighlightSelectedButton(sender as Button);
-            
+
             try
             {
                 var studentProgressWindow = new ProjectPRN.Admin.StudentProgressManagement.StudentProgressManagementWindow();
@@ -317,7 +317,7 @@ namespace ProjectPRN.Admin
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error opening student progress management: {ex.Message}", "Error", 
+                MessageBox.Show($"Error opening student progress management: {ex.Message}", "Error",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -326,7 +326,7 @@ namespace ProjectPRN.Admin
         {
             txtStatus.Text = "Dang mo quan ly danh gia khoa hoc...";
             HighlightSelectedButton(sender as Button);
-            
+
             try
             {
                 var courseRatingWindow = new ProjectPRN.Admin.CourseRating.CourseRatingManagementWindow();
@@ -334,7 +334,7 @@ namespace ProjectPRN.Admin
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Loi khi mo quan ly danh gia: {ex.Message}", "Loi", 
+                MessageBox.Show($"Loi khi mo quan ly danh gia: {ex.Message}", "Loi",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -352,7 +352,7 @@ namespace ProjectPRN.Admin
         {
             // Reset all navigation buttons
             btnDashboard.Background = null;
-            
+
             // Highlight the selected button
             if (selectedButton != null && selectedButton != btnDashboard)
             {
