@@ -106,7 +106,7 @@ namespace ProjectPRN.Student
             // Mock recent activities - replace with actual data
             var activities = new[]
             {
-                "Chức năng chưa triển khai ^^"
+                "Chức năng chưa triển khai ^^" 
             };
 
             foreach (var activity in activities)
