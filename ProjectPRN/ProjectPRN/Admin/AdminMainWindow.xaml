@@ -38,12 +38,6 @@
 
           <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock x:Name="txtWelcome" Text="Welcome, Admin" FontWeight="Medium" VerticalAlignment="Center" Margin="0,0,16,0"/>
-            <Button Style="{StaticResource MaterialDesignFlatButton}" Click="BtnProfile_Click" ToolTip="Profile">
-              <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="Account" Width="16" Height="16" Margin="0,0,4,0"/>
-                <TextBlock Text="Account"/>
-              </StackPanel>
-            </Button>
             <Button Style="{StaticResource MaterialDesignFlatButton}" Click="BtnLogout_Click" ToolTip="Logout">
               <StackPanel Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="Logout" Width="16" Height="16" Margin="0,0,4,0"/>
@@ -84,7 +78,7 @@
                                     Padding="16,12" Margin="4,2" Click="BtnUserManagement_Click" Height="40">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="AccountMultiple" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="User Management" FontWeight="Medium"/>
+                  <TextBlock Text="Quản lý sinh viên" FontWeight="Medium"/>
                 </StackPanel>
               </Button>
 
@@ -94,7 +88,7 @@
                                     Padding="16,12" Margin="4,2" Click="BtnCourseManagement_Click" Height="40">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="BookOpen" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Course Management" FontWeight="Medium"/>
+                  <TextBlock Text="Quản lý khoá học" FontWeight="Medium"/>
                 </StackPanel>
               </Button>
 
@@ -104,7 +98,7 @@
                                     Padding="16,12" Margin="4,2" Click="BtnInstructorManagement_Click" Height="40">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="AccountTie" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Instructor Management" FontWeight="Medium"/>
+                  <TextBlock Text="Quản lý giáo viên" FontWeight="Medium"/>
                 </StackPanel>
               </Button>
 
@@ -114,7 +108,7 @@
                                     Padding="16,12" Margin="4,2" Click="BtnPaymentManagement_Click" Height="40">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="CreditCard" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Payment Management" FontWeight="Medium"/>
+                  <TextBlock Text="Quản lý thanh toán" FontWeight="Medium"/>
                 </StackPanel>
               </Button>
 
@@ -124,7 +118,7 @@
                                     Padding="16,12" Margin="4,2" Click="BtnSystemReports_Click" Height="40">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="ChartLine" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="System Reports" FontWeight="Medium"/>
+                  <TextBlock Text="Báo cáo" FontWeight="Medium"/>
                 </StackPanel>
               </Button>
 
@@ -134,7 +128,7 @@
                                     Padding="16,12" Margin="4,2" Click="BtnBackupRestore_Click" Height="40">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="Database" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="Backup and Restore" FontWeight="Medium"/>
+                  <TextBlock Text="Sao lưu và phục hồi" FontWeight="Medium"/>
                 </StackPanel>
               </Button>
 
@@ -144,7 +138,17 @@
                                     Padding="16,12" Margin="4,2" Click="BtnSystemSettings_Click" Height="40">
                 <StackPanel Orientation="Horizontal">
                   <materialDesign:PackIcon Kind="Settings" Width="20" Height="20" Margin="0,0,12,0"/>
-                  <TextBlock Text="System Settings" FontWeight="Medium"/>
+                  <TextBlock Text="Cài đặt" FontWeight="Medium"/>
+                </StackPanel>
+              </Button>
+
+              <!-- Student Progress Management -->
+              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+                                    Padding="16,12" Margin="4,2" Click="BtnStudentProgressManagement_Click" Height="40">
+                <StackPanel Orientation="Horizontal">
+                  <materialDesign:PackIcon Kind="ChartBox" Width="20" Height="20" Margin="0,0,12,0"/>
+                  <TextBlock Text="Tiến độ học sinh" FontWeight="Medium"/>
                 </StackPanel>
               </Button>
             </StackPanel>
@@ -186,83 +190,20 @@
                 </materialDesign:Card>
 
                 <!-- Active Enrollments -->
-                <materialDesign:Card Grid.Column="2" Margin="4,0" Padding="16" Background="#FF4CAF50">
-                  <StackPanel>
-                    <materialDesign:PackIcon Kind="AccountGroup" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="txtActiveEnrollments" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock Text="Active Enrollments" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
-                  </StackPanel>
-                </materialDesign:Card>
 
                 <!-- Revenue -->
-                <materialDesign:Card Grid.Column="3" Margin="8,0,0,0" Padding="16" Background="#FFFF9800">
-                  <StackPanel>
-                    <materialDesign:PackIcon Kind="CurrencyUsd" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="txtRevenue" Text="0" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock Text="Revenue" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
-                  </StackPanel>
-                </materialDesign:Card>
               </Grid>
 
               <!-- Recent Activities -->
-              <TextBlock Text="Recent System Activities" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
-              <materialDesign:Card Padding="16" Background="#FFF8F8F8" MaxHeight="200">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                  <StackPanel x:Name="RecentActivities">
-                    <TextBlock Text="No recent activities" FontStyle="Italic" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
-                  </StackPanel>
-                </ScrollViewer>
-              </materialDesign:Card>
 
               <!-- Quick Actions -->
-              <TextBlock Text="Quick Actions" FontSize="18" FontWeight="SemiBold" Margin="0,24,0,16"/>
               <Grid>
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="*"/>
                   <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,8,0">
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnUserManagement_Click">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="AccountMultiple" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="Manage Users"/>
-                    </StackPanel>
-                  </Button>
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnCourseManagement_Click">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="BookOpen" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="Manage Courses"/>
-                    </StackPanel>
-                  </Button>
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Click="BtnInstructorManagement_Click">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="AccountTie" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="Manage Instructors"/>
-                    </StackPanel>
-                  </Button>
-                </StackPanel>
-
-                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0">
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnSystemReports_Click">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="ChartLine" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="View Reports"/>
-                    </StackPanel>
-                  </Button>
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnBackupRestore_Click">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="Database" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="Backup and Restore"/>
-                    </StackPanel>
-                  </Button>
-                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Click="BtnSystemSettings_Click">
-                    <StackPanel Orientation="Horizontal">
-                      <materialDesign:PackIcon Kind="Settings" Width="16" Height="16" Margin="0,0,8,0"/>
-                      <TextBlock Text="System Settings"/>
-                    </StackPanel>
-                  </Button>
-                </StackPanel>
+                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,8,0"/>
               </Grid>
             </StackPanel>
 

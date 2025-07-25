@@ -34,7 +34,7 @@ namespace ProjectPRN.Student.Progress
             DataContext = this;
             
             _context = new ApplicationDbContext();
-            _studentId = studentId;
+            _studentId = SessionManager.GetCurrentUserId();
             _studentName = studentName;
 
             txtStudentName.Text = $"Sinh viên: {_studentName}";
@@ -49,8 +49,8 @@ namespace ProjectPRN.Student.Progress
                 IsLoading = true;
                 txtStatus.Text = "Đang tải dữ liệu tiến độ...";
 
-                var progressList = await CourseProgressService.CalculateAllProgressAsync(_context, _studentId);
-                var overallProgress = await CourseProgressService.CalculateOverallProgressAsync(_context, _studentId);
+                var progressList = await CourseProgressService.CalculateAllProgressAsync(_studentId);
+                var overallProgress = await CourseProgressService.CalculateOverallProgressAsync(_studentId);
 
                 UpdateSummaryStatistics(progressList, overallProgress);
                 DisplayCourseProgress(progressList);
@@ -72,7 +72,7 @@ namespace ProjectPRN.Student.Progress
 
         private void UpdateSummaryStatistics(List<CourseProgressInfo> progressList, double overallProgress)
         {
-            var totalCourses = progressList.Count;
+            var totalCourses = _context.Enrollments.Where(e => e.StudentId == _studentId).Count();
             var completedCourses = progressList.Count(p => p.IsCompleted);
             var inProgressCourses = progressList.Count(p => !p.IsCompleted && p.ProgressPercentage > 0);
 
@@ -127,7 +127,6 @@ namespace ProjectPRN.Student.Progress
                 Text = courseProgress.CourseName,
                 FontSize = 18,
                 FontWeight = FontWeights.SemiBold,
-                Foreground = (Brush)FindResource("PrimaryHueMidBrush")
             };
             courseInfoStack.Children.Add(courseNameText);
 
@@ -166,16 +165,8 @@ namespace ProjectPRN.Student.Progress
             Grid.SetRow(headerGrid, 0);
             mainGrid.Children.Add(headerGrid);
 
-            // Progress Bar
-            var progressBar = new ProgressBar
-            {
-                Style = (Style)FindResource("ProgressBarStyle"),
-                Value = courseProgress.ProgressPercentage,
-                Maximum = 100,
-                Margin = new Thickness(0, 12, 0, 8)
-            };
-            Grid.SetRow(progressBar, 1);
-            mainGrid.Children.Add(progressBar);
+
+
 
             // Assessment Details
             var assessmentStack = new StackPanel

@@ -94,27 +94,23 @@ namespace ProjectPRN.Admin
                 txtTotalCourses.Text = allCourses.Count().ToString();
                 txtTotalUsers.Text = (allInstructors.Count() + allStudents.Count()).ToString();
 
-                // Calculate active enrollments
-                var activeEnrollments = allCourses.Sum(c => c.Enrollments?.Count ?? 0);
-                txtActiveEnrollments.Text = activeEnrollments.ToString();
-
-                // Calculate revenue (mock for now)
-                var revenue = allCourses.Where(c => c.Price.HasValue).Sum(c => c.Price.Value);
-                txtRevenue.Text = $"{revenue:C0}";
+                // Simple counts without complex calculations for now
+                // txtActiveEnrollments.Text = activeEnrollments.ToString();
+                // txtRevenue.Text = $"{revenue:C0}";
             }
             catch (Exception)
             {
                 // Handle errors by showing default values
                 txtTotalCourses.Text = "0";
                 txtTotalUsers.Text = "0";
-                txtActiveEnrollments.Text = "0";
-                txtRevenue.Text = "$0";
+                // txtActiveEnrollments.Text = "0";
+                // txtRevenue.Text = "$0";
             }
         }
 
         private void LoadRecentActivities()
         {
-            RecentActivities.Children.Clear();
+            // RecentActivities.Children.Clear();
             
             // Mock recent activities - replace with actual data
             var activities = new[]
@@ -124,15 +120,15 @@ namespace ProjectPRN.Admin
                 "Admin dashboard loaded"
             };
 
-            foreach (var activity in activities)
-            {
-                var textBlock = new TextBlock
-                {
-                    Text = $"• {activity} - {DateTime.Now:HH:mm}",
-                    Margin = new Thickness(0, 2, 0, 2)
-                };
-                RecentActivities.Children.Add(textBlock);
-            }
+            // foreach (var activity in activities)
+            // {
+            //     var textBlock = new TextBlock
+            //     {
+            //         Text = $"• {activity} - {DateTime.Now:HH:mm}",
+            //         Margin = new Thickness(0, 2, 0, 2)
+            //     };
+            //     RecentActivities.Children.Add(textBlock);
+            // }
         }
 
         private void StartTimer()
@@ -275,6 +271,23 @@ namespace ProjectPRN.Admin
             
             MessageBox.Show("System settings feature will be implemented", "Notice", 
                            MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void BtnStudentProgressManagement_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening student progress management...";
+            HighlightSelectedButton(sender as Button);
+            
+            try
+            {
+                var studentProgressWindow = new ProjectPRN.Admin.StudentProgressManagement.StudentProgressManagementWindow();
+                studentProgressWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening student progress management: {ex.Message}", "Error", 
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         #endregion
 
