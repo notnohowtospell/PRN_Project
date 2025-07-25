@@ -1,4 +1,4 @@
-using BusinessObjects.Models;
+﻿using BusinessObjects.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProjectPRN.Utils
@@ -31,107 +31,174 @@ namespace ProjectPRN.Utils
 
     public static class CourseProgressService
     {
-        public static async Task<double> CalculateOverallProgressAsync(ApplicationDbContext context, int studentId)
+        public static async Task<double> CalculateOverallProgressAsync(int studentId)
         {
             try
             {
-                var allProgress = await CalculateAllProgressAsync(context, studentId);
-                
+                // Tạo DbContext mới cho mỗi operation
+                using var context = new ApplicationDbContext();
+                var allProgress = await CalculateAllProgressAsync(studentId);
+
                 if (!allProgress.Any())
                     return 0;
 
                 var averageProgress = allProgress.Average(p => p.ProgressPercentage);
                 return Math.Round(averageProgress, 1);
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"Error in CalculateOverallProgressAsync: {ex.Message}");
                 return 0;
             }
         }
 
-        public static async Task<List<CourseProgressInfo>> CalculateAllProgressAsync(ApplicationDbContext context, int studentId)
+        public static async Task<List<CourseProgressInfo>> CalculateAllProgressAsync(int studentId)
         {
+            System.Diagnostics.Debug.WriteLine($"Calculating progress for student: {studentId}");
+
             var progressList = new List<CourseProgressInfo>();
 
             try
             {
+                // Tạo DbContext mới và đảm bảo dispose đúng cách
+                using var context = new ApplicationDbContext();
+
+                // Kiểm tra connection trước khi query
+                await context.Database.OpenConnectionAsync();
+
                 var enrollments = await context.Enrollments
-                    .Include(e => e.Course)
-                    .ThenInclude(c => c.Instructor)
                     .Where(e => e.StudentId == studentId)
+                    .Select(e => new
+                    {
+                        e.CourseId,
+                        e.StudentId,
+                        e.CompletionStatus,
+                        e.CompletionDate,
+                        CourseName = e.Course != null ? e.Course.CourseName : "N/A",
+                        InstructorName = e.Course != null && e.Course.Instructor != null
+                            ? e.Course.Instructor.InstructorName : "N/A"
+                    })
                     .ToListAsync();
 
                 foreach (var enrollment in enrollments)
                 {
-                    var progress = await CalculateProgressAsync(context, studentId, enrollment.CourseId);
-                    progressList.Add(progress);
+                    try
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Processing course: {enrollment.CourseName}");
+                        var progress = await CalculateProgressAsync(enrollment.StudentId, enrollment.CourseId);
+                        progressList.Add(progress);
+                    }
+                    catch (Exception innerEx)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Error processing enrollment for CourseId {enrollment.CourseId}: {innerEx.Message}");
+                        // Continue with next enrollment instead of failing completely
+                    }
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in CalculateAllProgressAsync: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Stack Trace: {ex.StackTrace}");
             }
 
             return progressList.OrderByDescending(p => p.ProgressPercentage).ToList();
         }
 
-        public static async Task<CourseProgressInfo> CalculateProgressAsync(ApplicationDbContext context, int studentId, int courseId)
+        public static async Task<CourseProgressInfo> CalculateProgressAsync(int studentId, int courseId)
         {
-            var enrollment = await context.Enrollments
-                .Include(e => e.Course)
-                .ThenInclude(c => c.Instructor)
-                .FirstOrDefaultAsync(e => e.StudentId == studentId && e.CourseId == courseId);
+            System.Diagnostics.Debug.WriteLine($"Calculate Progress Async for Student: {studentId}, Course: {courseId}");
 
-            if (enrollment == null)
+            try
             {
-                throw new ArgumentException("Student not enrolled in this course.");
-            }
+                // Tạo DbContext mới cho method này
+                using var context = new ApplicationDbContext();
 
-            var assessments = await context.Assessments
-                .Where(a => a.CourseId == courseId)
-                .ToListAsync();
+                var enrollment = await context.Enrollments
+                    .Where(e => e.StudentId == studentId && e.CourseId == courseId)
+                    .Select(e => new
+                    {
+                        e.CourseId,
+                        e.CompletionStatus,
+                        e.CompletionDate,
+                        CourseName = e.Course != null ? e.Course.CourseName : "N/A",
+                        InstructorName = e.Course != null && e.Course.Instructor != null
+                            ? e.Course.Instructor.InstructorName : "N/A"
+                    })
+                    .FirstOrDefaultAsync();
 
-            var studentResults = await context.AssessmentResults
-                .Where(ar => ar.StudentId == studentId && assessments.Select(a => a.AssessmentId).Contains(ar.AssessmentId))
-                .ToListAsync();
-
-            var totalAssessments = assessments.Count;
-            var completedAssessments = studentResults.Count;
-            var progressPercentage = totalAssessments > 0 ? (completedAssessments * 100.0 / totalAssessments) : 0;
-
-            var assessmentProgressList = new List<AssessmentProgressInfo>();
-            var contributionPercentage = totalAssessments > 0 ? 100.0 / totalAssessments : 0;
-
-            foreach (var assessment in assessments)
-            {
-                var result = studentResults.FirstOrDefault(sr => sr.AssessmentId == assessment.AssessmentId);
-                
-                assessmentProgressList.Add(new AssessmentProgressInfo
+                if (enrollment == null)
                 {
-                    AssessmentId = assessment.AssessmentId,
-                    AssessmentName = assessment.AssessmentName,
-                    AssessmentType = assessment.AssessmentType ?? "N/A",
-                    DueDate = assessment.DueDate,
-                    IsCompleted = result != null,
-                    Score = result?.Score,
-                    MaxScore = assessment.MaxScore,
-                    SubmissionDate = result?.SubmissionDate,
-                    ContributionPercentage = contributionPercentage
-                });
-            }
+                    throw new ArgumentException("Student not enrolled in this course or course data is missing.");
+                }
 
-            return new CourseProgressInfo
+                var assessments = await context.Assessments
+                    .Where(a => a.CourseId == courseId)
+                    .ToListAsync();
+
+                var assessmentIds = assessments.Select(a => a.AssessmentId).ToList();
+                var studentResults = await context.AssessmentResults
+                    .Where(ar => ar.StudentId == studentId && assessmentIds.Contains(ar.AssessmentId))
+                    .ToListAsync();
+
+                var totalAssessments = assessments.Count;
+                var completedAssessments = studentResults.Count;
+                var progressPercentage = totalAssessments > 0 ? (completedAssessments * 100.0 / totalAssessments) : 0;
+                if (progressPercentage < 100 && enrollment.CompletionDate != null)
+                {
+                    var completedEnrollment = await context.Enrollments
+                                        .Where(e => e.StudentId == studentId && e.CourseId == courseId).FirstOrDefaultAsync();
+                    completedEnrollment.CompletionDate = null;
+                }
+                if (progressPercentage == 100)
+                {
+                    var completedEnrollment = await context.Enrollments
+                                        .Where(e => e.StudentId == studentId && e.CourseId == courseId).FirstOrDefaultAsync();
+                    if (completedEnrollment.CompletionDate == null)
+                    {
+                        var certificate = new Certificate();
+                        if (completedEnrollment != null)
+                        {
+                            completedEnrollment.CompletionDate = DateTime.Now;
+                            //certificate.StudentId = studentId;
+                            //certificate.CourseId = courseId;
+                            //certificate.IssueDate = DateTime.Now;
+                            //certificate.CertificateCode = "CERT-" + (new Random().Next(10000, 99999).ToString());
+                        }
+                    }
+                }
+                System.Diagnostics.Debug.WriteLine($"Progress: {progressPercentage}%");
+
+                return new CourseProgressInfo
+                {
+                    CourseId = courseId,
+                    CourseName = enrollment.CourseName,
+                    InstructorName = enrollment.InstructorName,
+                    TotalAssessments = totalAssessments,
+                    CompletedAssessments = completedAssessments,
+                    ProgressPercentage = Math.Round(progressPercentage, 1),
+                    IsCompleted = enrollment.CompletionStatus,
+                    CompletionDate = enrollment.CompletionDate,
+                    AssessmentProgress = new List<AssessmentProgressInfo>()
+                };
+            }
+            catch (Exception ex)
             {
-                CourseId = courseId,
-                CourseName = enrollment.Course.CourseName ?? "N/A",
-                InstructorName = enrollment.Course.Instructor?.InstructorName ?? "N/A",
-                TotalAssessments = totalAssessments,
-                CompletedAssessments = completedAssessments,
-                ProgressPercentage = Math.Round(progressPercentage, 1),
-                IsCompleted = enrollment.CompletionStatus,
-                CompletionDate = enrollment.CompletionDate,
-                AssessmentProgress = assessmentProgressList
-            };
+                System.Diagnostics.Debug.WriteLine($"Error in CalculateProgressAsync for CourseId {courseId}: {ex.Message}");
+
+                // Return a default progress info if something fails
+                return new CourseProgressInfo
+                {
+                    CourseId = courseId,
+                    CourseName = "Error Loading Course",
+                    InstructorName = "N/A",
+                    TotalAssessments = 0,
+                    CompletedAssessments = 0,
+                    ProgressPercentage = 0,
+                    IsCompleted = false,
+                    CompletionDate = null,
+                    AssessmentProgress = new List<AssessmentProgressInfo>()
+                };
+            }
         }
     }
 }

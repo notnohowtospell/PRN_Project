@@ -84,7 +84,7 @@ namespace ProjectPRN.Student
                 txtCertificates.Text = _currentStudent.Certificates?.Count.ToString() ?? "0";
                 
                 // Calculate overall progress using the new service
-                var overallProgress = await CourseProgressService.CalculateOverallProgressAsync(context, _currentStudent.StudentId);
+                var overallProgress = await CourseProgressService.CalculateOverallProgressAsync(_currentStudent.StudentId);
                 txtOverallProgress.Text = $"{overallProgress:F1}%";
             }
             catch (Exception ex)

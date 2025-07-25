@@ -18,7 +18,7 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Margin" Value="0,0,0,16"/>
-            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            <Setter Property="Foreground" />
         </Style>
 
         <Style x:Key="ProgressTextStyle" TargetType="TextBlock">
@@ -80,7 +80,7 @@
                     <materialDesign:PackIcon Kind="School" 
                                            Width="40" Height="40"
                                            HorizontalAlignment="Center"
-                                           Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                          />
                     <TextBlock x:Name="txtTotalCourses" 
                                Text="0" 
                                FontSize="24" 
