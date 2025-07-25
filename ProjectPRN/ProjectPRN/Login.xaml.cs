@@ -5,6 +5,9 @@ using DataAccessObjects;
 using ProjectPRN.Utils;
 using System.Security.Cryptography;
 using System.Text;
+using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+using ProjectPRN.Admin;
 
 namespace ProjectPRN
 {
@@ -119,7 +122,7 @@ namespace ProjectPRN
 
         private bool ValidateLoginInput(string email, string password)
         {
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(email))
             {
                 ShowValidationError("Please enter both email and password.");
                 return false;
@@ -258,9 +261,9 @@ namespace ProjectPRN
                 // Log successful login
                 System.Diagnostics.Debug.WriteLine($"Instructor login successful: {instructor.InstructorName} ({instructor.Email})");
 
-                // Navigate to Instructor Main Window
-                var instructorMainWindow = new ProjectPRN.InstructorModule.InstructorMainWindow(instructor);
-                instructorMainWindow.Show();
+                // Navigate to Admin Main Window (Instructor login goes to admin panel)
+                var adminMainWindow = new ProjectPRN.Admin.AdminMainWindow();
+                adminMainWindow.Show();
 
                 // Close login window
                 this.Close();
@@ -366,6 +369,33 @@ namespace ProjectPRN
             if (e.Key == Key.Enter)
             {
                 LoginButton_Click(sender, e);
+            }
+            
+            // Dev tools toggle (Ctrl + Shift + D)
+            if (e.Key == Key.D && Keyboard.Modifiers == (ModifierKeys.Control | ModifierKeys.Shift))
+            {
+                DevToolsPanel.Visibility = DevToolsPanel.Visibility == Visibility.Visible 
+                    ? Visibility.Collapsed 
+                    : Visibility.Visible;
+            }
+        }
+
+        // Dev tool: Admin Login Test (no authentication required)
+        private void AdminLoginTest_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Direct navigation to AdminMainWindow without authentication
+                var adminMainWindow = new ProjectPRN.Admin.AdminMainWindow();
+                adminMainWindow.Show();
+
+                // Close login window
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở trang admin: {ex.Message}", "Lỗi", 
+                              MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -49,9 +49,9 @@
     </Window.Resources>
     
     <!-- Remove border and use direct background -->
-    <Grid Background="White">
+    <Grid Background="White" Margin="0,0,0,-93">
         <Grid Margin="40" Width="350">
-            <StackPanel VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Top" Margin="0,46,0,0">
                 <!-- Close Button -->
                 <Button HorizontalAlignment="Right" 
                         VerticalAlignment="Top"
@@ -139,6 +139,31 @@
                             <Run Text="Sign up" FontWeight="Medium"/>
                         </Hyperlink>
                     </TextBlock>
+                    
+                    <!-- Dev Tools (Hidden by default) -->
+                    <StackPanel x:Name="DevToolsPanel" 
+                               Visibility="Visible"
+                               Margin="0,20,0,0">
+                        <Button Content="[DEV] Admin Login Test"
+                               Style="{StaticResource MaterialDesignOutlinedButton}"
+                               FontSize="12"
+                               Height="35"
+                               Margin="0,5"
+                               Foreground="Red"
+                               BorderBrush="Red"
+                               Click="AdminLoginTest_Click"/>
+ 
+                        
+                        <Button Content="[DEV] Demo Credentials"
+                               Visibility="Collapsed"
+                               Style="{StaticResource MaterialDesignOutlinedButton}"
+                               FontSize="12"
+                               Height="35"
+                               Margin="0,5"
+                               Foreground="Gray"
+                               BorderBrush="Gray"
+                               Click="DemoCredentials_Click"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Grid>

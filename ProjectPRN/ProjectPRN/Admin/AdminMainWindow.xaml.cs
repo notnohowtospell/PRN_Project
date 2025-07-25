@@ -9,22 +9,28 @@ using MaterialDesignThemes.Wpf;
 using Repositories.Interfaces;
 using Repositories;
 using DataAccessObjects;
+using ProjectPRN.Admin.BackupRestore;
+using ProjectPRN.Admin.CourseManagement;
+using ProjectPRN.Admin.InstructorManagement;
+using ProjectPRN.Search;
 
-namespace ProjectPRN.InstructorModule
+namespace ProjectPRN.Admin
 {
-    public partial class InstructorMainWindow : Window, INotifyPropertyChanged
+    public partial class AdminMainWindow : Window, INotifyPropertyChanged
     {
-        private readonly BusinessObjects.Models.Instructor _currentInstructor;
         private readonly ILifeSkillCourseRepository _lifeSkillCourseRepository;
+        private readonly IInstructorRepository _instructorRepository;
+        private readonly IStudentDAO _studentDAO;
         private DispatcherTimer _timer;
 
-        public InstructorMainWindow(BusinessObjects.Models.Instructor instructor)
+        public AdminMainWindow()
         {
             InitializeComponent();
-            _currentInstructor = instructor ?? throw new ArgumentNullException(nameof(instructor));
             
             // Initialize repositories
             _lifeSkillCourseRepository = new LifeSkillCourseRepository(new LifeSkillCourseDAO());
+            _instructorRepository = new InstructorRepository(new InstructorDAO());
+            _studentDAO = new StudentDAO();
             
             DataContext = this;
             InitializeWindow();
@@ -48,26 +54,26 @@ namespace ProjectPRN.InstructorModule
         #region Initialization
         private void InitializeWindow()
         {
-            txtWelcome.Text = $"Welcome, {_currentInstructor.InstructorName}";
+            txtWelcome.Text = "Welcome, Administrator";
             txtStatus.Text = "Successfully loaded";
         }
 
-        private void LoadDashboardData()
+        private async void LoadDashboardData()
         {
             try
             {
                 IsLoading = true;
-                txtStatus.Text = "?ang t?i d? li?u dashboard...";
+                txtStatus.Text = "Loading dashboard data...";
 
-                LoadInstructorStatistics();
+                await LoadAdminStatistics();
                 LoadRecentActivities();
 
-                txtStatus.Text = "S?n sàng";
+                txtStatus.Text = "Ready";
             }
             catch (Exception ex)
             {
-                txtStatus.Text = $"L?i: {ex.Message}";
-                MessageBox.Show($"Không th? t?i d? li?u dashboard: {ex.Message}", "L?i", 
+                txtStatus.Text = $"Error: {ex.Message}";
+                MessageBox.Show($"Cannot load dashboard data: {ex.Message}", "Error", 
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
@@ -76,31 +82,33 @@ namespace ProjectPRN.InstructorModule
             }
         }
 
-        private void LoadInstructorStatistics()
+        private async Task LoadAdminStatistics()
         {
             try
             {
-                // Load statistics for this instructor
-                var instructorCourses = _lifeSkillCourseRepository.GetAll()
-                    .Where(c => c.InstructorId == _currentInstructor.InstructorId).ToList();
+                // Load system statistics
+                var allCourses = await _lifeSkillCourseRepository.GetAllAsync();
+                var allInstructors = await _instructorRepository.GetAllAsync();
+                var allStudents = await _studentDAO.GetAllAsync();
 
-                txtMyCourses.Text = instructorCourses.Count.ToString();
-                txtActiveCourses.Text = instructorCourses.Count(c => c.Status == "M? ??ng ký").ToString();
-                
-                // Calculate total students across all courses
-                var totalStudents = instructorCourses.Sum(c => c.Enrollments?.Count ?? 0);
-                txtTotalStudents.Text = totalStudents.ToString();
-                
-                // Mock pending assessments
-                txtPendingAssessments.Text = "0";
+                txtTotalCourses.Text = allCourses.Count().ToString();
+                txtTotalUsers.Text = (allInstructors.Count() + allStudents.Count()).ToString();
+
+                // Calculate active enrollments
+                var activeEnrollments = allCourses.Sum(c => c.Enrollments?.Count ?? 0);
+                txtActiveEnrollments.Text = activeEnrollments.ToString();
+
+                // Calculate revenue (mock for now)
+                var revenue = allCourses.Where(c => c.Price.HasValue).Sum(c => c.Price.Value);
+                txtRevenue.Text = $"{revenue:C0}";
             }
             catch (Exception)
             {
                 // Handle errors by showing default values
-                txtMyCourses.Text = "0";
-                txtActiveCourses.Text = "0";
-                txtTotalStudents.Text = "0";
-                txtPendingAssessments.Text = "0";
+                txtTotalCourses.Text = "0";
+                txtTotalUsers.Text = "0";
+                txtActiveEnrollments.Text = "0";
+                txtRevenue.Text = "$0";
             }
         }
 
@@ -111,9 +119,9 @@ namespace ProjectPRN.InstructorModule
             // Mock recent activities - replace with actual data
             var activities = new[]
             {
-                "??ng nh?p h? th?ng thành công",
-                "C?p nh?t thông tin khóa h?c",
-                "Xem danh sách sinh viên"
+                "System started successfully",
+                "Database connection established",
+                "Admin dashboard loaded"
             };
 
             foreach (var activity in activities)
@@ -144,19 +152,19 @@ namespace ProjectPRN.InstructorModule
         #region Header Event Handlers
         private void BtnProfile_Click(object sender, RoutedEventArgs e)
         {
-            txtStatus.Text = "?ang m? thông tin tài kho?n...";
-            MessageBox.Show("Ch?c n?ng qu?n lý tài kho?n s? ???c tri?n khai", "Thông báo", 
+            txtStatus.Text = "Opening account information...";
+            MessageBox.Show("Account management feature will be implemented", "Notice", 
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("B?n có ch?c ch?n mu?n ??ng xu?t?", "Xác nh?n ??ng xu?t", 
+            var result = MessageBox.Show("Are you sure you want to logout?", "Confirm Logout", 
                                         MessageBoxButton.YesNo, MessageBoxImage.Question);
             
             if (result == MessageBoxResult.Yes)
             {
-                txtStatus.Text = "?ang ??ng xu?t...";
+                txtStatus.Text = "Logging out...";
                 
                 // Navigate back to login
                 var loginWindow = new Login();
@@ -174,66 +182,98 @@ namespace ProjectPRN.InstructorModule
             HighlightSelectedButton(sender as Button);
         }
 
-        private void BtnMyCourses_Click(object sender, RoutedEventArgs e)
+        private void BtnUserManagement_Click(object sender, RoutedEventArgs e)
         {
-            txtStatus.Text = "?ang m? khóa h?c c?a tôi...";
+            txtStatus.Text = "Opening user management...";
             HighlightSelectedButton(sender as Button);
             
-            MessageBox.Show("Ch?c n?ng qu?n lý khóa h?c c?a gi?ng viên s? ???c tri?n khai", "Thông báo", 
+            try
+            {
+                var studentSearchWindow = new StudentSearchView();
+                studentSearchWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening user management: {ex.Message}", "Error", 
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnCourseManagement_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening course management...";
+            HighlightSelectedButton(sender as Button);
+            
+            try
+            {
+                var courseManagementWindow = new CourseManagementView(_lifeSkillCourseRepository, _instructorRepository);
+                courseManagementWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening course management: {ex.Message}", "Error", 
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnInstructorManagement_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening instructor management...";
+            HighlightSelectedButton(sender as Button);
+            
+            try
+            {
+                var instructorManagementWindow = new InstructorManagementView();
+                instructorManagementWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening instructor management: {ex.Message}", "Error", 
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnPaymentManagement_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Opening payment management...";
+            HighlightSelectedButton(sender as Button);
+            
+            MessageBox.Show("Payment management feature will be implemented", "Notice", 
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void BtnStudents_Click(object sender, RoutedEventArgs e)
+        private void BtnSystemReports_Click(object sender, RoutedEventArgs e)
         {
-            txtStatus.Text = "?ang m? danh sách sinh viên...";
+            txtStatus.Text = "Opening system reports...";
             HighlightSelectedButton(sender as Button);
             
-            MessageBox.Show("Ch?c n?ng xem sinh viên s? ???c tri?n khai", "Thông báo", 
+            MessageBox.Show("System reports feature will be implemented", "Notice", 
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void BtnAssessments_Click(object sender, RoutedEventArgs e)
+        private void BtnBackupRestore_Click(object sender, RoutedEventArgs e)
         {
-            txtStatus.Text = "?ang m? bài ki?m tra...";
+            txtStatus.Text = "Opening backup & restore...";
             HighlightSelectedButton(sender as Button);
             
-            MessageBox.Show("Ch?c n?ng qu?n lý bài ki?m tra s? ???c tri?n khai", "Thông báo", 
-                           MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                var backupRestoreWindow = new BackupRestoreView();
+                backupRestoreWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening backup & restore: {ex.Message}", "Error", 
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void BtnMaterials_Click(object sender, RoutedEventArgs e)
+        private void BtnSystemSettings_Click(object sender, RoutedEventArgs e)
         {
-            txtStatus.Text = "?ang m? tài li?u gi?ng d?y...";
+            txtStatus.Text = "Opening system settings...";
             HighlightSelectedButton(sender as Button);
             
-            MessageBox.Show("Ch?c n?ng qu?n lý tài li?u gi?ng d?y s? ???c tri?n khai", "Thông báo", 
-                           MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void BtnSchedule_Click(object sender, RoutedEventArgs e)
-        {
-            txtStatus.Text = "?ang m? l?ch gi?ng d?y...";
-            HighlightSelectedButton(sender as Button);
-            
-            MessageBox.Show("Ch?c n?ng xem l?ch gi?ng d?y s? ???c tri?n khai", "Thông báo", 
-                           MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void BtnFeedback_Click(object sender, RoutedEventArgs e)
-        {
-            txtStatus.Text = "?ang m? ph?n h?i sinh viên...";
-            HighlightSelectedButton(sender as Button);
-            
-            MessageBox.Show("Ch?c n?ng xem ph?n h?i sinh viên s? ???c tri?n khai", "Thông báo", 
-                           MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void BtnReports_Click(object sender, RoutedEventArgs e)
-        {
-            txtStatus.Text = "?ang m? báo cáo...";
-            HighlightSelectedButton(sender as Button);
-            
-            MessageBox.Show("Ch?c n?ng báo cáo s? ???c tri?n khai", "Thông báo", 
+            MessageBox.Show("System settings feature will be implemented", "Notice", 
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
         #endregion
