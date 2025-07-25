@@ -24,7 +24,9 @@
             </Grid.RowDefinitions>
 
             <!-- Header -->
-            <materialDesign:Card Grid.Row="0" Margin="0" Padding="16,8" materialDesign:ElevationAssist.Elevation="Dp2">
+            <materialDesign:Card Grid.Row="0" Margin="0" Padding="16,8" 
+                               materialDesign:ElevationAssist.Elevation="Dp2"
+                               Background="{DynamicResource MaterialDesignCardBackground}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -32,12 +34,25 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="School" Width="24" Height="24" Margin="0,0,8,0" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-                        <TextBlock Text="Hệ thống quản lý khóa học kỹ năng sống" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <materialDesign:PackIcon Kind="School" Width="24" Height="24" Margin="0,0,8,0" 
+                                               Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                        <TextBlock Text="Hệ thống quản lý khóa học kỹ năng sống" FontSize="18" FontWeight="SemiBold" 
+                                 VerticalAlignment="Center" Foreground="{DynamicResource MaterialDesignBody}"/>
                     </StackPanel>
 
+                    <ComboBox Name="ThemeSelector"
+                              Width="100"
+                              SelectionChanged="ThemeSelector_SelectionChanged"
+                              Margin="750,0,0,0"
+                              HorizontalAlignment="Left">
+                        <ComboBoxItem Content="Light" />
+                        <ComboBoxItem Content="Dark" />
+                    </ComboBox>
+
                     <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock x:Name="txtWelcome" Text="Xin chào, " FontWeight="Medium" VerticalAlignment="Center" Margin="0,0,16,0"/>
+                        <TextBlock x:Name="txtWelcome" Text="Xin chào, " FontWeight="Medium" 
+                                 VerticalAlignment="Center" Margin="0,0,16,0"
+                                 Foreground="{DynamicResource MaterialDesignBody}"/>
                         <Button Style="{StaticResource MaterialDesignFlatButton}" Click="BtnProfile_Click" ToolTip="Thông tin cá nhân">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Width="16" Height="16" Margin="0,0,4,0"/>
@@ -62,16 +77,19 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Navigation Menu -->
-                <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="8" materialDesign:ElevationAssist.Elevation="Dp2">
+                <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="8" 
+                                   materialDesign:ElevationAssist.Elevation="Dp2"
+                                   Background="{DynamicResource MaterialDesignCardBackground}">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <TextBlock Text="MENU CHÍNH" FontWeight="SemiBold" Margin="16,8" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="MENU CHÍNH" FontWeight="SemiBold" Margin="16,8" 
+                                     Foreground="{DynamicResource MaterialDesignBodyLight}"/>
 
                             <!-- Dashboard -->
-                            <Button x:Name="btnDashboard" Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnDashboard_Click"
-                                    Background="{DynamicResource PrimaryHueLightBrush}" Height="39">
+                            <Button x:Name="btnDashboard" Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnDashboard_Click"
+                                   Background="{DynamicResource PrimaryHueLightBrush}" Height="39">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="ViewDashboard" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Trang chủ" FontWeight="Medium"/>
@@ -79,9 +97,18 @@
                             </Button>
 
                             <!-- Course Management -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnCourses_Click" Height="40">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnCourses_Click" Height="40">
+                                <Button.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Resources>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="BookOpen" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Khóa học" FontWeight="Medium"/>
@@ -89,9 +116,18 @@
                             </Button>
 
                             <!-- My Enrollments -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnMyEnrollments_Click" Height="40">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnMyEnrollments_Click" Height="40">
+                                <Button.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Resources>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="BookAccount" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Khóa học của tôi" FontWeight="Medium"/>
@@ -99,9 +135,18 @@
                             </Button>
 
                             <!-- Assessments -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnAssessments_Click" Height="40">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnAssessments_Click" Height="40">
+                                <Button.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Resources>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="ClipboardCheck" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Bài kiểm tra" FontWeight="Medium"/>
@@ -109,9 +154,18 @@
                             </Button>
 
                             <!-- Course Materials -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnMaterials_Click" Height="40">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnMaterials_Click" Height="40">
+                                <Button.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Resources>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="FileDocument" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Tài liệu học tập" FontWeight="Medium"/>
@@ -119,9 +173,18 @@
                             </Button>
 
                             <!-- Schedule -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnSchedule_Click" Height="40">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnSchedule_Click" Height="40">
+                                <Button.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Resources>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Calendar" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Lịch học" FontWeight="Medium"/>
@@ -129,9 +192,18 @@
                             </Button>
 
                             <!-- Certificates -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnCertificates_Click" Height="41">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnCertificates_Click" Height="41">
+                                <Button.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Resources>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Certificate" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Chứng chỉ" FontWeight="Medium"/>
@@ -139,9 +211,18 @@
                             </Button>
 
                             <!-- Payments -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnPayments_Click" Height="40">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnPayments_Click" Height="40">
+                                <Button.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Resources>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="CreditCard" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Thanh toán" FontWeight="Medium"/>
@@ -149,9 +230,18 @@
                             </Button>
 
                             <!-- Feedback -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnFeedback_Click" Height="40">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnFeedback_Click" Height="40">
+                                <Button.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Resources>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="MessageText" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Đánh giá khóa học" FontWeight="Medium"/>
@@ -159,9 +249,18 @@
                             </Button>
 
                             <!-- Progress -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnProgress_Click" Height="40">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                   Padding="16,12" Margin="4,2" Click="BtnProgress_Click" Height="40">
+                                <Button.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource ButtonHoverBrush}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Resources>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="TrendingUp" Width="20" Height="20" Margin="0,0,12,0"/>
                                     <TextBlock Text="Tiến độ học tập" FontWeight="Medium"/>
@@ -172,12 +271,15 @@
                 </materialDesign:Card>
 
                 <!-- Content Area -->
-                <materialDesign:Card Grid.Column="1" Margin="8,0,0,0" Padding="24" materialDesign:ElevationAssist.Elevation="Dp2">
+                <materialDesign:Card Grid.Column="1" Margin="8,0,0,0" Padding="24" 
+                                   materialDesign:ElevationAssist.Elevation="Dp2"
+                                   Background="{DynamicResource MaterialDesignCardBackground}">
                     <Grid x:Name="ContentArea">
                         <!-- Dashboard Content -->
                         <StackPanel x:Name="DashboardContent">
-                            <TextBlock Text="Trang chủ" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,24"/>
-                            
+                            <TextBlock Text="Trang chủ" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,24"
+                                     Foreground="{DynamicResource MaterialDesignBody}"/>
+
                             <!-- Quick Stats -->
                             <Grid Margin="0,0,0,24">
                                 <Grid.ColumnDefinitions>
@@ -188,52 +290,71 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Enrolled Courses -->
-                                <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="16" Background="{DynamicResource PrimaryHueLightBrush}">
+                                <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="16" 
+                                                   Background="{DynamicResource PrimaryHueLightBrush}">
                                     <StackPanel>
-                                        <materialDesign:PackIcon Kind="BookOpen" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                                        <TextBlock x:Name="txtEnrolledCourses" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                                        <TextBlock Text="Khóa học đã đăng ký" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                                        <materialDesign:PackIcon Kind="BookOpen" Width="32" Height="32" 
+                                                               HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Name="txtEnrolledCourses" Text="0" FontSize="28" FontWeight="Bold" 
+                                                 HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock Text="Khóa học đã đăng ký" HorizontalAlignment="Center" 
+                                                 TextWrapping="Wrap" Foreground="White" FontSize="12"/>
                                     </StackPanel>
                                 </materialDesign:Card>
 
                                 <!-- Completed Assessments -->
-                                <materialDesign:Card Grid.Column="1" Margin="4,0" Padding="16" Background="{DynamicResource SecondaryHueMidBrush}">
+                                <materialDesign:Card Grid.Column="1" Margin="4,0" Padding="16" 
+                                                   Background="{DynamicResource SecondaryHueMidBrush}">
                                     <StackPanel>
-                                        <materialDesign:PackIcon Kind="ClipboardCheck" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                                        <TextBlock x:Name="txtCompletedAssessments" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                                        <TextBlock Text="Bài kiểm tra hoàn thành" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                                        <materialDesign:PackIcon Kind="ClipboardCheck" Width="32" Height="32" 
+                                                               HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Name="txtCompletedAssessments" Text="0" FontSize="28" FontWeight="Bold" 
+                                                 HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock Text="Bài kiểm tra hoàn thành" HorizontalAlignment="Center" 
+                                                 TextWrapping="Wrap" Foreground="White" FontSize="12"/>
                                     </StackPanel>
                                 </materialDesign:Card>
 
                                 <!-- Certificates Earned -->
-                                <materialDesign:Card Grid.Column="2" Margin="4,0" Padding="16" Background="#FF4CAF50">
+                                <materialDesign:Card Grid.Column="2" Margin="4,0" Padding="16" 
+                                                   Background="{DynamicResource SuccessBrush}">
                                     <StackPanel>
-                                        <materialDesign:PackIcon Kind="Certificate" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                                        <TextBlock x:Name="txtCertificates" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                                        <TextBlock Text="Chứng chỉ đạt được" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                                        <materialDesign:PackIcon Kind="Certificate" Width="32" Height="32" 
+                                                               HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Name="txtCertificates" Text="0" FontSize="28" FontWeight="Bold" 
+                                                 HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock Text="Chứng chỉ đạt được" HorizontalAlignment="Center" 
+                                                 TextWrapping="Wrap" Foreground="White" FontSize="12"/>
                                     </StackPanel>
                                 </materialDesign:Card>
 
                                 <!-- Overall Progress -->
-                                <materialDesign:Card Grid.Column="3" Margin="8,0,0,0" Padding="16" Background="#FFFF9800">
+                                <materialDesign:Card Grid.Column="3" Margin="8,0,0,0" Padding="16" 
+                                                   Background="{DynamicResource WarningBrush}">
                                     <StackPanel>
-                                        <materialDesign:PackIcon Kind="TrendingUp" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
-                                        <TextBlock x:Name="txtOverallProgress" Text="0%" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                                        <TextBlock Text="Tiến độ tổng thể" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                                        <materialDesign:PackIcon Kind="TrendingUp" Width="32" Height="32" 
+                                                               HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Name="txtOverallProgress" Text="0%" FontSize="28" FontWeight="Bold" 
+                                                 HorizontalAlignment="Center" Foreground="White"/>
+                                        <TextBlock Text="Tiến độ tổng thể" HorizontalAlignment="Center" 
+                                                 TextWrapping="Wrap" Foreground="White" FontSize="12"/>
                                     </StackPanel>
                                 </materialDesign:Card>
                             </Grid>
 
                             <!-- Recent Activities -->
-                            <TextBlock Text="Hoạt động gần đây" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
-                            <materialDesign:Card Padding="16" Background="#FFF8F8F8">
+                            <TextBlock Text="Hoạt động gần đây" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"
+                                     Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <materialDesign:Card Padding="16" Background="{DynamicResource MaterialDesignCardBackground}">
                                 <StackPanel x:Name="RecentActivities">
-                                    <TextBlock Text="Chưa có hoạt động nào" FontStyle="Italic" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                    <TextBlock Text="Chưa có hoạt động nào" FontStyle="Italic" 
+                                             Foreground="{DynamicResource MaterialDesignBodyLight}"/>
                                 </StackPanel>
                             </materialDesign:Card>
 
                             <!-- Quick Actions -->
-                            <TextBlock Text="Thao tác nhanh" FontSize="18" FontWeight="SemiBold" Margin="0,24,0,16"/>
+                            <TextBlock Text="Thao tác nhanh" FontSize="18" FontWeight="SemiBold" Margin="0,24,0,16"
+                                     Foreground="{DynamicResource MaterialDesignBody}"/>
                             <StackPanel Orientation="Horizontal">
                                 <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,16,0" Click="BtnCourses_Click">
                                     <StackPanel Orientation="Horizontal">
@@ -270,15 +391,20 @@
             </Grid>
 
             <!-- Status Bar -->
-            <materialDesign:Card Grid.Row="2" Margin="0" Padding="16,8" materialDesign:ElevationAssist.Elevation="Dp1">
+            <materialDesign:Card Grid.Row="2" Margin="0" Padding="16,8" 
+                               materialDesign:ElevationAssist.Elevation="Dp1"
+                               Background="{DynamicResource MaterialDesignCardBackground}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
-                    <TextBlock x:Name="txtStatus" Text="Sẵn sàng" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" x:Name="txtDateTime" Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='dd/MM/yyyy HH:mm:ss'}" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="txtStatus" Text="Sẵn sàng" VerticalAlignment="Center"
+                             Foreground="{DynamicResource MaterialDesignBody}"/>
+                    <TextBlock Grid.Column="1" x:Name="txtDateTime" 
+                             Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='dd/MM/yyyy HH:mm:ss'}" 
+                             VerticalAlignment="Center"
+                             Foreground="{DynamicResource MaterialDesignBody}"/>
                 </Grid>
             </materialDesign:Card>
         </Grid>

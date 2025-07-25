@@ -21,7 +21,8 @@ namespace ProjectPRN.Student
         {
             InitializeComponent();
             _currentStudent = student ?? throw new ArgumentNullException(nameof(student));
-            
+            Loaded += StudentMainWindow_Loaded;
+
             DataContext = this;
             InitializeWindow();
             LoadDashboardData();
@@ -365,5 +366,18 @@ namespace ProjectPRN.Student
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        private void ThemeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = (ThemeSelector.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            ThemeManager.ChangeTheme(selected ?? "Light");
+        }
+
+        private async void StudentMainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            await ThemeManager.LoadThemeAsync();
+            var currentTheme = await StateManager.GetUserPreferenceAsync<string>("AppTheme", "Light");
+            ThemeSelector.SelectedIndex = (currentTheme == "Dark") ? 1 : 0;
+        }
     }
 }

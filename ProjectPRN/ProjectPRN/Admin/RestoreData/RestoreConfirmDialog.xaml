@@ -9,8 +9,9 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}">
-
-    <materialDesign:Card Width="500" MaxHeight="600">
+    
+    <materialDesign:Card Width="500" MaxHeight="600" 
+                       Background="{DynamicResource MaterialDesignCardBackground}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="24">
                 <!-- Dialog Header -->
@@ -20,39 +21,43 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
+                    
                     <materialDesign:PackIcon Grid.Column="0"
                                            Kind="AlertCircle"
                                            Width="32"
                                            Height="32"
- 
-                                           VerticalAlignment="Center"
-                                           Margin="0,0,16,0"/>
-
+                                            VerticalAlignment="Center"
+                                           Margin="0,0,16,0"
+                                           Foreground="{DynamicResource ErrorBrush}"/>
+                    
                     <StackPanel Grid.Column="1">
                         <TextBlock Text="Xac nhan phuc hoi du lieu"
-                                   Margin="0,0,0,4"/>
-                        <TextBlock Text="Thao tac nay khong the hoan tac"/>
+                                   Margin="0,0,0,4"
+                                   Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock Text="Thao tac nay khong the hoan tac"
+                                   Foreground="{DynamicResource ErrorBrush}"/>
 
                     </StackPanel>
-
+                    
                     <Button Grid.Column="2"
-
                             Click="BtnClose_Click"
+                            Style="{StaticResource MaterialDesignIconButton}"
                             ToolTip="Dong">
                         <materialDesign:PackIcon Kind="Close"/>
                     </Button>
                 </Grid>
-
+                
                 <!-- Backup Information -->
-                <materialDesign:Card 
-                                   Padding="16" Margin="0,0,0,16">
+                <materialDesign:Card Padding="16" Margin="0,0,0,16"
+                                   Background="{DynamicResource MaterialDesignCardBackground}"
+                                   BorderBrush="{DynamicResource BorderBrush}"
+                                   BorderThickness="1">
                     <StackPanel>
                         <TextBlock Text="Thong tin file sao luu"
-
                                    Margin="0,0,0,12"
-                                   FontWeight="Bold"/>
-                        
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource MaterialDesignBody}"/>
+                                                
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -65,67 +70,78 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Ngay tao:" FontWeight="Bold" Margin="0,0,16,8"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Name="txtBackupDate" Margin="0,0,0,8"/>
-
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Phien ban:" FontWeight="Bold" Margin="0,0,16,8"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Name="txtVersion" Margin="0,0,0,8"/>
-
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Hoc vien:" FontWeight="Bold" Margin="0,0,16,8"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Name="txtStudentCount" Margin="0,0,0,8"/>
-
-                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Giang vien:" FontWeight="Bold" Margin="0,0,16,8"/>
-                            <TextBlock Grid.Row="3" Grid.Column="1" Name="txtInstructorCount" Margin="0,0,0,8"/>
-
-                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Khoa hoc:" FontWeight="Bold" Margin="0,0,16,0"/>
-                            <TextBlock Grid.Row="4" Grid.Column="1" Name="txtCourseCount"/>
+                            
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Ngay tao:" FontWeight="Bold" 
+                                     Margin="0,0,16,8" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Name="txtBackupDate" Margin="0,0,0,8"
+                                     Foreground="{DynamicResource MaterialDesignBody}"/>
+                            
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Phien ban:" FontWeight="Bold" 
+                                     Margin="0,0,16,8" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Name="txtVersion" Margin="0,0,0,8"
+                                     Foreground="{DynamicResource MaterialDesignBody}"/>
+                            
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Hoc vien:" FontWeight="Bold" 
+                                     Margin="0,0,16,8" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Name="txtStudentCount" Margin="0,0,0,8"
+                                     Foreground="{DynamicResource PrimaryHueMidBrush}" FontWeight="Medium"/>
+                            
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Giang vien:" FontWeight="Bold" 
+                                     Margin="0,0,16,8" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Name="txtInstructorCount" Margin="0,0,0,8"
+                                     Foreground="{DynamicResource SecondaryHueMidBrush}" FontWeight="Medium"/>
+                            
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Khoa hoc:" FontWeight="Bold" 
+                                     Margin="0,0,16,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Name="txtCourseCount"
+                                     Foreground="{DynamicResource WarningBrush}" FontWeight="Medium"/>
                         </Grid>
                     </StackPanel>
                 </materialDesign:Card>
-
+                
                 <!-- Warning Messages -->
-                <materialDesign:Card 
-                                   Padding="16" Margin="0,0,0,16">
+                <materialDesign:Card Padding="16" Margin="0,0,0,16"
+                                   Background="{DynamicResource ErrorBrush}">
                     <StackPanel>
                         <TextBlock Text="CANH BAO QUAN TRONG"
                                    Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                    Margin="0,0,0,12"
                                    FontWeight="Bold"
                                    Foreground="White"/>
-                        
+                                                
                         <TextBlock Foreground="White" TextWrapping="Wrap" Margin="0,0,0,8">
                             <Run Text="* "/>
                             <Run Text="Toan bo du lieu hien tai se bi ghi de" FontWeight="Bold"/>
                         </TextBlock>
-                        
+                                                
                         <TextBlock Foreground="White" TextWrapping="Wrap" Margin="0,0,0,8">
                             <Run Text="* "/>
                             <Run Text="Thao tac khong the hoan tac sau khi thuc hien" FontWeight="Bold"/>
                         </TextBlock>
-                        
+                                                
                         <TextBlock Foreground="White" TextWrapping="Wrap" Margin="0,0,0,8">
                             <Run Text="* "/>
                             <Run Text="Tat ca mat khau can duoc reset" FontWeight="Bold"/>
                         </TextBlock>
-                        
+                                                
                         <TextBlock Foreground="White" TextWrapping="Wrap">
                             <Run Text="* "/>
                             <Run Text="Khuyen nghi tao ban sao luu hien tai truoc khi tiep tuc" FontWeight="Bold"/>
                         </TextBlock>
                     </StackPanel>
                 </materialDesign:Card>
-
+                
                 <!-- Confirmation Checkbox -->
-                <CheckBox Name="chkConfirm" 
-                          Margin="0,0,0,24"
+                <CheckBox Name="chkConfirm"
+                           Margin="0,0,0,24"
                           Checked="ChkConfirm_Checked"
-                          Unchecked="ChkConfirm_Unchecked">
-                    <TextBlock TextWrapping="Wrap">
+                          Unchecked="ChkConfirm_Unchecked"
+                          Foreground="{DynamicResource MaterialDesignBody}">
+                    <TextBlock TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBody}">
                         <Run Text="Toi hieu rang thao tac nay se ghi de toan bo du lieu hien tai va khong the hoan tac. Toi da tao ban sao luu du lieu hien tai." FontWeight="Bold"/>
                     </TextBlock>
                 </CheckBox>
-
+                
                 <!-- Action Buttons -->
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -133,18 +149,21 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
+                    
                     <Button Grid.Column="1"
                             Name="btnCancel"
                             Content="HUY BO"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Margin="0,0,8,0"
                             Width="100"
                             Click="BtnCancel_Click"/>
-
+                    
                     <Button Grid.Column="2"
                             Name="btnConfirm"
                             Content="PHUC HOI"
                             Style="{StaticResource MaterialDesignRaisedButton}"
+                            Background="{DynamicResource ErrorBrush}"
+                            BorderBrush="{DynamicResource ErrorBrush}"
                             Width="100"
                             IsEnabled="False"
                             Click="BtnConfirm_Click"/>
