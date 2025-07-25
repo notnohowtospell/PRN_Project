@@ -1,10 +1,10 @@
 using System.Text.Json;
 using System.IO;
 using BusinessObjects.Models;
-using DataAccessObjects;
 using ProjectPRN.DTOs;
 using Microsoft.Win32;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjectPRN.Services
 {
@@ -18,15 +18,9 @@ namespace ProjectPRN.Services
 
     public class BackupRestoreService : IBackupRestoreService
     {
-        private readonly IStudentDAO _studentDAO;
-        private readonly IInstructorDAO _instructorDAO;
-        // Add other DAOs as needed
-
         public BackupRestoreService()
         {
-            _studentDAO = new StudentDAO();
-            _instructorDAO = new InstructorDAO();
-            // Initialize other DAOs
+            // No need to initialize DAOs, we'll use DbContext directly
         }
 
         public async Task<bool> BackupDataToJsonAsync(string filePath)
@@ -90,83 +84,145 @@ namespace ProjectPRN.Services
 
         public async Task<BackupData> CreateBackupDataAsync()
         {
+            using var context = new ApplicationDbContext();
+            
             var backupData = new BackupData
             {
                 BackupDate = DateTime.Now,
                 Version = "1.0"
             };
 
-            // Backup Students (without passwords)
-            var students = await _studentDAO.GetAllAsync();
-            backupData.Students = students.Select(s => new StudentBackupDto
+            try
             {
-                StudentId = s.StudentId,
-                StudentCode = s.StudentCode,
-                StudentName = s.StudentName,
-                Email = s.Email,
-                Status = s.Status,
-                PhoneNumber = s.PhoneNumber,
-                DateOfBirth = s.DateOfBirth,
-                AvatarPath = s.AvatarPath,
-                LastLogin = s.LastLogin
-            }).ToList();
+                // Backup Students (without passwords)
+                var students = await context.Students
+                    .Include(s => s.Enrollments)
+                    .Include(s => s.Certificates)
+                    .Include(s => s.AssessmentResults)
+                    .ToListAsync();
 
-            // Backup Instructors (without passwords)
-            var instructors = await _instructorDAO.GetAllAsync();
-            backupData.Instructors = instructors.Select(i => new InstructorBackupDto
+                backupData.Students = students.Select(s => new StudentBackupDto
+                {
+                    StudentId = s.StudentId,
+                    StudentCode = s.StudentCode,
+                    StudentName = s.StudentName,
+                    Email = s.Email,
+                    Status = s.Status,
+                    PhoneNumber = s.PhoneNumber,
+                    DateOfBirth = s.DateOfBirth,
+                    AvatarPath = s.AvatarPath,
+                    LastLogin = s.LastLogin
+                }).ToList();
+
+                // Backup Instructors (without passwords)
+                var instructors = await context.Instructors
+                    .Include(i => i.LifeSkillCourses)
+                    .ToListAsync();
+
+                backupData.Instructors = instructors.Select(i => new InstructorBackupDto
+                {
+                    InstructorId = i.InstructorId,
+                    InstructorName = i.InstructorName,
+                    Experience = i.Experience,
+                    Email = i.Email,
+                    PhoneNumber = i.PhoneNumber,
+                    LastLogin = i.LastLogin
+                }).ToList();
+
+                // Backup Courses
+                var courses = await context.LifeSkillCourses
+                    .Include(c => c.Instructor)
+                    .Include(c => c.Enrollments)
+                    .Include(c => c.Assessments)
+                    .ToListAsync();
+
+                backupData.Courses = courses.Select(c => new CourseBackupDto
+                {
+                    CourseId = c.CourseId,
+                    CourseName = c.CourseName,
+                    Description = c.Description,
+                    Price = c.Price,
+                    Status = c.Status,
+                    InstructorId = c.InstructorId
+                }).ToList();
+
+                return backupData;
+            }
+            catch (Exception ex)
             {
-                InstructorId = i.InstructorId,
-                InstructorName = i.InstructorName,
-                Experience = i.Experience,
-                Email = i.Email,
-                PhoneNumber = i.PhoneNumber,
-                LastLogin = i.LastLogin
-            }).ToList();
-
-            // Add backup for other entities (Courses, Enrollments, etc.)
-            // TODO: Implement backup for other entities
-
-            return backupData;
+                MessageBox.Show($"Error creating backup data: {ex.Message}", "Backup Error", 
+                              MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
+            }
         }
 
         public async Task<bool> RestoreFromBackupDataAsync(BackupData backupData)
         {
+            using var context = new ApplicationDbContext();
+
             try
             {
-                // Show confirmation dialog
-                var result = MessageBox.Show(
-                    $"This will restore data from backup created on {backupData.BackupDate:yyyy-MM-dd HH:mm:ss}.\n" +
-                    $"Students: {backupData.Students.Count}\n" +
-                    $"Instructors: {backupData.Instructors.Count}\n\n" +
-                    "This operation cannot be undone. Continue?",
-                    "Confirm Restore",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question);
+                // Clear existing data
+                context.Students.RemoveRange(context.Students);
+                context.Instructors.RemoveRange(context.Instructors);
+                context.LifeSkillCourses.RemoveRange(context.LifeSkillCourses);
+                await context.SaveChangesAsync();
 
-                if (result != MessageBoxResult.Yes)
-                    return false;
+                // Restore Students
+                var students = backupData.Students.Select(s => new BusinessObjects.Models.Student
+                {
+                    StudentId = s.StudentId,
+                    StudentCode = s.StudentCode,
+                    StudentName = s.StudentName,
+                    Email = s.Email,
+                    Status = s.Status,
+                    PhoneNumber = s.PhoneNumber,
+                    DateOfBirth = s.DateOfBirth,
+                    AvatarPath = s.AvatarPath,
+                    LastLogin = s.LastLogin
+                }).ToList();
 
-                // Note: In a real application, you might want to:
-                // 1. Create a backup of current data before restore
-                // 2. Use transactions to ensure data consistency
-                // 3. Handle ID conflicts (new vs existing records)
-                
-                // For now, we'll show a warning about the complexity
-                MessageBox.Show(
-                    "Note: Full restore functionality requires careful handling of:\n" +
-                    "- Primary key conflicts\n" +
-                    "- Foreign key relationships\n" +
-                    "- Password reset for restored accounts\n\n" +
-                    "Implementation should include proper transaction handling.",
-                    "Restore Implementation Note",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
+                await context.Students.AddRangeAsync(students);
 
+                // Restore Instructors
+                var instructors = backupData.Instructors.Select(i => new Instructor
+                {
+                    InstructorId = i.InstructorId,
+                    InstructorName = i.InstructorName,
+                    Experience = i.Experience,
+                    Email = i.Email,
+                    PhoneNumber = i.PhoneNumber,
+                    LastLogin = i.LastLogin
+                }).ToList();
+
+                await context.Instructors.AddRangeAsync(instructors);
+
+                // Restore Courses
+                foreach (var courseDto in backupData.Courses)
+                {
+                    // Find the instructor by name (since IDs might have changed)
+                    var instructorName = backupData.Instructors.FirstOrDefault(inst => inst.InstructorId == courseDto.InstructorId)?.InstructorName;
+                    var instructor = await context.Instructors
+                        .FirstOrDefaultAsync(i => i.InstructorName == instructorName);
+
+                    var course = new LifeSkillCourse
+                    {
+                        // Don't set CourseId, let it auto-increment
+                        CourseName = courseDto.CourseName,
+                        InstructorId = instructor?.InstructorId ?? 1, // Default to first instructor if not found
+                        Description = courseDto.Description,
+                        Price = courseDto.Price,
+                        Status = courseDto.Status ?? "?ang m?"
+                    };
+                    context.LifeSkillCourses.Add(course);
+                }
+
+                await context.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Restore failed: {ex.Message}", "Restore Error", 
+                MessageBox.Show($"Error restoring data: {ex.Message}", "Restore Error", 
                               MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }

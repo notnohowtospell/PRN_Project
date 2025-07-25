@@ -1,0 +1,343 @@
+﻿<Window x:Class="ProjectPRN.Admin.BackupRestore.BackupRestoreView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Backup and Restore Data - Life Skill Course Management System"
+        Height="800"
+        Width="1000"
+        MinHeight="600"
+        MinWidth="800"
+        WindowStartupLocation="CenterScreen">
+
+    <materialDesign:DialogHost Identifier="BackupRestoreDialog">
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <materialDesign:Card Grid.Row="0" Margin="0,0,0,16" Padding="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Sao lưu và phục hồi" 
+                                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="Tạo bản sao lưu và phục hổi dữ liệu từ file JSON"
+                                   Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                   Opacity="0.7"/>
+                    </StackPanel>
+
+                    <materialDesign:PackIcon Grid.Column="1"
+                                           Kind="Database"
+                                           Width="48"
+                                           Height="48"
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                </Grid>
+            </materialDesign:Card>
+
+            <!-- Action Cards -->
+            <Grid Grid.Row="1" Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Backup Card -->
+                <materialDesign:Card Grid.Column="0" Padding="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <materialDesign:PackIcon Grid.Row="0"
+                                               Kind="CloudUpload"
+                                               Width="40"
+                                               Height="40"
+                                               HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                               Margin="0,0,0,16"/>
+
+                        <TextBlock Grid.Row="1"
+                                   Text="Sao lưu dữ liệu"
+                                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,8"/>
+
+                        <TextBlock Grid.Row="2"
+                                   Text="Tao file backup chua toan bo du lieu he thong"
+                                   Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   Opacity="0.7"
+                                   Margin="0,0,0,20"/>
+
+                        <Button Grid.Row="3"
+                                Name="btnCreateBackup"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                materialDesign:ButtonAssist.CornerRadius="20"
+                                Height="40"
+                                Padding="20,0"
+                                HorizontalAlignment="Center"
+                                Click="BtnCreateBackup_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="ContentSave" 
+                                                       VerticalAlignment="Center" 
+                                                       Margin="0,0,8,0"/>
+                                <TextBlock Text="TAO SAO LUU" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </materialDesign:Card>
+
+                <!-- Restore Card -->
+                <materialDesign:Card Grid.Column="2" Padding="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <materialDesign:PackIcon Grid.Row="0"
+                                               Kind="CloudDownload"
+                                               Width="40"
+                                               Height="40"
+                                               HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SecondaryHueMidBrush}"
+                                               Margin="0,0,0,16"/>
+
+                        <TextBlock Grid.Row="1"
+                                   Text="Phục hồi dữ liệu"
+                                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,8"/>
+
+                        <TextBlock Grid.Row="2"
+                                   Text="Khoi phuc du lieu he thong tu file backup JSON"
+                                   Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   Opacity="0.7"
+                                   Margin="0,0,0,20"/>
+
+                        <Button Grid.Row="3"
+                                Name="btnRestoreData"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                materialDesign:ButtonAssist.CornerRadius="20"
+                                Height="40"
+                                Padding="20,0"
+                                HorizontalAlignment="Center"
+                                Background="{DynamicResource SecondaryHueMidBrush}"
+                                BorderBrush="{DynamicResource SecondaryHueMidBrush}"
+                                Click="BtnRestoreData_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Restore" 
+                                                       VerticalAlignment="Center" 
+                                                       Margin="0,0,8,0"/>
+                                <TextBlock Text="PHUC HOI DU LIEU" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+
+            <!-- Backup History and Information -->
+            <materialDesign:Card Grid.Row="2" Padding="16">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- History Header -->
+                    <Grid Grid.Row="0" Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Thông tin hệ thống"
+                                       Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock Text="Thống kê dữ liệu trong hệ thống"
+                                       Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                       Opacity="0.7"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="1"
+                                Name="btnRefreshStats"
+                                Style="{StaticResource MaterialDesignIconButton}"
+                                ToolTip="Lam moi thong ke"
+                                Click="BtnRefreshStats_Click">
+                            <materialDesign:PackIcon Kind="Refresh"/>
+                        </Button>
+                    </Grid>
+
+                    <!-- Statistics Cards -->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Stats Summary -->
+                        <UniformGrid Grid.Row="0" Columns="4" Margin="0,0,0,16">
+                            <!-- Students Count -->
+                            <materialDesign:Card Margin="0,0,8,0" Padding="16">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
+                                        <materialDesign:PackIcon Kind="School" 
+                                                               Width="24" Height="24"
+                                                               Foreground="{DynamicResource PrimaryHueMidBrush}"
+                                                               VerticalAlignment="Center"
+                                                               Margin="0,0,8,0"/>
+                                        <TextBlock Text="Học viên"
+                                                   Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <TextBlock Name="txtStudentCount"
+                                               Text="0"
+                                               Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                                               HorizontalAlignment="Center"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                </StackPanel>
+                            </materialDesign:Card>
+
+                            <!-- Instructors Count -->
+                            <materialDesign:Card Margin="0,0,8,0" Padding="16">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
+                                        <materialDesign:PackIcon Kind="AccountTie" 
+                                                               Width="24" Height="24"
+                                                               Foreground="{DynamicResource SecondaryHueMidBrush}"
+                                                               VerticalAlignment="Center"
+                                                               Margin="0,0,8,0"/>
+                                        <TextBlock Text="Giảng viên"
+                                                   Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <TextBlock Name="txtInstructorCount"
+                                               Text="0"
+                                               Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                                               HorizontalAlignment="Center"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource SecondaryHueMidBrush}"/>
+                                </StackPanel>
+                            </materialDesign:Card>
+
+                            <!-- Courses Count -->
+                            <materialDesign:Card Margin="0,0,8,0" Padding="16">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
+                                        <materialDesign:PackIcon Kind="BookOpenPageVariant" 
+                                                               Width="24" Height="24"
+                                                               Foreground="Orange"
+                                                               VerticalAlignment="Center"
+                                                               Margin="0,0,8,0"/>
+                                        <TextBlock Text="Khoá học"
+                                                   Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <TextBlock Name="txtCourseCount"
+                                               Text="0"
+                                               Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                                               HorizontalAlignment="Center"
+                                               FontWeight="Bold"
+                                               Foreground="Orange"/>
+                                </StackPanel>
+                            </materialDesign:Card>
+
+                            <!-- Enrollments Count -->
+                            <materialDesign:Card Padding="16">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
+                                        <materialDesign:PackIcon Kind="ClipboardList" 
+                                                               Width="24" Height="24"
+                                                               Foreground="Green"
+                                                               VerticalAlignment="Center"
+                                                               Margin="0,0,8,0"/>
+                                        <TextBlock Text="Đăng ký"
+                                                   Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <TextBlock Name="txtEnrollmentCount"
+                                               Text="0"
+                                               Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                                               HorizontalAlignment="Center"
+                                               FontWeight="Bold"
+                                               Foreground="Green"/>
+                                </StackPanel>
+                            </materialDesign:Card>
+                        </UniformGrid>
+
+                        <!-- Instructions -->
+                        <materialDesign:Card Grid.Row="1" Background="{DynamicResource MaterialDesignSelection}" Padding="16">
+                            <StackPanel>
+
+                                <TextBlock Margin="0,0,0,8"><Run Text="* "/><Run Text=" "/><Run Text="Sao luu du lieu:" FontWeight="Bold"/><Run Text=" "/><Run Text=" Tao file JSON chua toan bo du lieu he thong"/></TextBlock>
+
+                                <TextBlock Margin="0,0,0,8"><Run Text="* "/><Run Text=" "/><Run Text="Phuc hoi du lieu:" FontWeight="Bold"/><Run Text=" "/><Run Text=" Khoi phuc du lieu tu file backup JSON"/></TextBlock>
+
+                                <TextBlock Margin="0,0,0,8"><Run Text="* "/><Run Text=" "/><Run Text="Luu y quan trong:" FontWeight="Bold"/><Run Text=" "/><Run Text=" Mat khau khong duoc bao gom trong file backup"/></TextBlock>
+
+                                <TextBlock><Run Text="* "/><Run Text=" "/><Run Text="Khuyen nghi:" FontWeight="Bold"/><Run Text=" "/><Run Text=" Thuc hien sao luu dinh ky de dam bao an toan du lieu"/></TextBlock>
+                            </StackPanel>
+                        </materialDesign:Card>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+
+            <!-- Status Bar -->
+            <materialDesign:Card Grid.Row="3" Margin="0,16,0,0" Padding="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <materialDesign:PackIcon Name="iconStatus"
+                                               Kind="Information"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,8,0"/>
+                        <TextBlock Name="txtStatus"
+                                   Text="Sẵn sàng thực hiện sao lưu hoặc phục hồi dữ liệu."
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Column="1"
+                               Name="txtLastUpdate"
+                               Text=""
+                               VerticalAlignment="Center"
+                               Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                               Opacity="0.7"/>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </materialDesign:DialogHost>
+</Window>
