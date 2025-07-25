@@ -23,6 +23,7 @@
                 <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding EndDate, StringFormat=\{0:dd/MM/yyyy\}}" Width="120" />
                 <DataGridTextColumn Header="Giá" Binding="{Binding Price}" Width="100" />
                 <DataGridTextColumn Header="Trạng thái khóa học" Binding="{Binding Status}" Width="150" />
+                <DataGridTextColumn Header="Trạng thái đăng ký" Binding="{Binding PaymentStatusDisplay}" Width="150" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

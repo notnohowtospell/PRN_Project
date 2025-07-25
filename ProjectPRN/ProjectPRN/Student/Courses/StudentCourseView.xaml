@@ -54,7 +54,7 @@
                                 Click="BtnMyEnrollments_Click">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="BookOpen" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                                <TextBlock Text="KHÓA HỌC CỦA TÔI" VerticalAlignment="Center"/>
+                                <TextBlock Text="KHÓA HỌC ĐÃ ĐĂNG KÍ" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
 
@@ -165,8 +165,8 @@
                                             Binding="{Binding Price, StringFormat=N0}" 
                                             Width="120"/>
 
-                        <DataGridTextColumn Header="Số chỗ còn lại" 
-                                            Width="120">
+                        <DataGridTextColumn Header="Số người đăng kí" 
+                                            Width="130">
                             <DataGridTextColumn.Binding>
                                 <MultiBinding StringFormat="{}{0}/{1}">
                                     <Binding Path="CurrentEnrollments"/>
