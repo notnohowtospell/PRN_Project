@@ -1,6 +1,4 @@
-using System;
 using System.Windows;
-using ProjectPRN.Admin.BackupRestore;
 
 namespace ProjectPRN
 {
@@ -11,12 +9,12 @@ namespace ProjectPRN
         {
             try
             {
-                var backupWindow = new BackupRestoreView();
-                backupWindow.Show();
+                //var backupWindow = new BackupRestoreView();
+                //backupWindow.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Loi khi mo Backup/Restore window: {ex.Message}", "Loi", 
+                MessageBox.Show($"Loi khi mo Backup/Restore window: {ex.Message}", "Loi",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

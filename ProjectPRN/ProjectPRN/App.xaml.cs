@@ -1,16 +1,6 @@
 ﻿using System.Windows;
-using BusinessObjects.Models;
 using DataAccessObjects;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using ProjectPRN.Admin.BackupRestore;
-using ProjectPRN.Admin.CourseManagement;
-using ProjectPRN.Search;
-using ProjectPRN.Student;
 using ProjectPRN.Utils;
-using Repositories;
-using Repositories.Interfaces;
 
 namespace ProjectPRN
 {
@@ -26,42 +16,12 @@ namespace ProjectPRN
             // Prevent automatic shutdown when windows are closed
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-            var services = new ServiceCollection();
-            var connectionString = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .Build()
-            .GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString), ServiceLifetime.Transient);
-
-            //// Register DAOs
-            services.AddScoped<ILifeSkillCourseDAO, LifeSkillCourseDAO>();
-            services.AddScoped<IInstructorDAO, InstructorDAO>();
-            //services.AddScoped<IStudentDAO, StudentDAO>();
-            //services.AddScoped<IEnrollmentDAO, EnrollmentDAO>();
-            //services.AddScoped<IPaymentDAO, PaymentDAO>();
-
-            //// Register Repositories
-            services.AddScoped<ILifeSkillCourseRepository, LifeSkillCourseRepository>();
-            services.AddScoped<IInstructorRepository, InstructorRepository>();
-            //services.AddScoped<IStudentRepository, StudentRepository>();
-            //services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
-            //services.AddScoped<IPaymentRepository, PaymentRepository>();
-
-            services.AddTransient<CourseManagementView>();
-            services.AddTransient<CourseSearchWindow>();
-            //services.AddTransient<StudentCourseView>();
-
-            ServiceProvider = services.BuildServiceProvider();
-
             base.OnStartup(e);
-
-
         }
 
 
 
- 
+
         protected override async void OnExit(ExitEventArgs e)
         {
             // Save application state when exiting

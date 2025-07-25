@@ -5,14 +5,12 @@ using System.Windows;
 using System.Windows.Controls;
 using BusinessObjects.Models;
 using MaterialDesignThemes.Wpf;
-using Repositories.Interfaces;
 
 namespace ProjectPRN.Admin.CourseManagement
 {
     public partial class CourseManagementView : Window, INotifyPropertyChanged
     {
-        private readonly IInstructorRepository _instructorRepository;
-        private readonly ILifeSkillCourseRepository _lifeSkillCourseRepository;
+        private readonly ApplicationDbContext _context;
 
         public ObservableCollection<LifeSkillCourse> FilteredCourses { get; set; }
 
@@ -38,27 +36,26 @@ namespace ProjectPRN.Admin.CourseManagement
             }
         }
 
-        public CourseManagementView(ILifeSkillCourseRepository lifeSkillCourseRepository, IInstructorRepository instructorRepository)
+        public CourseManagementView()
         {
             InitializeComponent();
-            _lifeSkillCourseRepository = lifeSkillCourseRepository;
-            _instructorRepository = instructorRepository;
+            _context = new ApplicationDbContext();
 
             FilteredCourses = new ObservableCollection<LifeSkillCourse>();
 
-            _ = InitializeDataAsync();
+            InitializeData();
         }
 
         #region Data Loading
-        private async Task InitializeDataAsync()
+        private void InitializeData()
         {
             try
             {
                 IsLoading = true;
                 txtStatus.Text = "Đang tải dữ liệu...";
 
-                await LoadInstructorsAsync();
-                await LoadDataAsync();
+                LoadInstructors();
+                LoadData();
                 UpdateUI();
 
                 txtStatus.Text = "Sẵn sàng";
@@ -75,12 +72,18 @@ namespace ProjectPRN.Admin.CourseManagement
             }
         }
 
-        private async Task LoadDataAsync()
+        private void LoadData()
         {
             try
             {
-                var gotCourses = await _lifeSkillCourseRepository.GetAllAsync();
+                var gotCourses = _context.LifeSkillCourses.ToList();
                 dgCourses.ItemsSource = gotCourses;
+
+                FilteredCourses.Clear();
+                foreach (var course in gotCourses)
+                {
+                    FilteredCourses.Add(course);
+                }
             }
             catch (Exception ex)
             {
@@ -88,11 +91,11 @@ namespace ProjectPRN.Admin.CourseManagement
             }
         }
 
-        private async Task LoadInstructorsAsync()
+        private void LoadInstructors()
         {
             try
             {
-                var instructors = await _instructorRepository.GetAllAsync();
+                var instructors = _context.Instructors.ToList();
 
                 cmbInstructorFilter.Items.Clear();
                 cmbInstructorFilter.Items.Add(new ComboBoxItem { Content = "Tất cả giảng viên", Tag = -1 });
@@ -114,14 +117,14 @@ namespace ProjectPRN.Admin.CourseManagement
             }
         }
 
-        private async Task RefreshDataAsync()
+        private void RefreshData()
         {
             try
             {
                 IsLoading = true;
                 txtStatus.Text = "Đang làm mới dữ liệu...";
 
-                await LoadDataAsync();
+                LoadData();
                 UpdateUI();
 
                 txtStatus.Text = "Đã làm mới dữ liệu thành công";
@@ -140,13 +143,13 @@ namespace ProjectPRN.Admin.CourseManagement
         #endregion
 
         #region Event Handlers
-        private async void BtnAddCourse_Click(object sender, RoutedEventArgs e)
+        private void BtnAddCourse_Click(object sender, RoutedEventArgs e)
         {
             if (IsLoading) return;
-            await ShowCourseDialogAsync(null);
+            ShowCourseDialog(null);
         }
 
-        private async void BtnEdit_Click(object sender, RoutedEventArgs e)
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             if (IsLoading) return;
 
@@ -155,10 +158,10 @@ namespace ProjectPRN.Admin.CourseManagement
             {
                 try
                 {
-                    var course = await _lifeSkillCourseRepository.GetByIdAsync(courseId);
+                    var course = _context.LifeSkillCourses.FirstOrDefault(c => c.CourseId == courseId);
                     if (course != null)
                     {
-                        await ShowCourseDialogAsync(course);
+                        ShowCourseDialog(course);
                     }
                     else
                     {
@@ -181,16 +184,16 @@ namespace ProjectPRN.Admin.CourseManagement
             var button = sender as Button;
             if (button?.Tag is int courseId)
             {
-                var course = await _lifeSkillCourseRepository.GetByIdAsync(courseId);
+                var course = _context.LifeSkillCourses.FirstOrDefault(c => c.CourseId == courseId);
                 if (course != null)
                 {
-                    var result = await ShowConfirmDialogAsync(
+                    var result = await ShowConfirmDialog(
                         "Xác nhận xóa",
                         $"Bạn có chắc chắn muốn xóa khóa học '{course.CourseName}'?\nHành động này không thể hoàn tác.");
 
                     if (result)
                     {
-                        await DeleteCourseAsync(course);
+                        DeleteCourse(course);
                     }
                 }
             }
@@ -218,17 +221,17 @@ namespace ProjectPRN.Admin.CourseManagement
         #endregion
 
         #region CRUD Operations
-        private async Task CreateCourseAsync(LifeSkillCourse course)
+        private void CreateCourse(LifeSkillCourse course)
         {
             try
             {
                 IsLoading = true;
                 txtStatus.Text = "Đang tạo khóa học...";
 
-                await _lifeSkillCourseRepository.AddAsync(course);
-                await _lifeSkillCourseRepository.SaveChangesAsync();
+                _context.LifeSkillCourses.Add(course);
+                _context.SaveChanges();
 
-                await RefreshDataAsync();
+                RefreshData();
 
                 txtStatus.Text = $"Đã tạo khóa học '{course.CourseName}' thành công.";
             }
@@ -244,17 +247,27 @@ namespace ProjectPRN.Admin.CourseManagement
             }
         }
 
-        private async Task UpdateCourseAsync(LifeSkillCourse updatedCourse)
+        private void UpdateCourse(LifeSkillCourse updatedCourse)
         {
             try
             {
                 IsLoading = true;
                 txtStatus.Text = "Đang cập nhật khóa học...";
 
-                await _lifeSkillCourseRepository.UpdateAsync(updatedCourse);
-                await _lifeSkillCourseRepository.SaveChangesAsync();
+                var existingCourse = _context.LifeSkillCourses.FirstOrDefault(c => c.CourseId == updatedCourse.CourseId);
+                if (existingCourse != null)
+                {
+                    // Update properties
+                    existingCourse.CourseName = updatedCourse.CourseName;
+                    existingCourse.Description = updatedCourse.Description;
+                    existingCourse.InstructorId = updatedCourse.InstructorId;
+                    existingCourse.Status = updatedCourse.Status;
+                    // Add other properties as needed
 
-                await RefreshDataAsync();
+                    _context.SaveChanges();
+                }
+
+                RefreshData();
 
                 txtStatus.Text = $"Đã cập nhật khóa học '{updatedCourse.CourseName}' thành công.";
             }
@@ -270,7 +283,7 @@ namespace ProjectPRN.Admin.CourseManagement
             }
         }
 
-        private async Task DeleteCourseAsync(LifeSkillCourse course)
+        private void DeleteCourse(LifeSkillCourse course)
         {
             try
             {
@@ -279,10 +292,10 @@ namespace ProjectPRN.Admin.CourseManagement
 
                 var courseName = course?.CourseName ?? "Unknown";
 
-                await _lifeSkillCourseRepository.DeleteAsync(course.CourseId);
-                await _lifeSkillCourseRepository.SaveChangesAsync();
+                _context.LifeSkillCourses.Remove(course);
+                _context.SaveChanges();
 
-                await RefreshDataAsync();
+                RefreshData();
 
                 txtStatus.Text = $"Đã xóa khóa học '{courseName}' thành công.";
             }
@@ -302,7 +315,7 @@ namespace ProjectPRN.Admin.CourseManagement
         #region Filtering and UI Updates
         private void ApplyFilter()
         {
-            var filtered = _lifeSkillCourseRepository.GetAll().AsEnumerable();
+            var filtered = _context.LifeSkillCourses.ToList().AsEnumerable();
 
             // Search filter
             if (!string.IsNullOrWhiteSpace(txtSearch?.Text))
@@ -353,22 +366,22 @@ namespace ProjectPRN.Admin.CourseManagement
         #endregion
 
         #region Dialog Methods
-        private async Task ShowCourseDialogAsync(LifeSkillCourse courseToEdit)
+        private async void ShowCourseDialog(LifeSkillCourse courseToEdit)
         {
             try
             {
-                var dialog = new CourseEditDialog(courseToEdit, _instructorRepository.GetAll().ToList());
+                var dialog = new CourseEditDialog(courseToEdit, _context.Instructors.ToList());
                 var result = await DialogHost.Show(dialog, "RootDialog");
 
                 if (result is LifeSkillCourse course)
                 {
                     if (courseToEdit == null)
                     {
-                        await CreateCourseAsync(course);
+                        CreateCourse(course);
                     }
                     else
                     {
-                        await UpdateCourseAsync(course);
+                        UpdateCourse(course);
                     }
                 }
             }
@@ -379,7 +392,7 @@ namespace ProjectPRN.Admin.CourseManagement
             }
         }
 
-        private async Task<bool> ShowConfirmDialogAsync(string title, string message)
+        private async Task<bool> ShowConfirmDialog(string title, string message)
         {
             try
             {
@@ -397,63 +410,10 @@ namespace ProjectPRN.Admin.CourseManagement
         #endregion
 
         #region Public Methods
-        public async Task RefreshAsync()
+        public void Refresh()
         {
-            await RefreshDataAsync();
+            RefreshData();
         }
-
-        //public async Task LoadCoursesByStatusAsync(string status)
-        //{
-        //    try
-        //    {
-        //        IsLoading = true;
-        //        txtStatus.Text = $"Đang tải khóa học với trạng thái '{status}'...";
-
-        //        var courses = await _lifeSkillCourseRepository.GetByStatusAsync(status);
-
-        //        ApplyFilter();
-        //        UpdateUI();
-
-        //        txtStatus.Text = $"Đã tải {courses.Count()} khóa học với trạng thái '{status}'";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        txtStatus.Text = $"Lỗi khi tải khóa học theo trạng thái: {ex.Message}";
-        //        MessageBox.Show($"Không thể tải khóa học theo trạng thái: {ex.Message}", "Lỗi",
-        //                       MessageBoxButton.OK, MessageBoxImage.Error);
-        //    }
-        //    finally
-        //    {
-        //        IsLoading = false;
-        //    }
-        //}
-
-        //public async Task LoadCoursesByInstructorAsync(int instructorId)
-        //{
-        //    try
-        //    {
-        //        IsLoading = true;
-        //        txtStatus.Text = "Đang tải khóa học theo giảng viên...";
-
-        //        var courses = await _lifeSkillCourseRepository.GetByInstructorAsync(instructorId);
-
-        //        ApplyFilter();
-        //        UpdateUI();
-
-        //        var instructor = Instructors.FirstOrDefault(i => i.InstructorId == instructorId);
-        //        txtStatus.Text = $"Đã tải {courses.Count()} khóa học của giảng viên '{instructor?.InstructorName}'";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        txtStatus.Text = $"Lỗi khi tải khóa học theo giảng viên: {ex.Message}";
-        //        MessageBox.Show($"Không thể tải khóa học theo giảng viên: {ex.Message}", "Lỗi",
-        //                       MessageBoxButton.OK, MessageBoxImage.Error);
-        //    }
-        //    finally
-        //    {
-        //        IsLoading = false;
-        //    }
-        //}
         #endregion
 
         #region INotifyPropertyChanged
@@ -463,14 +423,21 @@ namespace ProjectPRN.Admin.CourseManagement
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         #endregion
 
         private void BtnClearFilters_Click(object sender, RoutedEventArgs e)
         {
             txtSearch.Clear();
             cmbInstructorFilter.SelectedIndex = 0;
+            cmbStatusFilter.SelectedIndex = 0;
             ApplyFilter();
+        }
+
+        // Dispose pattern to properly dispose of DbContext
+        protected override void OnClosed(EventArgs e)
+        {
+            _context?.Dispose();
+            base.OnClosed(e);
         }
     }
 }
