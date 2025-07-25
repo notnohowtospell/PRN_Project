@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -48,7 +48,7 @@ namespace ProjectPRN.Admin.StudentProgressManagement
             try
             {
                 IsLoading = true;
-                txtStatus.Text = "?ang t?i danh s�ch h?c sinh...";
+                txtStatus.Text = "Đang tải danh sách học sinh...";
 
                 var students = await _studentDAO.GetAllAsync();
                 _allStudents.Clear();
@@ -61,12 +61,12 @@ namespace ProjectPRN.Admin.StudentProgressManagement
 
                 ApplyFilter();
                 UpdateStatusBar();
-                txtStatus.Text = "?� t?i d? li?u th�nh c�ng";
+                txtStatus.Text = "Đã tải dữ liệu thành công";
             }
             catch (Exception ex)
             {
-                txtStatus.Text = $"L?i: {ex.Message}";
-                MessageBox.Show($"Kh�ng th? t?i d? li?u: {ex.Message}", "L?i", 
+                txtStatus.Text = $"Lỗi: {ex.Message}";
+                MessageBox.Show($"Không thể tải dữ liệu: {ex.Message}", "Lỗi", 
                               MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
@@ -134,8 +134,8 @@ namespace ProjectPRN.Admin.StudentProgressManagement
 
         private void UpdateStatusBar()
         {
-            txtRecordCount.Text = $"T?ng s? h?c sinh: {_filteredStudents.Count}/{_allStudents.Count}";
-            txtLastUpdated.Text = $"C?p nh?t: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
+            txtRecordCount.Text = $"Tổng số học sinh: {_filteredStudents.Count}/{_allStudents.Count}";
+            txtLastUpdated.Text = $"Cập nhật: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
         }
 
         #region Event Handlers
@@ -151,7 +151,7 @@ namespace ProjectPRN.Admin.StudentProgressManagement
 
         private void BtnExport_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ch?c n?ng xu?t Excel s? ???c tri?n khai", "Th�ng b�o", 
+            MessageBox.Show("Chức năng xuất Excel sẽ được triển khai", "Thông báo", 
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

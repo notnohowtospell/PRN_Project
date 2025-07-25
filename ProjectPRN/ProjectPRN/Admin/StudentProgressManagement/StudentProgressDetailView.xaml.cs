@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -43,8 +43,8 @@ namespace ProjectPRN.Admin.StudentProgressManagement
 
         private void InitializeDisplay()
         {
-            txtStudentName.Text = $"Chi Ti?t Ti?n Tr�nh - {_student.StudentName}";
-            txtStudentInfo.Text = $"M� SV: {_student.StudentCode} | Email: {_student.Email} | Tr?ng th�i: {_student.Status}";
+            txtStudentName.Text = $"Chi Tiết Tiến Trình - {_student.StudentName}";
+            txtStudentInfo.Text = $"Mã SV: {_student.StudentCode} | Email: {_student.Email} | Trạng thái: {_student.Status}";
             
             // Update summary from existing data
             txtTotalCourses.Text = _student.TotalCourses.ToString();
@@ -58,7 +58,7 @@ namespace ProjectPRN.Admin.StudentProgressManagement
             try
             {
                 IsLoading = true;
-                txtStatus.Text = "?ang t?i chi ti?t ti?n tr�nh...";
+                txtStatus.Text = "Đang tải chi tiết tiến trình...";
 
                 var progressList = await CourseProgressService.CalculateAllProgressAsync(_student.StudentId);
                 
@@ -75,8 +75,8 @@ namespace ProjectPRN.Admin.StudentProgressManagement
                         ProgressPercentage = progress.ProgressPercentage,
                         ProgressPercentageText = $"{progress.ProgressPercentage:F1}%",
                         IsCompleted = progress.IsCompleted,
-                        StatusText = progress.IsCompleted ? "?� ho�n th�nh" : 
-                                   progress.ProgressPercentage > 0 ? "?ang h?c" : "Ch?a b?t ??u",
+                        StatusText = progress.IsCompleted ? "Đã hoàn thành" : 
+                                   progress.ProgressPercentage > 0 ? "Đang học" : "Chưa bắt đầu",
                         CompletionDate = progress.CompletionDate,
                         CompletionDateText = progress.CompletionDate?.ToString("dd/MM/yyyy") ?? "N/A"
                     };
@@ -93,13 +93,13 @@ namespace ProjectPRN.Admin.StudentProgressManagement
                 txtCompletedCourses.Text = completedCourses.ToString();
                 txtInProgressCourses.Text = inProgressCourses.ToString();
 
-                txtStatus.Text = "?� t?i d? li?u th�nh c�ng";
-                txtLastUpdated.Text = $"C?p nh?t: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
+                txtStatus.Text = "Đã tải dữ liệu thành công";
+                txtLastUpdated.Text = $"Cập nhật: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
             }
             catch (Exception ex)
             {
-                txtStatus.Text = $"L?i: {ex.Message}";
-                MessageBox.Show($"Kh�ng th? t?i chi ti?t ti?n tr�nh: {ex.Message}", "L?i", 
+                txtStatus.Text = $"Lỗi: {ex.Message}";
+                MessageBox.Show($"Không thể tải chi tiết tiến trình: {ex.Message}", "Lỗi", 
                               MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
