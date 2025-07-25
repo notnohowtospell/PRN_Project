@@ -91,9 +91,9 @@ namespace ProjectPRN.Admin.InstructorManagement
                     Email = instructor.Email,
                     PhoneNumber = instructor.PhoneNumber,
                     Experience = instructor.Experience,
-                    LastLogin = instructor.LastLogin,
+                    //LastLogin = instructor.LastLogin,
                     CourseCount = instructor.LifeSkillCourses?.Count ?? 0,
-                    Password = instructor.Password
+                    //Password = instructor.Password
                 });
             }
 
@@ -197,8 +197,8 @@ namespace ProjectPRN.Admin.InstructorManagement
                     Email = instructorViewModel.Email,
                     PhoneNumber = instructorViewModel.PhoneNumber,
                     Experience = instructorViewModel.Experience,
-                    Password = instructorViewModel.Password ?? "DefaultPassword123!",
-                    LastLogin = null
+                    //Password = instructorViewModel.Password ?? "DefaultPassword123!",
+                    //LastLogin = null
                 };
 
                 await _context.Instructors.AddAsync(instructor);
@@ -241,7 +241,7 @@ namespace ProjectPRN.Admin.InstructorManagement
                     // Only update password if it's provided
                     if (!string.IsNullOrWhiteSpace(instructorViewModel.Password))
                     {
-                        instructor.Password = PasswordHasher.HashPassword(instructorViewModel.Password);
+                        //instructor.Password = PasswordHasher.HashPassword(instructorViewModel.Password);
                     }
 
                     await _context.SaveChangesAsync();
@@ -358,9 +358,9 @@ namespace ProjectPRN.Admin.InstructorManagement
                     Email = instructor.Email,
                     PhoneNumber = instructor.PhoneNumber,
                     Experience = instructor.Experience,
-                    LastLogin = instructor.LastLogin,
+                    //LastLogin = instructor.LastLogin,
                     CourseCount = instructor.LifeSkillCourses?.Count ?? 0,
-                    Password = instructor.Password
+                    //Password = instructor.Password
                 });
             }
 

@@ -95,8 +95,10 @@ namespace ProjectPRN.Admin.CourseManagement
         {
             try
             {
-                var instructors = _context.Instructors.ToList();
+                MessageBox.Show("Start load instructor");
 
+                var instructors = _context.Instructors.ToList();
+                MessageBox.Show("Instructor loaded");
                 cmbInstructorFilter.Items.Clear();
                 cmbInstructorFilter.Items.Add(new ComboBoxItem { Content = "Tất cả giảng viên", Tag = -1 });
 

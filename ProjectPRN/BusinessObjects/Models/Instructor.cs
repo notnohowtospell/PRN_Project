@@ -12,9 +12,6 @@ public partial class Instructor
 
     public string? PhoneNumber { get; set; }
 
-    public string Password { get; set; } = null!;
-
-    public DateTime? LastLogin { get; set; }
 
     public virtual ICollection<LifeSkillCourse> LifeSkillCourses { get; set; } = new List<LifeSkillCourse>();
 }

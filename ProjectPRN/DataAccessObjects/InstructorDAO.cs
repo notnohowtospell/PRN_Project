@@ -53,8 +53,8 @@ public class InstructorDAO : IInstructorDAO
             existing.PhoneNumber = entity.PhoneNumber;
             existing.Email = entity.Email;
             existing.Experience = entity.Experience;
-            existing.Password = entity.Password;
-            existing.LastLogin = entity.LastLogin;
+            //existing.Password = entity.Password;
+            //existing.LastLogin = entity.LastLogin;
             await _context.SaveChangesAsync();
         }
     }

@@ -183,11 +183,11 @@ namespace ProjectPRN
                 }
 
                 // Verify password
-                bool isPasswordValid = PasswordHasher.VerifyPassword(password, instructor.Password);
-                if (!isPasswordValid)
-                {
-                    return false;
-                }
+                //bool isPasswordValid = PasswordHasher.VerifyPassword(password, instructor.Password);
+                //if (!isPasswordValid)
+                //{
+                //    return false;
+                //}
 
                 // Successful instructor login
                 await CompleteInstructorLogin(instructor, rememberMe);
@@ -242,7 +242,7 @@ namespace ProjectPRN
             try
             {
                 // Update last login time
-                instructor.LastLogin = DateTime.Now;
+                //instructor.LastLogin = DateTime.Now;
                 await _instructorDAO.UpdateAsync(instructor);
 
                 // Set session as Instructor

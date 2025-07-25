@@ -1,14 +1,22 @@
+using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using BusinessObjects.Models;
+using MaterialDesignThemes.Wpf;
+using Repositories.Interfaces;
+using Repositories;
 using DataAccessObjects;
+using ProjectPRN.Admin.BackupRestore;
 using ProjectPRN.Admin.CourseManagement;
 using ProjectPRN.Admin.InstructorManagement;
 using ProjectPRN.Search;
-using Repositories;
-using Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using ProjectPRN.Utils;
 
 namespace ProjectPRN.Admin
 {
@@ -90,17 +98,45 @@ namespace ProjectPRN.Admin
                 txtTotalCourses.Text = allCourses.Count().ToString();
                 txtTotalUsers.Text = (allInstructors.Count() + allStudents.Count()).ToString();
 
-                // Simple counts without complex calculations for now
-                // txtActiveEnrollments.Text = activeEnrollments.ToString();
-                // txtRevenue.Text = $"{revenue:C0}";
+                // Load rating statistics
+                await LoadRatingStatistics();
             }
             catch (Exception)
             {
                 // Handle errors by showing default values
                 txtTotalCourses.Text = "0";
                 txtTotalUsers.Text = "0";
-                // txtActiveEnrollments.Text = "0";
-                // txtRevenue.Text = "$0";
+                txtTotalRatings.Text = "0";
+                txtAverageRating.Text = "0.0/5";
+            }
+        }
+
+        private async Task LoadRatingStatistics()
+        {
+            try
+            {
+                using var context = new ApplicationDbContext();
+
+                // Load all feedbacks
+                var allFeedbacks = await context.Feedbacks.ToListAsync();
+
+                txtTotalRatings.Text = allFeedbacks.Count.ToString();
+
+                if (allFeedbacks.Any())
+                {
+                    var averageRating = allFeedbacks.Average(f => f.Rating);
+                    txtAverageRating.Text = $"{averageRating:F1}/5";
+                }
+                else
+                {
+                    txtAverageRating.Text = "0.0/5";
+                }
+            }
+            catch (Exception ex)
+            {
+                txtTotalRatings.Text = "0";
+                txtAverageRating.Text = "0.0/5";
+                System.Diagnostics.Debug.WriteLine($"Error loading rating statistics: {ex.Message}");
             }
         }
 
@@ -116,15 +152,15 @@ namespace ProjectPRN.Admin
                 "Admin dashboard loaded"
             };
 
-            foreach (var activity in activities)
-            {
-                var textBlock = new TextBlock
-                {
-                    Text = $"• {activity} - {DateTime.Now:HH:mm}",
-                    Margin = new Thickness(0, 2, 0, 2)
-                };
-                //RecentActivities.Children.Add(textBlock);
-            }
+            // foreach (var activity in activities)
+            // {
+            //     var textBlock = new TextBlock
+            //     {
+            //         Text = $" {activity} - {DateTime.Now:HH:mm}",
+            //         Margin = new Thickness(0, 2, 0, 2)
+            //     };
+            //     RecentActivities.Children.Add(textBlock);
+            // }
         }
 
         private void StartTimer()
@@ -248,16 +284,16 @@ namespace ProjectPRN.Admin
             txtStatus.Text = "Opening backup & restore...";
             HighlightSelectedButton(sender as Button);
 
-            //try
-            //{
-            //    var backupRestoreWindow = new BackupRestoreView();
-            //    backupRestoreWindow.Show();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error opening backup & restore: {ex.Message}", "Error", 
-            //                   MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            try
+            {
+                var backupRestoreWindow = new BackupRestoreView();
+                backupRestoreWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening backup & restore: {ex.Message}", "Error",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BtnSystemSettings_Click(object sender, RoutedEventArgs e)
@@ -282,6 +318,23 @@ namespace ProjectPRN.Admin
             catch (Exception ex)
             {
                 MessageBox.Show($"Error opening student progress management: {ex.Message}", "Error",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnCourseRatingManagement_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Dang mo quan ly danh gia khoa hoc...";
+            HighlightSelectedButton(sender as Button);
+
+            try
+            {
+                var courseRatingWindow = new ProjectPRN.Admin.CourseRating.CourseRatingManagementWindow();
+                courseRatingWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Loi khi mo quan ly danh gia: {ex.Message}", "Loi",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

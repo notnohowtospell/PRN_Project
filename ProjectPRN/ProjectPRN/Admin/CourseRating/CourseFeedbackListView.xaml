@@ -1,0 +1,90 @@
+<UserControl x:Class="ProjectPRN.Admin.CourseRating.CourseFeedbackListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}" Padding="20">
+            <StackPanel>
+                <TextBlock x:Name="txtCourseTitle" Text="Danh Sach Danh Gia Khoa Hoc" 
+                          Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                          Foreground="White" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="txtCourseInfo" Text="Thong tin khoa hoc" 
+                          Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                <TextBlock x:Name="txtStatus" Text="San sang" 
+                          Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Summary Stats -->
+        <Border Grid.Row="1" Background="White" Padding="20" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                    <TextBlock Text="Tong so danh gia" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtTotalFeedbacks" Text="0" FontSize="24" FontWeight="Bold" 
+                              HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                    <TextBlock Text="Danh gia trung binh" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtAverageRating" Text="0.0/5" FontSize="24" FontWeight="Bold" 
+                              HorizontalAlignment="Center" Foreground="#FF9800"/>
+                </StackPanel>
+
+
+
+            </Grid>
+        </Border>
+
+        <!-- Feedback List -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="20">
+            <StackPanel x:Name="spFeedbackList">
+                <TextBlock Text="Dang tai danh sach danh gia..." 
+                          HorizontalAlignment="Center" VerticalAlignment="Center" 
+                          FontStyle="Italic" Margin="50"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="3" Background="#F5F5F5" Padding="20,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock x:Name="txtRecordCount" Grid.Column="0" 
+                          Text="Tong so danh gia: 0" VerticalAlignment="Center"/>
+                
+                <TextBlock x:Name="txtLastUpdated" Grid.Column="1" 
+                          Text="Cap nhat: --/--/---- --:--:--" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- Loading Overlay -->
+        <Border x:Name="LoadingOverlay" Grid.RowSpan="4" 
+                Background="#80000000" Visibility="Collapsed">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                            Value="0" IsIndeterminate="True" Width="50" Height="50"/>
+                <TextBlock Text="Dang tai du lieu..." Foreground="White" 
+                          HorizontalAlignment="Center" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

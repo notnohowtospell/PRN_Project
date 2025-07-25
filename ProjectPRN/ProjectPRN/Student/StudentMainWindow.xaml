@@ -151,10 +151,10 @@
                             <!-- Feedback -->
                             <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnFeedback_Click" Height="4">
+                                    Padding="16,12" Margin="4,2" Click="BtnFeedback_Click" Height="40">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="MessageText" Width="20" Height="20" Margin="0,0,12,0"/>
-                                    <TextBlock Text="Phản hồi" FontWeight="Medium"/>
+                                    <TextBlock Text="Đánh giá khóa học" FontWeight="Medium"/>
                                 </StackPanel>
                             </Button>
 
@@ -245,6 +245,13 @@
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="BookAccount" Width="16" Height="16" Margin="0,0,8,0"/>
                                         <TextBlock Text="Khóa học của tôi"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,16,0" Click="BtnFeedback_Click" 
+                                        Background="{DynamicResource SecondaryHueMidBrush}" BorderBrush="{DynamicResource SecondaryHueMidBrush}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Star" Width="16" Height="16" Margin="0,0,8,0"/>
+                                        <TextBlock Text="Đánh giá khóa học"/>
                                     </StackPanel>
                                 </Button>
                                 <Button Style="{StaticResource MaterialDesignRaisedButton}" Click="BtnProfile_Click">

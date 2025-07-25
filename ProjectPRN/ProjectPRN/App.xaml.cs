@@ -75,7 +75,7 @@ namespace ProjectPRN
                         SessionManager.SetCurrentUser(instructor);
 
                         // Update last login
-                        instructor.LastLogin = DateTime.Now;
+                        //instructor.LastLogin = DateTime.Now;
                         await instructorDAO.UpdateAsync(instructor);
 
                         System.Diagnostics.Debug.WriteLine($"Instructor session restored: {instructor.InstructorName}");

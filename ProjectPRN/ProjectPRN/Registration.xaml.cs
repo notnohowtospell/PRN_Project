@@ -127,9 +127,9 @@ namespace ProjectPRN
                 InstructorName = fullName,
                 Email = email,
                 PhoneNumber = phone,
-                Password = hashedPassword,
+                //Password = hashedPassword,
                 Experience = 0, // Default experience, can be updated later
-                LastLogin = null // Will be set on first login
+                //LastLogin = null // Will be set on first login
             };
 
             // Save to database
