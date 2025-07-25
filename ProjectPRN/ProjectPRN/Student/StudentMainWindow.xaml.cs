@@ -8,6 +8,7 @@ using BusinessObjects.Models;
 using MaterialDesignThemes.Wpf;
 using ProjectPRN.Student.Courses;
 using ProjectPRN.Utils;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjectPRN.Student
 {
@@ -86,6 +87,13 @@ namespace ProjectPRN.Student
                 // Calculate overall progress using the new service
                 var overallProgress = await CourseProgressService.CalculateOverallProgressAsync(_currentStudent.StudentId);
                 txtOverallProgress.Text = $"{overallProgress:F1}%";
+                
+                // Load feedback count
+                var feedbackCount = await context.Feedbacks
+                    .CountAsync(f => f.StudentId == _currentStudent.StudentId);
+                
+                // Update recent activities with feedback info
+                //LoadRecentActivitiesWithFeedback(feedbackCount);
             }
             catch (Exception ex)
             {
@@ -94,6 +102,8 @@ namespace ProjectPRN.Student
                 txtCompletedAssessments.Text = _currentStudent.AssessmentResults?.Count.ToString() ?? "0";
                 txtCertificates.Text = _currentStudent.Certificates?.Count.ToString() ?? "0";
                 txtOverallProgress.Text = "0%";
+                
+                //LoadRecentActivities(); // Fallback method
                 
                 System.Diagnostics.Debug.WriteLine($"Error calculating progress: {ex.Message}");
             }
@@ -117,6 +127,43 @@ namespace ProjectPRN.Student
                     Margin = new Thickness(0, 2, 0, 2)
                 };
                 RecentActivities.Children.Add(textBlock);
+            }
+        }
+
+        private void LoadRecentActivitiesWithFeedback(int feedbackCount)
+        {
+            RecentActivities.Children.Clear();
+            
+            // Show feedback statistics
+            var feedbackInfo = new TextBlock
+            {
+                Text = $"• Bạn đã đánh giá {feedbackCount} khóa học",
+                Margin = new Thickness(0, 2, 0, 2)
+            };
+            RecentActivities.Children.Add(feedbackInfo);
+            
+            // Add feedback action if no feedback yet
+            if (feedbackCount == 0)
+            {
+                var feedbackSuggestion = new TextBlock
+                {
+                    Text = "• Hãy đánh giá các khóa học bạn đã tham gia để chia sẻ trải nghiệm!",
+                    Margin = new Thickness(0, 2, 0, 2),
+                    Foreground = System.Windows.Media.Brushes.Orange,
+                    FontStyle = FontStyles.Italic
+                };
+                RecentActivities.Children.Add(feedbackSuggestion);
+                
+                // Add clickable link
+                var feedbackButton = new Button
+                {
+                    Content = "🌟 Đánh giá ngay",
+                    Style = Application.Current.Resources["MaterialDesignFlatButton"] as Style,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    Margin = new Thickness(0, 5, 0, 2)
+                };
+                feedbackButton.Click += BtnFeedback_Click;
+                RecentActivities.Children.Add(feedbackButton);
             }
         }
 
@@ -214,11 +261,19 @@ namespace ProjectPRN.Student
 
         private void BtnFeedback_Click(object sender, RoutedEventArgs e)
         {
-            txtStatus.Text = "Đang mở form phản hồi...";
+            txtStatus.Text = "Đang mở trang đánh giá khóa học...";
             HighlightSelectedButton(sender as Button);
             
-            MessageBox.Show("Chức năng phản hồi sẽ được triển khai", "Thông báo", 
-                           MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                var feedbackWindow = new ProjectPRN.Student.Feedback.CourseFeedbackWindow(_currentStudent);
+                feedbackWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở trang đánh giá: {ex.Message}", "Lỗi", 
+                              MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BtnProgress_Click(object sender, RoutedEventArgs e)

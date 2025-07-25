@@ -1,7 +1,7 @@
-﻿<Window x:Class="ProjectPRN.Dialogs.FeedbackDialog"
+﻿<Window x:Class="ProjectPRN.Student.Feedback.FeedbackDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Course Feedback" Height="500" Width="600"
+        Title="Danh Gia Khoa Hoc" Height="700" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Background="#F5F5F5">
@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Grid.Row="0" Text="Course Feedback &amp; Rating" 
+        <TextBlock Grid.Row="0" Text="Đánh giá và phản hồi" 
                    FontSize="24" FontWeight="Bold" 
                    HorizontalAlignment="Center" 
                    Foreground="#2C3E50" Margin="0,0,0,20"/>
@@ -43,14 +43,14 @@
                 BorderBrush="#BDC3C7" BorderThickness="1" 
                 Padding="15" Margin="0,0,0,15">
             <StackPanel>
-                <TextBlock Text="Course Information" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                <TextBlock Text="Thông tin khoá học" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Course: " FontWeight="SemiBold"/>
-                    <TextBlock x:Name="CourseNameTextBlock" Text="Course Name" Foreground="#3498DB"/>
+                    <TextBlock Text="Khoá học: " FontWeight="SemiBold"/>
+                    <TextBlock x:Name="CourseNameTextBlock" Text="Ten khoa hoc" Foreground="#3498DB"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Instructor: " FontWeight="SemiBold"/>
-                    <TextBlock x:Name="InstructorNameTextBlock" Text="Instructor Name" Foreground="#3498DB"/>
+                    <TextBlock Text="Giảng viên: " FontWeight="SemiBold"/>
+                    <TextBlock x:Name="InstructorNameTextBlock" Text="Ten giang vien" Foreground="#3498DB"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -60,7 +60,7 @@
                 BorderBrush="#BDC3C7" BorderThickness="1" 
                 Padding="15" Margin="0,0,0,15">
             <StackPanel>
-                <TextBlock Text="Your Rating" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                <TextBlock Text="Đánh giá của bạn" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
 
                 <!-- Star Display -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
@@ -74,11 +74,11 @@
                 <!-- Rating ComboBox -->
                 <ComboBox x:Name="RatingComboBox" Width="200" HorizontalAlignment="Left"
                           SelectionChanged="RatingComboBox_SelectionChanged">
-                    <ComboBoxItem Content="1 Star - Poor" Tag="1"/>
-                    <ComboBoxItem Content="2 Stars - Fair" Tag="2"/>
-                    <ComboBoxItem Content="3 Stars - Good" Tag="3"/>
-                    <ComboBoxItem Content="4 Stars - Very Good" Tag="4"/>
-                    <ComboBoxItem Content="5 Stars - Excellent" Tag="5" IsSelected="True"/>
+                    <ComboBoxItem Content="1 Sao " Tag="1"/>
+                    <ComboBoxItem Content="2 Sao " Tag="2"/>
+                    <ComboBoxItem Content="3 Sao " Tag="3"/>
+                    <ComboBoxItem Content="4 Sao " Tag="4"/>
+                    <ComboBoxItem Content="5 Sao " Tag="5" IsSelected="True"/>
                 </ComboBox>
             </StackPanel>
         </Border>
@@ -88,8 +88,8 @@
                 BorderBrush="#BDC3C7" BorderThickness="1" 
                 Padding="15" Margin="0,0,0,15">
             <StackPanel>
-                <TextBlock Text="Your Feedback" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-                <TextBlock Text="Please share your experience with this course:" 
+                <TextBlock Text="Phản hồi của bạn" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                <TextBlock Text="Chia sẻ trải nghiệm về khoá học này:" 
                            Foreground="#7F8C8D" Margin="0,0,0,5"/>
             </StackPanel>
         </Border>
@@ -105,16 +105,16 @@
                      BorderThickness="0"
                      FontSize="14"
                      Padding="10"
-                     Text="Enter your detailed feedback here..."/>
+                     Text="Nhập phản hồi của bạn..."/>
         </Border>
 
         <!-- Buttons -->
         <StackPanel Grid.Row="6" Orientation="Horizontal" 
                     HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button x:Name="CancelButton" Content="Cancel" 
+            <Button x:Name="CancelButton" Content="Huỷ" 
                     Background="#95A5A6" Foreground="White"
                     Click="CancelButton_Click"/>
-            <Button x:Name="SubmitButton" Content="Submit Feedback" 
+            <Button x:Name="SubmitButton" Content="Gửi đánh giá" 
                     Background="#27AE60" Foreground="White"
                     Click="SubmitButton_Click"/>
         </StackPanel>

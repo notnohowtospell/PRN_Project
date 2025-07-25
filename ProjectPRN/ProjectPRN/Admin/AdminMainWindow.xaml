@@ -151,6 +151,16 @@
                   <TextBlock Text="Tiến độ học sinh" FontWeight="Medium"/>
                 </StackPanel>
               </Button>
+
+              <!-- Course Rating Management -->
+              <Button Style="{StaticResource MaterialDesignFlatButton}" 
+                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+                                    Padding="16,12" Margin="4,2" Click="BtnCourseRatingManagement_Click" Height="40">
+                <StackPanel Orientation="Horizontal">
+                  <materialDesign:PackIcon Kind="Star" Width="20" Height="20" Margin="0,0,12,0"/>
+                  <TextBlock Text="Xem đánh giá" FontWeight="Medium"/>
+                </StackPanel>
+              </Button>
             </StackPanel>
           </ScrollViewer>
         </materialDesign:Card>
@@ -189,26 +199,72 @@
                   </StackPanel>
                 </materialDesign:Card>
 
-                <!-- Active Enrollments -->
+                <!-- Total Ratings -->
+                <materialDesign:Card Grid.Column="2" Margin="4,0" Padding="16" Background="#FF4CAF50">
+                  <StackPanel>
+                    <materialDesign:PackIcon Kind="Star" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
+                    <TextBlock x:Name="txtTotalRatings" Text="0" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+                    <TextBlock Text="Total Ratings" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                  </StackPanel>
+                </materialDesign:Card>
 
-                <!-- Revenue -->
+                <!-- Average Rating -->
+                <materialDesign:Card Grid.Column="3" Margin="8,0,0,0" Padding="16" Background="#FFFF9800">
+                  <StackPanel>
+                    <materialDesign:PackIcon Kind="TrendingUp" Width="32" Height="32" HorizontalAlignment="Center" Foreground="White"/>
+                    <TextBlock x:Name="txtAverageRating" Text="0.0/5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+                    <TextBlock Text="Average Rating" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="White" FontSize="12"/>
+                  </StackPanel>
+                </materialDesign:Card>
               </Grid>
 
               <!-- Recent Activities -->
 
               <!-- Quick Actions -->
+              <TextBlock Text="Thao tác nhanh" FontSize="18" FontWeight="SemiBold" Margin="0,24,0,16"/>
               <Grid>
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="*"/>
                   <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,8,0"/>
+                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,8,0">
+                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnCourseManagement_Click">
+                    <StackPanel Orientation="Horizontal">
+                      <materialDesign:PackIcon Kind="BookOpen" Width="16" Height="16" Margin="0,0,8,0"/>
+                      <TextBlock Text="Quản lý khóa học"/>
+                    </StackPanel>
+                  </Button>
+                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Click="BtnUserManagement_Click">
+                    <StackPanel Orientation="Horizontal">
+                      <materialDesign:PackIcon Kind="AccountMultiple" Width="16" Height="16" Margin="0,0,8,0"/>
+                      <TextBlock Text="Quản lý sinh viên"/>
+                    </StackPanel>
+                  </Button>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0">
+                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,0,8" Click="BtnCourseRatingManagement_Click"
+                          Background="{DynamicResource SecondaryHueMidBrush}" BorderBrush="{DynamicResource SecondaryHueMidBrush}">
+                    <StackPanel Orientation="Horizontal">
+                      <materialDesign:PackIcon Kind="Star" Width="16" Height="16" Margin="0,0,8,0"/>
+                      <TextBlock Text="Xem đánh giá khóa học"/>
+                    </StackPanel>
+                  </Button>
+                  <Button Style="{StaticResource MaterialDesignRaisedButton}" Click="BtnInstructorManagement_Click">
+                    <StackPanel Orientation="Horizontal">
+                      <materialDesign:PackIcon Kind="AccountTie" Width="16" Height="16" Margin="0,0,8,0"/>
+                      <TextBlock Text="Quản lý giảng viên"/>
+                    </StackPanel>
+                  </Button>
+                </StackPanel>
               </Grid>
-            </StackPanel>
 
-            <!-- Other content panels will be loaded dynamically -->
-            <ContentControl x:Name="DynamicContent" Visibility="Collapsed"/>
+              <!-- Quick Actions End -->
+
+              <!-- Other content panels will be loaded dynamically -->
+              <ContentControl x:Name="DynamicContent" Visibility="Collapsed"/>
+            </StackPanel>
           </Grid>
         </materialDesign:Card>
       </Grid>

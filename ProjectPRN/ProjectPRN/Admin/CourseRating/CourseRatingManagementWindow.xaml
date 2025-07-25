@@ -1,0 +1,10 @@
+<Window x:Class="ProjectPRN.Admin.CourseRating.CourseRatingManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Quan Ly Danh Gia Khoa Hoc"
+        Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+    
+    <!-- Content will be set in code-behind -->
+</Window>
