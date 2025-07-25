@@ -20,7 +20,13 @@ public class AssessmentResultDAO : IAssessmentResultDAO
 
     public async Task<IEnumerable<AssessmentResult>> GetAllAsync()
     {
-        return await _context.AssessmentResults.Include(r => r.Student).Include(r => r.Assessment).ToListAsync();
+        {
+            return await _context.AssessmentResults
+                .Include(r => r.Assessment)
+                    .ThenInclude(a => a.Course)
+                .Include(r => r.Student)
+                .ToListAsync();
+        }
     }
 
     public async Task<AssessmentResult?> GetByIdAsync(int id)

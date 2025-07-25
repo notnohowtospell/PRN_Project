@@ -1,5 +1,6 @@
-using BusinessObjects.Models;
+﻿using BusinessObjects.Models;
 using DataAccessObjects;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Interfaces;
 
 namespace Repositories;
@@ -56,5 +57,47 @@ public class AssessmentResultRepository : IAssessmentResultRepository
     public IEnumerable<AssessmentResult> GetAll()
     {
         throw new NotImplementedException();
+    }
+    public async Task UpdateAsyncResultNew(int id, AssessmentResult entity)
+    {
+        using var context = new ApplicationDbContext();
+
+        var existing = await context.AssessmentResults.FindAsync(id);
+        if (existing != null)
+        {
+            existing.SubmissionFilePath = entity.SubmissionFilePath;
+            existing.SubmissionDate = entity.SubmissionDate; // 👈 THÊM DÒNG NÀY
+            await context.SaveChangesAsync();
+        }
+    }
+    public async Task<List<Student>> GetStudentsByCourseIdAsync(int courseId)
+    {
+        using var context = new ApplicationDbContext();
+        return await context.Enrollments
+            .Where(e => e.CourseId == courseId)
+            .Select(e => e.Student)
+            .ToListAsync();
+    }
+    public async Task<IEnumerable<AssessmentResult>> GetPassedResultsAsync(double minScore = 8, int? courseId = null, bool requireBeforeDeadline = false)
+    {
+        using var context = new ApplicationDbContext();
+
+        var query = context.AssessmentResults
+            .Include(ar => ar.Student)
+            .Include(ar => ar.Assessment)
+                .ThenInclude(a => a.Course)
+            .Where(ar => ar.Score.HasValue && ar.Score.Value >= (decimal)minScore);
+
+        if (courseId.HasValue)
+        {
+            query = query.Where(ar => ar.Assessment.CourseId == courseId.Value);
+        }
+
+        if (requireBeforeDeadline)
+        {
+            query = query.Where(ar => ar.SubmissionDate <= ar.Assessment.DueDate);
+        }
+
+        return await query.ToListAsync();
     }
 }

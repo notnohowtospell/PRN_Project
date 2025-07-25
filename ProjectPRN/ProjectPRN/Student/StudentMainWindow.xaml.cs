@@ -9,6 +9,10 @@ using MaterialDesignThemes.Wpf;
 using ProjectPRN.Student.Courses;
 using ProjectPRN.Utils;
 using Microsoft.EntityFrameworkCore;
+using ProjectPRN.AssessmentManagement;
+using ProjectPRN.NotificationManagement;
+using ProjectPRN.CourseMaterialManagement;
+using ProjectPRN.CertificateManagement;
 
 namespace ProjectPRN.Student
 {
@@ -218,18 +222,62 @@ namespace ProjectPRN.Student
         {
             txtStatus.Text = "Đang mở danh sách bài kiểm tra...";
             HighlightSelectedButton(sender as Button);
-            
-            MessageBox.Show("Chức năng bài kiểm tra sẽ được triển khai", "Thông báo", 
-                           MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                StudentAssessmentWindow window = new StudentAssessmentWindow(_currentStudent.StudentId);
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening Student Assessment window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
-
+        private void BtnNotification_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Đang mở thông báo...";
+            HighlightSelectedButton(sender as Button);
+            try
+            {
+                StudentNotificationWindow window = new StudentNotificationWindow(_currentStudent);
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở cửa sổ Thông báo: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
         private void BtnMaterials_Click(object sender, RoutedEventArgs e)
         {
             txtStatus.Text = "Đang mở tài liệu học tập...";
             HighlightSelectedButton(sender as Button);
-            
-            MessageBox.Show("Chức năng tài liệu học tập sẽ được triển khai", "Thông báo", 
-                           MessageBoxButton.OK, MessageBoxImage.Information);
+
+            try
+            {
+                CourseMaterialManagementWindow window = new CourseMaterialManagementWindow(true);
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể mở cửa sổ tài liệu: {ex.Message}", "Lỗi",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnCertificates_Click(object sender, RoutedEventArgs e)
+        {
+            txtStatus.Text = "Đang mở chứng chỉ của bạn...";
+            HighlightSelectedButton(sender as Button);
+
+            try
+            {
+                StudentCertificateWindow window = new StudentCertificateWindow(_currentStudent.StudentId); // hoặc dùng AppSession.StudentId
+                window.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể mở cửa sổ chứng chỉ: {ex.Message}", "Lỗi",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BtnSchedule_Click(object sender, RoutedEventArgs e)
@@ -238,15 +286,6 @@ namespace ProjectPRN.Student
             HighlightSelectedButton(sender as Button);
             
             MessageBox.Show("Chức năng lịch học sẽ được triển khai", "Thông báo", 
-                           MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void BtnCertificates_Click(object sender, RoutedEventArgs e)
-        {
-            txtStatus.Text = "Đang mở danh sách chứng chỉ...";
-            HighlightSelectedButton(sender as Button);
-            
-            MessageBox.Show("Chức năng chứng chỉ sẽ được triển khai", "Thông báo", 
                            MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

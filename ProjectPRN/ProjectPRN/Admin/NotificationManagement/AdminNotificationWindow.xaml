@@ -1,0 +1,50 @@
+﻿<Window x:Class="ProjectPRN.NotificationManagement.AdminNotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectPRN.NotificationManagement"
+        mc:Ignorable="d"
+        Title="Gửi thông báo" Height="600" Width="1000" Background="#FAFAFA">
+    <Grid Margin="20">
+        <StackPanel>
+            <!-- Bộ lọc -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Tìm kiếm student:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0"/>
+                <TextBlock Text="Tìm theo khóa học:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <ComboBox x:Name="CourseComboBox" Width="200" DisplayMemberPath="CourseName" SelectedValuePath="CourseId" Margin="0,0,10,0"/>
+                <Button Content="Lọc" Click="Filter_Click"/>
+            </StackPanel>
+
+            <!-- Nút gửi chung -->
+            <Button Content="Gửi thông báo cho tất cả" Background="DarkGreen" Foreground="White" Margin="0,0,0,10"
+                    Width="250" HorizontalAlignment="Left" Click="SendToAll_Click"/>
+
+            <!-- Bảng danh sách sinh viên -->
+            <DataGrid x:Name="StudentDataGrid" AutoGenerateColumns="False"  
+                                CanUserAddRows="False"
+          HeadersVisibility="Column"
+          GridLinesVisibility="Horizontal"
+                      Height="350" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã SV" Binding="{Binding StudentCode}" Width="100"/>
+                    <DataGridTextColumn Header="Tên SV" Binding="{Binding StudentName}" Width="150"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
+                    <DataGridTextColumn Header="SĐT" Binding="{Binding PhoneNumber}" Width="120"/>
+                    <DataGridTextColumn Header="Ngày sinh" Binding="{Binding DateOfBirth, StringFormat='dd/MM/yyyy'}" Width="120"/>
+                    <DataGridTemplateColumn Header="Hành động" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Gửi" Click="SendToOne_Click" Tag="{Binding}" Background="#007ACC" Foreground="White"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <!-- Nút quay lại -->
+            <Button Content="Quay lại" Width="100" Margin="0,10,0,0" HorizontalAlignment="Left"
+        Background="Gray" Foreground="White" Click="Back_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

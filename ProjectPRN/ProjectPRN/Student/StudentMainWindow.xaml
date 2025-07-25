@@ -78,6 +78,16 @@
                                 </StackPanel>
                             </Button>
 
+                            <Button x:Name="btnNotification" Style="{StaticResource MaterialDesignFlatButton}" 
+        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+        Padding="16,12" Margin="4,2" Click="BtnNotification_Click"
+        Background="{DynamicResource PrimaryHueLightBrush}" Height="39">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="BellOutline" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Thông báo" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
+
                             <!-- Course Management -->
                             <Button Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
@@ -117,6 +127,15 @@
                                     <TextBlock Text="Tài liệu học tập" FontWeight="Medium"/>
                                 </StackPanel>
                             </Button>
+                            <!-- Certificates -->
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
+        HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+        Padding="16,12" Margin="4,2" Click="BtnCertificates_Click" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Certificate" Width="20" Height="20" Margin="0,0,12,0"/>
+                                    <TextBlock Text="Chứng chỉ của tôi" FontWeight="Medium"/>
+                                </StackPanel>
+                            </Button>
 
                             <!-- Schedule -->
                             <Button Style="{StaticResource MaterialDesignFlatButton}" 
@@ -128,15 +147,6 @@
                                 </StackPanel>
                             </Button>
 
-                            <!-- Certificates -->
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
-                                    Padding="16,12" Margin="4,2" Click="BtnCertificates_Click" Height="41">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Certificate" Width="20" Height="20" Margin="0,0,12,0"/>
-                                    <TextBlock Text="Chứng chỉ" FontWeight="Medium"/>
-                                </StackPanel>
-                            </Button>
 
                             <!-- Payments -->
                             <Button Style="{StaticResource MaterialDesignFlatButton}" 

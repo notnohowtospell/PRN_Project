@@ -1,5 +1,6 @@
-using BusinessObjects.Models;
+﻿using BusinessObjects.Models;
 using DataAccessObjects;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Interfaces;
 
 namespace Repositories;
@@ -7,6 +8,7 @@ namespace Repositories;
 public class AssessmentRepository : IAssessmentRepository
 {
     private readonly IAssessmentDAO _dao;
+    private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
     public AssessmentRepository(IAssessmentDAO dao)
     {
@@ -15,7 +17,10 @@ public class AssessmentRepository : IAssessmentRepository
 
     public async Task<IEnumerable<Assessment>> GetAllAsync()
     {
-        return await _dao.GetAllAsync();
+        using var context = new ApplicationDbContext(); // đổi thành context thật
+        return await context.Assessments
+            .Include(a => a.Course) // <-- include Course để lấy tên
+            .ToListAsync();
     }
 
     public async Task<Assessment?> GetByIdAsync(int id)
@@ -51,5 +56,16 @@ public class AssessmentRepository : IAssessmentRepository
     public IEnumerable<Assessment> GetAll()
     {
         throw new NotImplementedException();
+    }
+    public async Task UpdateAsyncNew(int id, Assessment entity)
+    {
+        using var context = new ApplicationDbContext();
+
+        var existing = await context.Assessments.FindAsync(id);
+        if (existing != null)
+        {
+            existing.InstructionFilePath = entity.InstructionFilePath;
+            await context.SaveChangesAsync();
+        }
     }
 }
