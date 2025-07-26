@@ -25,8 +25,6 @@ public partial class Student
 
     public DateTime? LastLogin { get; set; }
 
-    public virtual ICollection<ActivityLog> ActivityLogs { get; set; } = new List<ActivityLog>();
-
     public virtual ICollection<AssessmentResult> AssessmentResults { get; set; } = new List<AssessmentResult>();
 
     public virtual ICollection<Certificate> Certificates { get; set; } = new List<Certificate>();

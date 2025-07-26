@@ -19,6 +19,8 @@ public partial class Assessment
 
     public string? Instructions { get; set; }
 
+    public string? InstructionFilePath { get; set; }
+
     public virtual ICollection<AssessmentResult> AssessmentResults { get; set; } = new List<AssessmentResult>();
 
     public virtual LifeSkillCourse Course { get; set; } = null!;

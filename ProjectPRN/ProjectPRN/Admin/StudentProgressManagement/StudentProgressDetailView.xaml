@@ -8,7 +8,6 @@
         ResizeMode="CanResize"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,7 +15,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
         <!-- Header -->
         <Border Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}" Padding="20">
             <Grid>
@@ -24,24 +22,21 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-
                 <StackPanel Grid.Column="0">
                     <TextBlock x:Name="txtStudentName" Text="Chi Tiết Tiến Trình Học Sinh"
                                Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
-                              Foreground="White"/>
+                              Foreground="{DynamicResource PrimaryTextBrush}"/>
                     <TextBlock x:Name="txtStudentInfo" Text="Thông tin học sinh"
-                               Foreground="White" Margin="0,5,0,0"/>
+                               Foreground="{DynamicResource PrimaryTextBrush}" Margin="0,5,0,0"/>
                 </StackPanel>
-
                 <Button Grid.Column="1" Content="Đóng"
                          Style="{DynamicResource MaterialDesignFlatButton}"
-                        Foreground="White" Click="BtnClose_Click"/>
+                        Foreground="{DynamicResource PrimaryTextBrush}" Click="BtnClose_Click"/>
             </Grid>
         </Border>
-
         <!-- Student Summary -->
-        <Border Grid.Row="1" Background="{DynamicResource MaterialDesignCardBackground}" 
-                Padding="20" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1">
+        <Border Grid.Row="1" Background="{DynamicResource MaterialDesignCardBackground}"
+                 Padding="20" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -49,41 +44,36 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
                 <StackPanel Grid.Column="0">
                     <TextBlock Text="Tổng khóa học" FontWeight="Bold" HorizontalAlignment="Center"
                                Foreground="{DynamicResource MaterialDesignBody}"/>
                     <TextBlock x:Name="txtTotalCourses" Text="0"
                                Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
-                              HorizontalAlignment="Center" Foreground="#2196F3"/>
+                              HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                 </StackPanel>
-
                 <StackPanel Grid.Column="1">
                     <TextBlock Text="Đã hoàn thành" FontWeight="Bold" HorizontalAlignment="Center"
                                Foreground="{DynamicResource MaterialDesignBody}"/>
                     <TextBlock x:Name="txtCompletedCourses" Text="0"
                                Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
-                              HorizontalAlignment="Center" Foreground="#4CAF50"/>
+                              HorizontalAlignment="Center" Foreground="{DynamicResource SuccessBrush}"/>
                 </StackPanel>
-
                 <StackPanel Grid.Column="2">
                     <TextBlock Text="Đang học" FontWeight="Bold" HorizontalAlignment="Center"
                                Foreground="{DynamicResource MaterialDesignBody}"/>
                     <TextBlock x:Name="txtInProgressCourses" Text="0"
                                Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
-                              HorizontalAlignment="Center" Foreground="#FF9800"/>
+                              HorizontalAlignment="Center" Foreground="{DynamicResource WarningBrush}"/>
                 </StackPanel>
-
                 <StackPanel Grid.Column="3">
                     <TextBlock Text="Tiến độ tổng" FontWeight="Bold" HorizontalAlignment="Center"
                                Foreground="{DynamicResource MaterialDesignBody}"/>
                     <TextBlock x:Name="txtOverallProgress" Text="0%"
                                Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
-                              HorizontalAlignment="Center" Foreground="#9C27B0"/>
+                              HorizontalAlignment="Center" Foreground="{DynamicResource OverallProgressBrush}"/>
                 </StackPanel>
             </Grid>
         </Border>
-
         <!-- Course Progress List -->
         <DataGrid x:Name="dgCourseProgress" Grid.Row="2"
                    AutoGenerateColumns="False"
@@ -96,7 +86,6 @@
                   Background="{DynamicResource MaterialDesignCardBackground}"
                   Foreground="{DynamicResource MaterialDesignBody}"
                   BorderBrush="{DynamicResource BorderBrush}">
-
             <DataGrid.Resources>
                 <!-- Style for DataGrid headers -->
                 <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
@@ -104,7 +93,6 @@
                     <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
                     <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
                 </Style>
-
                 <!-- Style for DataGrid rows -->
                 <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}"/>
@@ -118,7 +106,6 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
-
                 <!-- Style for DataGrid cells -->
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="Transparent"/>
@@ -132,7 +119,6 @@
                     </Style.Triggers>
                 </Style>
             </DataGrid.Resources>
-
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tên khóa học" Binding="{Binding CourseName}" Width="250" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Giảng viên" Binding="{Binding InstructorName}" Width="150" IsReadOnly="True"/>
@@ -143,33 +129,29 @@
                 <DataGridTextColumn Header="Ngày hoàn thành" Binding="{Binding CompletionDateText}" Width="120" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-
         <!-- Status Bar -->
-        <Border Grid.Row="3" Background="{DynamicResource MaterialDesignCardBackground}" 
-                Padding="20,10" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,1,0,0">
+        <Border Grid.Row="3" Background="{DynamicResource MaterialDesignCardBackground}"
+                 Padding="20,10" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,1,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-
                 <TextBlock x:Name="txtStatus" Grid.Column="0"
                            Text="Sẵn sàng" VerticalAlignment="Center"
                            Foreground="{DynamicResource MaterialDesignBody}"/>
-
                 <TextBlock x:Name="txtLastUpdated" Grid.Column="1"
                            Text="Cập nhật: --/--/---- --:--:--" VerticalAlignment="Center"
                            Foreground="{DynamicResource MaterialDesignBodyLight}"/>
             </Grid>
         </Border>
-
         <!-- Loading Overlay -->
         <Border x:Name="LoadingOverlay" Grid.RowSpan="4"
                  Background="#80000000" Visibility="Collapsed">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
                             Value="0" IsIndeterminate="True" Width="50" Height="50"/>
-                <TextBlock Text="Đang tải dữ liệu..." Foreground="White"
+                <TextBlock Text="Đang tải dữ liệu..." Foreground="{DynamicResource PrimaryTextBrush}"
                            HorizontalAlignment="Center" Margin="0,10,0,0"/>
             </StackPanel>
         </Border>

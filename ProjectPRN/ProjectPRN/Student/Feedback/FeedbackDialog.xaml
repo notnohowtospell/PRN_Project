@@ -4,7 +4,7 @@
         Title="Danh Gia Khoa Hoc" Height="700" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#F5F5F5">
+        Background="{DynamicResource WindowBackgroundBrush}">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -13,11 +13,14 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
         </Style>
 
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
         </Style>
     </Window.Resources>
 
@@ -36,39 +39,40 @@
         <TextBlock Grid.Row="0" Text="Đánh giá và phản hồi" 
                    FontSize="24" FontWeight="Bold" 
                    HorizontalAlignment="Center" 
-                   Foreground="#2C3E50" Margin="0,0,0,20"/>
+                   Foreground="{DynamicResource PrimaryTextBrush}" Margin="0,0,0,20"/>
 
         <!-- Course Information -->
-        <Border Grid.Row="1" Background="White" 
-                BorderBrush="#BDC3C7" BorderThickness="1" 
+        <Border Grid.Row="1" Background="{DynamicResource MaterialDesignPaper}" 
+                BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" 
                 Padding="15" Margin="0,0,0,15">
             <StackPanel>
                 <TextBlock Text="Thông tin khoá học" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Khoá học: " FontWeight="SemiBold"/>
-                    <TextBlock x:Name="CourseNameTextBlock" Text="Ten khoa hoc" Foreground="#3498DB"/>
+                    <TextBlock x:Name="CourseNameTextBlock" Text="Ten khoa hoc" Foreground="{DynamicResource InfoBrush}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Giảng viên: " FontWeight="SemiBold"/>
-                    <TextBlock x:Name="InstructorNameTextBlock" Text="Ten giang vien" Foreground="#3498DB"/>
+                    <TextBlock x:Name="InstructorNameTextBlock" Text="Ten giang vien" Foreground="{DynamicResource InfoBrush}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
 
         <!-- Rating Section -->
-        <Border Grid.Row="2" Background="White" 
-                BorderBrush="#BDC3C7" BorderThickness="1" 
+        <Border Grid.Row="2" Background="{DynamicResource MaterialDesignPaper}" 
+                BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" 
+                
                 Padding="15" Margin="0,0,0,15">
             <StackPanel>
                 <TextBlock Text="Đánh giá của bạn" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
 
                 <!-- Star Display -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock x:Name="Star1" Text="★" FontSize="30" Foreground="#F39C12" Margin="2"/>
-                    <TextBlock x:Name="Star2" Text="★" FontSize="30" Foreground="#F39C12" Margin="2"/>
-                    <TextBlock x:Name="Star3" Text="★" FontSize="30" Foreground="#F39C12" Margin="2"/>
-                    <TextBlock x:Name="Star4" Text="★" FontSize="30" Foreground="#F39C12" Margin="2"/>
-                    <TextBlock x:Name="Star5" Text="★" FontSize="30" Foreground="#F39C12" Margin="2"/>
+                    <TextBlock x:Name="Star1" Text="★" FontSize="30" Foreground="{DynamicResource WarningBrush}" Margin="2"/>
+                    <TextBlock x:Name="Star2" Text="★" FontSize="30" Foreground="{DynamicResource WarningBrush}" Margin="2"/>
+                    <TextBlock x:Name="Star3" Text="★" FontSize="30" Foreground="{DynamicResource WarningBrush}" Margin="2"/>
+                    <TextBlock x:Name="Star4" Text="★" FontSize="30" Foreground="{DynamicResource WarningBrush}" Margin="2"/>
+                    <TextBlock x:Name="Star5" Text="★" FontSize="30" Foreground="{DynamicResource WarningBrush}" Margin="2"/>
                 </StackPanel>
 
                 <!-- Rating ComboBox -->
@@ -84,19 +88,19 @@
         </Border>
 
         <!-- Feedback Text -->
-        <Border Grid.Row="3" Background="White" 
-                BorderBrush="#BDC3C7" BorderThickness="1" 
+        <Border Grid.Row="3" Background="{DynamicResource MaterialDesignPaper}" 
+                BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" 
                 Padding="15" Margin="0,0,0,15">
             <StackPanel>
                 <TextBlock Text="Phản hồi của bạn" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
                 <TextBlock Text="Chia sẻ trải nghiệm về khoá học này:" 
-                           Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                           Foreground="{DynamicResource SecondaryTextBrush}" Margin="0,0,0,5"/>
             </StackPanel>
         </Border>
 
         <!-- Feedback TextBox -->
-        <Border Grid.Row="4" Background="White" 
-                BorderBrush="#BDC3C7" BorderThickness="1" 
+        <Border Grid.Row="4" Background="{DynamicResource MaterialDesignPaper}" 
+                BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1" 
                 Padding="5" Margin="0,0,0,15">
             <TextBox x:Name="FeedbackTextBox" 
                      TextWrapping="Wrap" 
@@ -105,6 +109,8 @@
                      BorderThickness="0"
                      FontSize="14"
                      Padding="10"
+                     Foreground="{DynamicResource PrimaryTextBrush}"
+                     Background="{DynamicResource MaterialDesignPaper}"
                      Text="Nhập phản hồi của bạn..."/>
         </Border>
 
@@ -112,10 +118,10 @@
         <StackPanel Grid.Row="6" Orientation="Horizontal" 
                     HorizontalAlignment="Right" Margin="0,15,0,0">
             <Button x:Name="CancelButton" Content="Huỷ" 
-                    Background="#95A5A6" Foreground="White"
+                    Background="{DynamicResource DisabledTextBrush}" Foreground="{DynamicResource MaterialDesignPaper}"
                     Click="CancelButton_Click"/>
             <Button x:Name="SubmitButton" Content="Gửi đánh giá" 
-                    Background="#27AE60" Foreground="White"
+                    Background="{DynamicResource SuccessBrush}" Foreground="{DynamicResource MaterialDesignPaper}"
                     Click="SubmitButton_Click"/>
         </StackPanel>
     </Grid>

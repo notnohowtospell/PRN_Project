@@ -6,24 +6,27 @@
         Height="800" Width="1200"
         WindowStartupLocation="CenterScreen"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource WindowBackgroundBrush}">
 
     <Window.Resources>
         <Style x:Key="ProgressCardStyle" TargetType="materialDesign:Card">
             <Setter Property="Margin" Value="8"/>
             <Setter Property="Padding" Value="16"/>
+            <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         </Style>
 
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Margin" Value="0,0,0,16"/>
-            <Setter Property="Foreground" />
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
         </Style>
 
         <Style x:Key="ProgressTextStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
         </Style>
 
         <Style x:Key="ProgressBarStyle" TargetType="ProgressBar" BasedOn="{StaticResource MaterialDesignLinearProgressBar}">
@@ -51,11 +54,13 @@
                 <StackPanel Grid.Column="0">
                     <TextBlock Text="TIẾN ĐỘ HỌC TẬP" 
                                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                               FontWeight="Bold"/>
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource PrimaryTextBrush}"/>
                     <TextBlock x:Name="txtStudentName" 
                                Text="Sinh viên: [Tên sinh viên]" 
                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                               Margin="0,4"/>
+                               Margin="0,4"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
                 </StackPanel>
 
                 <Button Grid.Column="1" 
@@ -80,15 +85,17 @@
                     <materialDesign:PackIcon Kind="School" 
                                            Width="40" Height="40"
                                            HorizontalAlignment="Center"
-                                          />
+                                           Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                     <TextBlock x:Name="txtTotalCourses" 
                                Text="0" 
                                FontSize="24" 
                                FontWeight="Bold"
-                               HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource PrimaryTextBrush}"/>
                     <TextBlock Text="Tổng khóa học" 
                                HorizontalAlignment="Center"
-                               Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
                 </StackPanel>
 
                 <!-- Completed Courses -->
@@ -101,26 +108,30 @@
                                Text="0" 
                                FontSize="24" 
                                FontWeight="Bold"
-                               HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource PrimaryTextBrush}"/>
                     <TextBlock Text="Đã hoàn thành" 
                                HorizontalAlignment="Center"
-                               Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
                 </StackPanel>
 
                 <!-- In Progress -->
                 <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                  <materialDesign:PackIcon Kind="ChartLine"
+                    <materialDesign:PackIcon Kind="ChartLine"
                                            Width="40" Height="40"
                                            HorizontalAlignment="Center"
-                                           Foreground="#FF9800"/>
+                                           Foreground="{DynamicResource InProgressBrush}"/>
                     <TextBlock x:Name="txtInProgressCourses" 
                                Text="0" 
                                FontSize="24" 
                                FontWeight="Bold"
-                               HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource PrimaryTextBrush}"/>
                     <TextBlock Text="Đang học" 
                                HorizontalAlignment="Center"
-                               Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
                 </StackPanel>
 
                 <!-- Overall Progress -->
@@ -128,15 +139,17 @@
                     <materialDesign:PackIcon Kind="ChartLine" 
                                            Width="40" Height="40"
                                            HorizontalAlignment="Center"
-                                           Foreground="#4CAF50"/>
+                                           Foreground="{DynamicResource CompletedBrush}"/>
                     <TextBlock x:Name="txtOverallProgress" 
                                Text="0%" 
                                FontSize="24" 
                                FontWeight="Bold"
-                               HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource PrimaryTextBrush}"/>
                     <TextBlock Text="Tiến độ tổng thể" 
                                HorizontalAlignment="Center"
-                               Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"
+                               Foreground="{DynamicResource SecondaryTextBrush}"/>
                 </StackPanel>
             </Grid>
         </materialDesign:Card>
@@ -144,8 +157,6 @@
         <!-- Course Progress List -->
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="CourseProgressContainer" Margin="8">
-
-                
                 <TextBlock x:Name="txtNoCourses" 
                            Text="Chưa có khóa học nào được đăng ký"
                            Style="{StaticResource MaterialDesignBody1TextBlock}"
@@ -157,13 +168,13 @@
         </ScrollViewer>
 
         <!-- Status Bar -->
-        <materialDesign:Card Grid.Row="3" Margin="0">
-            <StatusBar>
+        <materialDesign:Card Grid.Row="3" Margin="0" Background="{DynamicResource StatusBarBackgroundBrush}">
+            <StatusBar Background="{DynamicResource StatusBarBackgroundBrush}">
                 <StatusBarItem>
-                    <TextBlock x:Name="txtStatus" Text="Sẵn sàng"/>
+                    <TextBlock x:Name="txtStatus" Text="Sẵn sàng" Foreground="{DynamicResource PrimaryTextBrush}"/>
                 </StatusBarItem>
                 <StatusBarItem HorizontalAlignment="Right">
-                    <TextBlock x:Name="txtLastUpdated" Text=""/>
+                    <TextBlock x:Name="txtLastUpdated" Text="" Foreground="{DynamicResource SecondaryTextBrush}"/>
                 </StatusBarItem>
             </StatusBar>
         </materialDesign:Card>
@@ -179,7 +190,7 @@
                            IsIndeterminate="True"/>
                 <TextBlock Text="Đang tải dữ liệu..." 
                          Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                         Foreground="White"
+                         Foreground="{DynamicResource PrimaryTextBrush}"
                          Margin="0,16,0,0"/>
             </StackPanel>
         </Grid>

@@ -29,7 +29,10 @@ public class NotificationDAO : INotificationDAO
 
     public async Task<IEnumerable<Notification>> GetByStudentIdAsync(int studentId)
     {
-        return await _context.Notifications.Where(n => n.StudentId == studentId).ToListAsync();
+        return await _context.Notifications
+    .Where(n => n.StudentId == studentId)
+    .OrderByDescending(n => n.CreatedDate)
+    .ToListAsync();
     }
 
     public async Task AddAsync(Notification entity)

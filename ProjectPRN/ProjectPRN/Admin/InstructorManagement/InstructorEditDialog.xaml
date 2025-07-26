@@ -9,8 +9,7 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}">
-
-    <materialDesign:Card Width="500" MaxHeight="600">
+    <materialDesign:Card Width="500" MaxHeight="600" Background="{DynamicResource MaterialDesignCardBackground}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="24">
                 <!-- Dialog Header -->
@@ -19,25 +18,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
                     <StackPanel Grid.Column="0">
                         <TextBlock Name="txtDialogTitle"
                                    Text="Thêm giảng viên mới"
                                    Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                                   Margin="0,0,0,4"/>
+                                   Margin="0,0,0,4"
+                                   Foreground="{DynamicResource MaterialDesignBody}"/>
                         <TextBlock Text="Điền thông tin chi tiết cho giảng viên"
                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                   Opacity="0.7"/>
+                                   Opacity="0.7"
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}"/>
                     </StackPanel>
-
                     <Button Grid.Column="1"
                             Style="{StaticResource MaterialDesignIconButton}"
                             Click="BtnClose_Click"
                             ToolTip="Đóng">
-                        <materialDesign:PackIcon Kind="Close"/>
+                        <materialDesign:PackIcon Kind="Close" Foreground="{DynamicResource MaterialDesignBody}"/>
                     </Button>
                 </Grid>
-
                 <!-- Instructor Information Form -->
                 <Grid>
                     <Grid.RowDefinitions>
@@ -50,7 +48,6 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-
                     <!-- Instructor Name -->
                     <TextBox Grid.Row="0"
                              Name="txtInstructorName"
@@ -58,9 +55,8 @@
                              materialDesign:HintAssist.IsFloating="True"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              Margin="0,0,0,16"
-                             MaxLength="100"
+                             MaxLength="200"
                              TextChanged="ValidateForm"/>
-
                     <!-- Email -->
                     <TextBox Grid.Row="1"
                              Name="txtEmail"
@@ -70,7 +66,6 @@
                              Margin="0,0,0,16"
                              MaxLength="150"
                              TextChanged="ValidateForm"/>
-
                     <!-- Phone Number -->
                     <TextBox Grid.Row="2"
                              Name="txtPhoneNumber"
@@ -81,7 +76,6 @@
                              MaxLength="15"
                              PreviewTextInput="PhoneValidationTextInput"
                              TextChanged="ValidateForm"/>
-
                     <!-- Experience -->
                     <TextBox Grid.Row="3"
                              Name="txtExperience"
@@ -92,7 +86,6 @@
                              MaxLength="3"
                              PreviewTextInput="IntegerValidationTextInput"
                              TextChanged="ValidateForm"/>
-
                     <!-- Password -->
                     <PasswordBox Grid.Row="4"
                                  Name="txtPassword"
@@ -102,7 +95,6 @@
                                  Margin="0,0,0,16"
                                  MaxLength="50"
                                  PasswordChanged="ValidateForm"/>
-
                     <!-- Password Note -->
                     <TextBlock Grid.Row="5"
                                Name="txtPasswordNote"
@@ -110,8 +102,8 @@
                                Style="{StaticResource MaterialDesignCaptionTextBlock}"
                                Opacity="0.7"
                                Margin="0,0,0,24"
-                               Visibility="Collapsed"/>
-
+                               Visibility="Collapsed"
+                               Foreground="{DynamicResource MaterialDesignBodyLight}"/>
                     <!-- Validation Messages -->
                     <Border Grid.Row="6"
                             Name="borderValidation"
@@ -135,7 +127,6 @@
                             </ItemsControl>
                         </StackPanel>
                     </Border>
-
                     <!-- Action Buttons -->
                     <Grid Grid.Row="7">
                         <Grid.ColumnDefinitions>
@@ -143,7 +134,6 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
                         <Button Grid.Column="1"
                                 Name="btnCancel"
                                 Content="HỦY"
@@ -151,7 +141,6 @@
                                 Margin="0,0,8,0"
                                 Width="100"
                                 Click="BtnCancel_Click"/>
-
                         <Button Grid.Column="2"
                                 Name="btnSave"
                                 Content="LƯU"

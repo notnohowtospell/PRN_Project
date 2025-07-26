@@ -2,7 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-
+    <UserControl.Resources>
+        <!-- Style for DataGrid headers -->
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignColumnHeader}"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -10,50 +15,49 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
         <!-- Header -->
         <Border Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}" Padding="20">
             <StackPanel>
-                <TextBlock Text="Quản Lý Tiến Trình Học Sinh" 
-                          Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
-                          Foreground="White" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="txtStatus" Text="Sẵn sàng" 
-                          Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                <TextBlock Text="Quản Lý Tiến Trình Học Sinh"
+                           Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                           Foreground="{DynamicResource PrimaryTextBrush}" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="txtStatus" Text="Sẵn sàng"
+                           Foreground="{DynamicResource PrimaryTextBrush}" HorizontalAlignment="Center" Margin="0,5,0,0"/>
             </StackPanel>
         </Border>
-
         <!-- Search and Filter -->
-        <Border Grid.Row="1" Background="White" Padding="20" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+        <Border Grid.Row="1" Background="{DynamicResource MaterialDesignPaper}" Padding="20" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,0,0,1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-
                 <TextBox x:Name="txtSearch" Grid.Column="0"
                          materialDesign:HintAssist.Hint="Tìm kiếm học sinh (tên, mã số, email)"
                          Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Margin="0,0,10,0" TextChanged="TxtSearch_TextChanged"/>
-
-                <Button x:Name="btnRefresh" Grid.Column="1" Content="Làm mới" 
-                        Style="{DynamicResource MaterialDesignOutlinedButton}"
+                         Margin="0,0,10,0" TextChanged="TxtSearch_TextChanged"
+                         Background="{DynamicResource MaterialDesignCardBackground}"
+                         Foreground="{DynamicResource MaterialDesignBody}"/>
+                <Button x:Name="btnRefresh" Grid.Column="1" Content="Làm mới"
+                         Style="{DynamicResource MaterialDesignOutlinedButton}"
                         Margin="5,0" Click="BtnRefresh_Click"/>
-
             </Grid>
         </Border>
-
         <!-- Student List -->
-        <DataGrid x:Name="dgStudents" Grid.Row="2" 
-                  AutoGenerateColumns="False" 
-                  CanUserAddRows="False"
+        <DataGrid x:Name="dgStudents" Grid.Row="2"
+                   AutoGenerateColumns="False"
+                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   SelectionMode="Single"
                   GridLinesVisibility="Horizontal"
                   HeadersVisibility="All"
                   Margin="20"
-                  MouseDoubleClick="DgStudents_MouseDoubleClick">
-            
+                  MouseDoubleClick="DgStudents_MouseDoubleClick"
+                  Background="{DynamicResource MaterialDesignCardBackground}"
+                  Foreground="{DynamicResource MaterialDesignBody}"
+                  BorderBrush="{DynamicResource BorderBrush}"
+                  HorizontalGridLinesBrush="{DynamicResource MaterialDesignDivider}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã SV" Binding="{Binding StudentCode}" Width="100" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Tên học sinh" Binding="{Binding StudentName}" Width="200" IsReadOnly="True"/>
@@ -62,13 +66,12 @@
                 <DataGridTextColumn Header="Hoàn thành" Binding="{Binding CompletedCourses}" Width="100" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Tiến độ tổng" Binding="{Binding OverallProgressText}" Width="120" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="100" IsReadOnly="True"/>
-                
                 <DataGridTemplateColumn Header="Thao tác" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Xem chi tiết" 
-                                        Style="{DynamicResource MaterialDesignFlatButton}"
+                                <Button Content="Xem chi tiết"
+                                         Style="{DynamicResource MaterialDesignFlatButton}"
                                         Margin="2"
                                         Tag="{Binding StudentId}"
                                         Click="BtnViewDetails_Click"/>
@@ -78,31 +81,29 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
         <!-- Status Bar -->
-        <Border Grid.Row="3" Background="#F5F5F5" Padding="20,10">
+        <Border Grid.Row="3" Background="{DynamicResource StatusBarBackgroundBrush}" Padding="20,10">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
-                <TextBlock x:Name="txtRecordCount" Grid.Column="0" 
-                          Text="Tổng số học sinh: 0" VerticalAlignment="Center"/>
-                
-                <TextBlock x:Name="txtLastUpdated" Grid.Column="1" 
-                          Text="Cập nhật: --/--/---- --:--:--" VerticalAlignment="Center"/>
+                <TextBlock x:Name="txtRecordCount" Grid.Column="0"
+                           Text="Tổng số học sinh: 0" VerticalAlignment="Center"
+                           Foreground="{DynamicResource MaterialDesignBody}"/>
+                <TextBlock x:Name="txtLastUpdated" Grid.Column="1"
+                           Text="Cập nhật: --/--/---- --:--:--" VerticalAlignment="Center"
+                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
             </Grid>
         </Border>
-
         <!-- Loading Overlay -->
-        <Border x:Name="LoadingOverlay" Grid.RowSpan="4" 
-                Background="#80000000" Visibility="Collapsed">
+        <Border x:Name="LoadingOverlay" Grid.RowSpan="4"
+                 Background="#80000000" Visibility="Collapsed">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
                             Value="0" IsIndeterminate="True" Width="50" Height="50"/>
-                <TextBlock Text="Đang tải dữ liệu..." Foreground="White" 
-                          HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <TextBlock Text="Đang tải dữ liệu..." Foreground="{DynamicResource PrimaryTextBrush}"
+                           HorizontalAlignment="Center" Margin="0,10,0,0"/>
             </StackPanel>
         </Border>
     </Grid>

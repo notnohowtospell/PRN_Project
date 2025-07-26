@@ -17,6 +17,11 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
 
+    <Window.Resources>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignColumnHeader}"/>
+        </Style>
+    </Window.Resources>
     <materialDesign:DialogHost Identifier="RootDialog">
         <Grid Margin="16">
             <Grid.RowDefinitions>
@@ -27,7 +32,7 @@
             </Grid.RowDefinitions>
 
             <!-- Header -->
-            <materialDesign:Card Grid.Row="0" Margin="0,0,0,16" Padding="16">
+            <materialDesign:Card Grid.Row="0" Margin="0,0,0,16" Padding="16" Background="{DynamicResource MaterialDesignCardBackground}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -46,7 +51,7 @@
             </materialDesign:Card>
 
             <!-- Search and Filter -->
-            <materialDesign:Card Grid.Row="1" Margin="0,0,0,16" Padding="16">
+            <materialDesign:Card Grid.Row="1" Margin="0,0,0,16" Padding="16" Background="{DynamicResource MaterialDesignCardBackground}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -176,6 +181,8 @@
                           HeadersVisibility="Column"
                           GridLinesVisibility="Horizontal"
                           HorizontalGridLinesBrush="{DynamicResource MaterialDesignDivider}"
+                          Background="{DynamicResource MaterialDesignCardBackground}"
+                          Foreground="{DynamicResource MaterialDesignBody}"
                           SelectionChanged="DgStudents_SelectionChanged">
 
                     <DataGrid.Columns>
@@ -256,7 +263,7 @@
             </materialDesign:Card>
 
             <!-- Status Bar -->
-            <materialDesign:Card Grid.Row="3" Margin="0,16,0,0" Padding="16">
+            <materialDesign:Card Grid.Row="3" Margin="0,16,0,0" Padding="16" Background="{DynamicResource MaterialDesignCardBackground}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

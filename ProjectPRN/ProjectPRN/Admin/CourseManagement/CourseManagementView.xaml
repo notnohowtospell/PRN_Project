@@ -17,6 +17,11 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
 
+    <Window.Resources>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignColumnHeader}"/>
+        </Style>
+    </Window.Resources>
     <materialDesign:DialogHost Identifier="RootDialog">
         <Grid Margin="16">
             <Grid.RowDefinitions>
@@ -27,7 +32,7 @@
             </Grid.RowDefinitions>
 
             <!-- Header -->
-            <materialDesign:Card Grid.Row="0" Margin="0,0,0,16" Padding="16">
+            <materialDesign:Card Grid.Row="0" Margin="0,0,0,16" Padding="16" Background="{DynamicResource MaterialDesignCardBackground}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -61,7 +66,7 @@
             </materialDesign:Card>
 
             <!-- Search and Filter -->
-            <materialDesign:Card Grid.Row="1" Margin="0,0,0,16" Padding="16">
+            <materialDesign:Card Grid.Row="1" Margin="0,0,0,16" Padding="16" Background="{DynamicResource MaterialDesignCardBackground}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -122,7 +127,7 @@
             </materialDesign:Card>
 
             <!-- Course List -->
-            <materialDesign:Card Grid.Row="2" Padding="0">
+            <materialDesign:Card Grid.Row="2" Padding="0" Background="{DynamicResource MaterialDesignCardBackground}">
                 <DataGrid Name="dgCourses"
                       Style="{StaticResource MaterialDesignDataGrid}"
                       AutoGenerateColumns="False"
@@ -133,6 +138,8 @@
                       IsReadOnly="True"
                       HeadersVisibility="Column"
                       GridLinesVisibility="Horizontal"
+                      Background="{DynamicResource MaterialDesignCardBackground}"   
+                      Foreground="{DynamicResource MaterialDesignBody}"
                       HorizontalGridLinesBrush="{DynamicResource MaterialDesignDivider}"
                       SelectionChanged="DgCourses_SelectionChanged">
 
@@ -220,7 +227,7 @@
             </materialDesign:Card>
 
             <!-- Status Bar -->
-            <materialDesign:Card Grid.Row="3" Margin="0,16,0,0" Padding="16">
+            <materialDesign:Card Grid.Row="3" Margin="0,16,0,0" Padding="16" Background="{DynamicResource MaterialDesignCardBackground}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

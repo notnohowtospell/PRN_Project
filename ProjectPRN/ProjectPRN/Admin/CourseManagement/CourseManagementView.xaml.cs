@@ -5,12 +5,13 @@ using System.Windows;
 using System.Windows.Controls;
 using BusinessObjects.Models;
 using MaterialDesignThemes.Wpf;
+using ProjectPRN.Utils;
 
 namespace ProjectPRN.Admin.CourseManagement
 {
     public partial class CourseManagementView : Window, INotifyPropertyChanged
     {
-        private readonly ApplicationDbContext _context;
+        private readonly PresentationDbContext _context;
 
         public ObservableCollection<LifeSkillCourse> FilteredCourses { get; set; }
 
@@ -39,7 +40,7 @@ namespace ProjectPRN.Admin.CourseManagement
         public CourseManagementView()
         {
             InitializeComponent();
-            _context = new ApplicationDbContext();
+            _context = new PresentationDbContext();
 
             FilteredCourses = new ObservableCollection<LifeSkillCourse>();
 
@@ -261,10 +262,13 @@ namespace ProjectPRN.Admin.CourseManagement
                 {
                     // Update properties
                     existingCourse.CourseName = updatedCourse.CourseName;
-                    existingCourse.Description = updatedCourse.Description;
                     existingCourse.InstructorId = updatedCourse.InstructorId;
+                    existingCourse.StartDate = updatedCourse.StartDate;
+                    existingCourse.EndDate = updatedCourse.EndDate;
+                    existingCourse.Description = updatedCourse.Description;
+                    existingCourse.MaxStudents = updatedCourse.MaxStudents;
+                    existingCourse.Price = updatedCourse.Price;
                     existingCourse.Status = updatedCourse.Status;
-                    // Add other properties as needed
 
                     _context.SaveChanges();
                 }

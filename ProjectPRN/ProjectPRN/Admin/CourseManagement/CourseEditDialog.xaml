@@ -9,8 +9,7 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}">
-
-    <materialDesign:Card Width="600" MaxHeight="700">
+    <materialDesign:Card Width="600" MaxHeight="700" Background="{DynamicResource MaterialDesignCardBackground}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="24">
                 <!-- Dialog Header -->
@@ -19,25 +18,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
                     <StackPanel Grid.Column="0">
                         <TextBlock Name="txtDialogTitle"
                                    Text="Thêm khóa học mới"
                                    Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                                   Margin="0,0,0,4"/>
+                                   Margin="0,0,0,4"
+                                   Foreground="{DynamicResource MaterialDesignBody}"/>
                         <TextBlock Text="Điền thông tin chi tiết cho khóa học"
                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                   Opacity="0.7"/>
+                                   Opacity="0.7"
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}"/>
                     </StackPanel>
-
                     <Button Grid.Column="1"
                             Style="{StaticResource MaterialDesignIconButton}"
                             Click="BtnClose_Click"
                             ToolTip="Đóng">
-                        <materialDesign:PackIcon Kind="Close"/>
+                        <materialDesign:PackIcon Kind="Close" Foreground="{DynamicResource MaterialDesignBody}"/>
                     </Button>
                 </Grid>
-
                 <!-- Course Information Form -->
                 <Grid>
                     <Grid.RowDefinitions>
@@ -52,7 +50,6 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-
                     <!-- Course Name -->
                     <TextBox Grid.Row="0"
                              Name="txtCourseName"
@@ -62,7 +59,6 @@
                              Margin="0,0,0,16"
                              MaxLength="200"
                              TextChanged="ValidateForm"/>
-
                     <!-- Instructor -->
                     <ComboBox Grid.Row="1"
                               Name="cmbInstructor"
@@ -73,7 +69,6 @@
                               SelectionChanged="ValidateForm"
                               DisplayMemberPath="InstructorName"
                               SelectedValuePath="InstructorId"/>
-
                     <!-- Date Range -->
                     <Grid Grid.Row="2" Margin="0,0,0,16">
                         <Grid.ColumnDefinitions>
@@ -81,14 +76,12 @@
                             <ColumnDefinition Width="16"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-
                         <DatePicker Grid.Column="0"
                                     Name="dpStartDate"
                                     materialDesign:HintAssist.Hint="Ngày bắt đầu *"
                                     materialDesign:HintAssist.IsFloating="True"
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                     SelectedDateChanged="ValidateForm"/>
-
                         <DatePicker Grid.Column="2"
                                     Name="dpEndDate"
                                     materialDesign:HintAssist.Hint="Ngày kết thúc *"
@@ -96,7 +89,6 @@
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                     SelectedDateChanged="ValidateForm"/>
                     </Grid>
-
                     <!-- Price and Max Students -->
                     <Grid Grid.Row="3" Margin="0,0,0,16">
                         <Grid.ColumnDefinitions>
@@ -104,7 +96,6 @@
                             <ColumnDefinition Width="16"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-
                         <TextBox Grid.Column="0"
                                  Name="txtPrice"
                                  materialDesign:HintAssist.Hint="Học phí (VNĐ)"
@@ -112,7 +103,6 @@
                                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                  PreviewTextInput="NumberValidationTextInput"
                                  TextChanged="ValidateForm"/>
-
                         <TextBox Grid.Column="2"
                                  Name="txtMaxStudents"
                                  materialDesign:HintAssist.Hint="Số lượng tối đa học viên"
@@ -121,7 +111,6 @@
                                  PreviewTextInput="IntegerValidationTextInput"
                                  TextChanged="ValidateForm"/>
                     </Grid>
-
                     <!-- Status -->
                     <ComboBox Grid.Row="4"
                               Name="cmbStatus"
@@ -134,7 +123,6 @@
                         <ComboBoxItem Content="Đã đóng"/>
                         <ComboBoxItem Content="Tạm dừng"/>
                     </ComboBox>
-
                     <!-- Description -->
                     <TextBox Grid.Row="5"
                              Name="txtDescription"
@@ -147,7 +135,6 @@
                              MinHeight="80"
                              MaxHeight="120"
                              Margin="0,0,0,24"/>
-
                     <!-- Validation Messages -->
                     <Border Grid.Row="6"
                             Name="borderValidation"
@@ -171,7 +158,6 @@
                             </ItemsControl>
                         </StackPanel>
                     </Border>
-
                     <!-- Action Buttons -->
                     <Grid Grid.Row="7">
                         <Grid.ColumnDefinitions>
@@ -179,7 +165,6 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
                         <Button Grid.Column="1"
                                 Name="btnCancel"
                                 Content="HỦY"
@@ -187,7 +172,6 @@
                                 Margin="0,0,8,0"
                                 Width="100"
                                 Click="BtnCancel_Click"/>
-
                         <Button Grid.Column="2"
                                 Name="btnSave"
                                 Content="LƯU"

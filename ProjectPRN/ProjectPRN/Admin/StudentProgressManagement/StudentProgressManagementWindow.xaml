@@ -5,7 +5,9 @@
         Title="Quan Ly Tien Trinh Hoc Sinh" 
         Height="700" Width="1200"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResize">
+        ResizeMode="CanResize"
+        Background="{DynamicResource MaterialDesignPaper}">
+        
     
     <local:StudentProgressManagementView/>
 </Window>

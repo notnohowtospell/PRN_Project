@@ -12,88 +12,77 @@
              Height="1150">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid Margin="20">
-
-    <materialDesign:Card Width="700">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,-327">
-            <StackPanel Margin="24">
-                <!-- Dialog Header -->
-                <Grid Margin="0,0,0,24">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="Đăng ký khóa học"
-                                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
-                                   Margin="0,0,0,4"/>
-                        <TextBlock Text="Xác nhận thông tin và thanh toán"
-                                   Style="{StaticResource MaterialDesignBody2TextBlock}"
-                                   Opacity="0.7"/>
-                    </StackPanel>
-
-                    <Button Grid.Column="1"
-                            Style="{StaticResource MaterialDesignIconButton}"
-                            Click="BtnClose_Click"
-                            ToolTip="Đóng">
-                        <materialDesign:PackIcon Kind="Close"/>
-                    </Button>
-                </Grid>
-
-                <!-- Course Information -->
-                <materialDesign:Card Margin="0,0,0,16" Padding="16" 
-                                     Background="{DynamicResource MaterialDesignChipBackground}">
-                    <StackPanel>
-                        <TextBlock Text="THÔNG TIN KHÓA HỌC"
-                                   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-                                   Margin="0,0,0,12"
-                                   Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-
-                        <Grid>
+            <materialDesign:Card Width="700" Background="{DynamicResource MaterialDesignCardBackground}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,-327">
+                    <StackPanel Margin="24">
+                        <!-- Dialog Header -->
+                        <Grid Margin="0,0,0,24">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên khóa học:" FontWeight="SemiBold"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Name="txtCourseName" TextWrapping="Wrap"/>
-
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Giảng viên:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Name="txtInstructor" Margin="0,8,0,0"/>
-
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Thời gian:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Name="txtDuration" Margin="0,8,0,0"/>
-
-                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Học phí:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="3" Grid.Column="1" Name="txtPrice" Margin="0,8,0,0" 
-                                       Foreground="{DynamicResource PrimaryHueMidBrush}" FontWeight="Bold"/>
-
-                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Chỗ còn lại:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="4" Grid.Column="1" Name="txtAvailableSlots" Margin="0,8,0,0"/>
-
-                            <TextBlock Grid.Row="5" Grid.Column="0" Text="Mô tả:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="5" Grid.Column="1" Name="txtDescription" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="Đăng ký khóa học"
+                                           Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                           Margin="0,0,0,4"
+                                           Foreground="{DynamicResource MaterialDesignBody}"/>
+                                <TextBlock Text="Xác nhận thông tin và thanh toán"
+                                           Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                           Opacity="0.7"
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            </StackPanel>
+                            <Button Grid.Column="1"
+                                    Style="{StaticResource MaterialDesignIconButton}"
+                                    Click="BtnClose_Click"
+                                    ToolTip="Đóng">
+                                <materialDesign:PackIcon Kind="Close" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            </Button>
                         </Grid>
-                    </StackPanel>
-                </materialDesign:Card>
-
-                <!-- Student Information -->
+                        <!-- Course Information -->
                         <materialDesign:Card Margin="0,0,0,16" Padding="16"
-                                     Background="{DynamicResource MaterialDesignChipBackground}">
+                                             Background="{DynamicResource MaterialDesignCardBackground}">
+                            <StackPanel>
+                                <TextBlock Text="THÔNG TIN KHÓA HỌC"
+                                           Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                                           Margin="0,0,0,12"
+                                           Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên khóa học:" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Name="txtCourseName" TextWrapping="Wrap" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Giảng viên:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Name="txtInstructor" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Thời gian:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Name="txtDuration" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Học phí:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Name="txtPrice" Margin="0,8,0,0"
+                                               Foreground="{DynamicResource PrimaryHueMidBrush}" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Chỗ còn lại:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Name="txtAvailableSlots" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Mô tả:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="5" Grid.Column="1" Name="txtDescription" TextWrapping="Wrap" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                </Grid>
+                            </StackPanel>
+                        </materialDesign:Card>
+                        <!-- Student Information -->
+                        <materialDesign:Card Margin="0,0,0,16" Padding="16"
+                                             Background="{DynamicResource MaterialDesignCardBackground}">
                             <StackPanel>
                                 <TextBlock Text="THÔNG TIN SINH VIÊN"
-                                   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-                                   Margin="0,0,0,12"
-                                   Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-
+                                           Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                                           Margin="0,0,0,12"
+                                           Foreground="{DynamicResource PrimaryHueMidBrush}"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="120"/>
@@ -103,87 +92,76 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Họ tên:" FontWeight="SemiBold"/>
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Name="txtStudentName"/>
-
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Email:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Name="txtStudentEmail" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Họ tên:" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Name="txtStudentName" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Email:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Name="txtStudentEmail" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
                                 </Grid>
                             </StackPanel>
                         </materialDesign:Card>
                         <!-- Bank Transfer Info -->
-                <materialDesign:Card Name="cardBankTransfer" Margin="0,0,0,16" Padding="16">
-                    <StackPanel>
-                        <TextBlock Text="THÔNG TIN CHUYỂN KHOẢN"
-                                   Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-                                   Margin="0,0,0,16"
-                                   Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-
+                        <materialDesign:Card Name="cardBankTransfer" Margin="0,0,0,16" Padding="16" Background="{DynamicResource MaterialDesignCardBackground}">
+                            <StackPanel>
+                                <TextBlock Text="THÔNG TIN CHUYỂN KHOẢN"
+                                           Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                                           Margin="0,0,0,16"
+                                           Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Ngân hàng:" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="TECHCOMBANK - Chi nhánh Hà Nội" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Số tài khoản:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="1234567890" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Chủ tài khoản:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="TRUONG DAI HOC FPT" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Số tiền:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Name="txtBankAmount" Margin="0,8,0,0"
+                                               FontWeight="Bold" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Nội dung:" FontWeight="SemiBold" Margin="0,8,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Name="txtBankContent" Margin="0,8,0,0"
+                                               TextWrapping="Wrap" FontStyle="Italic" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                </Grid>
+                            </StackPanel>
+                        </materialDesign:Card>
+                        <!-- Confirmation Checkbox -->
+                        <CheckBox Name="chkConfirm" Margin="0,0,0,24" Content="Tôi xác nhận đã đọc và đồng ý với các điều khoản đăng ký khóa học"
+                                  Checked="ChkConfirm_Checked" Unchecked="ChkConfirm_Unchecked"
+                                  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <!-- Action Buttons -->
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Ngân hàng:" FontWeight="SemiBold"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="TECHCOMBANK - Chi nhánh Hà Nội"/>
-
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Số tài khoản:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="1234567890" Margin="0,8,0,0"/>
-
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Chủ tài khoản:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="TRUONG DAI HOC FPT" Margin="0,8,0,0"/>
-
-                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Số tiền:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="3" Grid.Column="1" Name="txtBankAmount" Margin="0,8,0,0" 
-                                       FontWeight="Bold" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-
-                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Nội dung:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                            <TextBlock Grid.Row="4" Grid.Column="1" Name="txtBankContent" Margin="0,8,0,0" 
-                                       TextWrapping="Wrap" FontStyle="Italic"/>
+                            <Button Grid.Column="1"
+                                    Name="btnCancel"
+                                    Content="HỦY"
+                                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                                    Margin="0,0,8,0"
+                                    Width="100"
+                                    Click="BtnCancel_Click"/>
+                            <Button Grid.Column="2"
+                                    Name="btnConfirm"
+                                    Content="ĐĂNG KÝ"
+                                    Style="{StaticResource MaterialDesignRaisedButton}"
+                                    Width="150"
+                                    IsEnabled="False"
+                                    Click="BtnConfirm_Click"/>
                         </Grid>
                     </StackPanel>
-                </materialDesign:Card>
-
-                <!-- Confirmation Checkbox -->
-                <CheckBox Name="chkConfirm" Margin="0,0,0,24" Content="Tôi xác nhận đã đọc và đồng ý với các điều khoản đăng ký khóa học" 
-                          Checked="ChkConfirm_Checked" Unchecked="ChkConfirm_Unchecked"/>
-
-                <!-- Action Buttons -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button Grid.Column="1"
-                            Name="btnCancel"
-                            Content="HỦY"
-                            Style="{StaticResource MaterialDesignOutlinedButton}"
-                            Margin="0,0,8,0"
-                            Width="100"
-                            Click="BtnCancel_Click"/>
-
-                    <Button Grid.Column="2"
-                            Name="btnConfirm"
-                            Content="ĐĂNG KÝ"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            Width="150"
-                            IsEnabled="False"
-                            Click="BtnConfirm_Click"/>
-                </Grid>
-            </StackPanel>
-        </ScrollViewer>
-    </materialDesign:Card>
+                </ScrollViewer>
+            </materialDesign:Card>
         </Grid>
     </ScrollViewer>
 </UserControl>

@@ -1,0 +1,77 @@
+﻿<Window x:Class="ProjectPRN.CertificateManagement.CertificateManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectPRN.CertificateManagement"
+        mc:Ignorable="d"
+        Title="Quản lý Chứng chỉ" Height="600" Width="900"
+        Background="#FAFAFA">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Dòng đầu: Chứa bộ lọc + nút back -->
+        <DockPanel Grid.Row="0" LastChildFill="False" Margin="0,0,0,10"></DockPanel>
+        <!-- Nút Back -->
+            <Button Content="← Quay lại"
+            Width="100"
+            Margin="700,0,10,0"
+            Click="BackButton_Click"
+            Background="#E0E0E0"
+            Padding="5,2"/>
+            <!-- Bộ lọc: chọn khóa học -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Chọn khóa học:" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox x:Name="CourseComboBox"
+                      Width="250"
+                      DisplayMemberPath="CourseName"
+                      SelectedValuePath="CourseId"
+                      SelectionChanged="CourseComboBox_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- DataGrid sinh viên đã hoàn thành -->
+        <DataGrid x:Name="StudentDataGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding}"
+                  SelectionMode="Single"
+                  Margin="0,0,0,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã SV" Binding="{Binding Student.StudentId}" Width="*"/>
+                <DataGridTextColumn Header="Họ tên" Binding="{Binding Student.StudentName}" Width="2*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Student.Email}" Width="2*"/>
+                <DataGridTextColumn Header="SĐT" Binding="{Binding Student.PhoneNumber}" Width="1.5*"/>
+                <DataGridTextColumn Header="Khóa học" Binding="{Binding Assessment.Course.CourseName}" Width="2*"/>
+
+                <DataGridTemplateColumn Header="Hành động" Width="1.5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Cấp chứng chỉ"
+                                    Background="#2196F3"
+                                    Foreground="White"
+                                    Padding="5,2"
+                                    Click="GenerateCertificate_Click"
+                                    Tag="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Tải xuống" Width="1.8*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Tải chứng chỉ"
+                                    Background="#4CAF50"
+                                    Foreground="White"
+                                    Padding="5,2"
+                                    Click="DownloadCertificate_Click"
+                                    Tag="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

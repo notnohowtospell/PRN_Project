@@ -1,0 +1,58 @@
+﻿<Window x:Class="ProjectPRN.AssessmentManagement.StudentSubmissionManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectPRN.AssessmentManagement"
+        mc:Ignorable="d"
+        Title="Quản lý Bài nộp Học sinh"
+        Background="#FAFAFA">
+    <Grid>
+        <StackPanel Margin="10">
+            <!-- Nút Quay về -->
+            <Button Content="← Quay về"
+            Width="100" Height="30"
+            Margin="0 0 0 10"
+            Background="#E0E0E0"
+            FontWeight="SemiBold"
+            HorizontalAlignment="Left"
+            Click="Back_Click"/>
+            <TextBlock Text="Chấm điểm học sinh" FontSize="22" FontWeight="Bold" Margin="0 0 0 20" Foreground="Green"/>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10" VerticalAlignment="Top">
+                <ComboBox x:Name="CourseFilterComboBox" Width="150" Margin="0 0 10 0"
+                          DisplayMemberPath="CourseName" SelectedValuePath="CourseId"
+                          SelectionChanged="CourseFilterComboBox_SelectionChanged"/>
+
+                <ComboBox x:Name="AssignmentFilterComboBox" Width="150" Margin="0 0 10 0"
+                          DisplayMemberPath="AssessmentName" SelectedValuePath="AssessmentId"
+                          SelectionChanged="FilterChanged"/>
+                <TextBlock Text="Tìm tên học sinh:" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                <TextBox x:Name="SearchTextBox" Width="200" Margin="0 0 10 0" 
+                         TextChanged="FilterChanged"/>
+
+                <Button Content="Xóa Bộ lọc" Width="100" Click="ClearFilter_Click"/>
+            </StackPanel>
+
+            <DataGrid x:Name="SubmissionDataGrid" AutoGenerateColumns="False" Height="400" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Học sinh" Binding="{Binding Student.StudentName}"/>
+                    <DataGridTextColumn Header="Khóa học" Binding="{Binding Assessment.Course.CourseName}"/>
+                    <DataGridTextColumn Header="Bài tập" Binding="{Binding Assessment.AssessmentName}"/>
+                    <DataGridTextColumn Header="Hết hạn" Binding="{Binding Assessment.DueDate, StringFormat=\{0:dd/MM/yyyy\}}"/>
+                    <DataGridTextColumn Header="Ngày nộp" Binding="{Binding SubmissionDate, StringFormat=\{0:dd/MM/yyyy\}}"/>
+                    <DataGridTextColumn Header="Điểm" Binding="{Binding Score}"/>
+                    <DataGridTemplateColumn Header="Hành động">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Tải về" Margin="2" Click="Download_Click"/>
+                                    <Button Content="Chấm điểm" Margin="2" Click="EditScore_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
