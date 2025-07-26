@@ -39,6 +39,7 @@ namespace ProjectPRN.Admin
             _lifeSkillCourseRepository = new LifeSkillCourseRepository(new LifeSkillCourseDAO());
             _instructorRepository = new InstructorRepository(new InstructorDAO());
             _studentDAO = new StudentDAO();
+            Loaded += StudentMainWindow_Loaded;
 
             DataContext = this;
             InitializeWindow();
