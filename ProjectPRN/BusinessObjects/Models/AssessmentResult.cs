@@ -15,7 +15,7 @@ public partial class AssessmentResult
 
     public DateTime? SubmissionDate { get; set; }
 
-    public string? SubmissionFilePath { get; set; }//Them vao
+    public string? SubmissionFilePath { get; set; }
 
     public virtual Assessment Assessment { get; set; } = null!;
 

@@ -19,12 +19,12 @@ public class ActivityLogDAO : IActivityLogDAO
 
     public async Task<IEnumerable<ActivityLog>> GetAllAsync()
     {
-        return await _context.ActivityLogs.Include(a => a.User).ToListAsync();
+        return await _context.ActivityLogs.ToListAsync();
     }
 
     public async Task<ActivityLog?> GetByIdAsync(int id)
     {
-        return await _context.ActivityLogs.Include(a => a.User).FirstOrDefaultAsync(a => a.LogId == id);
+        return await _context.ActivityLogs.FirstOrDefaultAsync(a => a.LogId == id);
     }
 
     public async Task<IEnumerable<ActivityLog>> GetByUserIdAsync(int userId)
