@@ -12,6 +12,4 @@ public partial class ActivityLog
     public string Action { get; set; } = null!;
 
     public DateTime Timestamp { get; set; }
-
-    public virtual Student? User { get; set; }
 }

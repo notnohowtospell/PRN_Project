@@ -41,20 +41,19 @@ public partial class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost;Database=PRN212SkillsHoannn6;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("server =(local); database = PRN212SkillsHoannn6;uid=sa;pwd=123;TrustServerCertificate=True;Trusted_Connection=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ActivityLog>(entity =>
         {
             entity.HasKey(e => e.LogId);
-
-            entity.HasOne(d => d.User).WithMany(p => p.ActivityLogs).HasForeignKey(d => d.UserId);
         });
 
         modelBuilder.Entity<Assessment>(entity =>
         {
             entity.Property(e => e.AssessmentType).HasMaxLength(50);
+            entity.Property(e => e.InstructionFilePath).HasMaxLength(255);
 
             entity.HasOne(d => d.Course).WithMany(p => p.Assessments).HasForeignKey(d => d.CourseId);
         });
@@ -64,6 +63,7 @@ public partial class ApplicationDbContext : DbContext
             entity.HasKey(e => e.ResultId);
 
             entity.Property(e => e.Score).HasColumnType("decimal(4, 1)");
+            entity.Property(e => e.SubmissionFilePath).HasMaxLength(255);
 
             entity.HasOne(d => d.Assessment).WithMany(p => p.AssessmentResults).HasForeignKey(d => d.AssessmentId);
 

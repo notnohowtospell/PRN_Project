@@ -1,4 +1,7 @@
-﻿namespace BusinessObjects.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace BusinessObjects.Models;
 
 public partial class Instructor
 {
@@ -11,7 +14,6 @@ public partial class Instructor
     public string? Email { get; set; }
 
     public string? PhoneNumber { get; set; }
-
 
     public virtual ICollection<LifeSkillCourse> LifeSkillCourses { get; set; } = new List<LifeSkillCourse>();
 }
